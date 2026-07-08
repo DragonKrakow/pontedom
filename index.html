@@ -392,6 +392,8 @@
         const API_BASE = "https://adriatica-backend.onrender.com";
         const DEFAULT_MAP_CENTER = [42.75, 13.95];
         const DEFAULT_MAP_ZOOM = 10;
+        const SINGLE_MARKER_ZOOM = 12;
+        const MAP_MARKER_BADGE_CLASS = "bg-sky-600 hover:bg-slate-900 text-white font-black text-[11px] px-2.5 py-1.5 rounded-xl shadow-lg border-2 border-white transition-all transform hover:scale-105";
         const FEATURE_DEFINITIONS = [
             { key: "mare", labels: { it: "mare", en: "sea", pl: "morze" }, aliases: ["coast", "coastal"] },
             { key: "montagna", labels: { it: "montagna", en: "mountain", pl: "góra" }, aliases: ["mountains", "mountain view"] },
@@ -604,12 +606,14 @@
         function getEffectivePriceRange() {
             let minPrice = filtersState.priceMin === "" ? null : Number(filtersState.priceMin);
             let maxPrice = filtersState.priceMax === "" ? null : Number(filtersState.priceMax);
+            let wasSwapped = false;
 
             minPrice = Number.isFinite(minPrice) ? minPrice : null;
             maxPrice = Number.isFinite(maxPrice) ? maxPrice : null;
 
             if (minPrice !== null && maxPrice !== null && minPrice > maxPrice) {
                 [minPrice, maxPrice] = [maxPrice, minPrice];
+                wasSwapped = true;
 
                 const minInput = document.getElementById("filter-price-min");
                 const maxInput = document.getElementById("filter-price-max");
@@ -620,11 +624,11 @@
                 filtersState.priceMax = String(maxPrice);
             }
 
-            return { minPrice, maxPrice };
+            return { minPrice, maxPrice, wasSwapped };
         }
 
-        function getFilteredListings() {
-            const { minPrice, maxPrice } = getEffectivePriceRange();
+        function getFilteredListings(priceRange = getEffectivePriceRange()) {
+            const { minPrice, maxPrice } = priceRange;
             const activeFeatures = Array.from(filtersState.features);
 
             return dataStore.filter((listing) => {
@@ -642,6 +646,19 @@
 
                 return true;
             });
+        }
+
+        function countListingsHiddenByMissingPrice(priceRange) {
+            const { minPrice, maxPrice } = priceRange;
+            if (minPrice === null && maxPrice === null) return 0;
+
+            const activeFeatures = Array.from(filtersState.features);
+            return dataStore.filter((listing) => {
+                if (Number.isFinite(listing.priceValue)) return false;
+                if (!activeFeatures.length) return true;
+                const listingFeatures = Array.isArray(listing.features) ? listing.features : [];
+                return activeFeatures.every((feature) => listingFeatures.includes(feature));
+            }).length;
         }
 
         function renderFeatureFilters() {
@@ -690,11 +707,11 @@
             });
         }
 
-        function updateFilterSummary(filteredListings) {
+        function updateFilterSummary(filteredListings, priceRange) {
             const summary = document.getElementById("active-filter-summary");
             if (!summary) return;
 
-            const { minPrice, maxPrice } = getEffectivePriceRange();
+            const { minPrice, maxPrice, wasSwapped } = priceRange;
             const activeParts = [];
             if (minPrice !== null) activeParts.push(`od ${minPrice.toLocaleString("pl-PL")}`);
             if (maxPrice !== null) activeParts.push(`do ${maxPrice.toLocaleString("pl-PL")}`);
@@ -702,9 +719,14 @@
                 activeParts.push(`cechy: ${Array.from(filtersState.features).map(getFeatureLabel).join(", ")}`);
             }
 
+            const missingPriceCount = countListingsHiddenByMissingPrice(priceRange);
+            const extraMessages = [];
+            if (wasSwapped) extraMessages.push("Zakres cen został automatycznie skorygowany.");
+            if (missingPriceCount) extraMessages.push(`Ukryto ${missingPriceCount} ofert bez podanej ceny przy aktywnym zakresie cenowym.`);
+
             summary.textContent = activeParts.length
-                ? `Znaleziono ${filteredListings.length} ofert • Aktywne filtry: ${activeParts.join(" • ")}`
-                : `Znaleziono ${filteredListings.length} ofert • Wybierz zakres cenowy lub cechy nieruchomości.`;
+                ? `Znaleziono ${filteredListings.length} ofert. Aktywne filtry: ${activeParts.join(", ")}.${extraMessages.length ? ` ${extraMessages.join(" ")}` : ""}`
+                : `Znaleziono ${filteredListings.length} ofert. Wybierz zakres cenowy lub cechy nieruchomości.`;
         }
 
         function clearFilters() {
@@ -746,10 +768,11 @@
         }
 
         function applyFilters() {
-            const filteredListings = getFilteredListings();
+            const priceRange = getEffectivePriceRange();
+            const filteredListings = getFilteredListings(priceRange);
             populateCards(filteredListings);
             populateMapMarkers(filteredListings);
-            updateFilterSummary(filteredListings);
+            updateFilterSummary(filteredListings, priceRange);
         }
 
         function normalizeListing(item, index) {
@@ -834,7 +857,7 @@
 
                 const markerIcon = L.divIcon({
                     className: 'custom-map-badge',
-                    html: `<div class="bg-sky-600 hover:bg-slate-900 text-white font-black text-[11px] px-2.5 py-1.5 rounded-xl shadow-lg border-2 border-white transition-all transform hover:scale-105">${escapeHtml(p.price)}</div>`,
+                    html: `<div class="${MAP_MARKER_BADGE_CLASS}">${escapeHtml(p.price)}</div>`,
                     iconSize: [85, 30],
                     iconAnchor: [42, 15]
                 });
@@ -854,7 +877,7 @@
                 .filter(Boolean);
 
             if (validCoords.length === 1) {
-                mapInstance.setView(validCoords[0], 12);
+                mapInstance.setView(validCoords[0], SINGLE_MARKER_ZOOM);
                 return;
             }
 
@@ -880,7 +903,7 @@
             listings.forEach(p => {
                 const featureChips = (Array.isArray(p.features) ? p.features : [])
                     .slice(0, 3)
-                    .map((feature) => `<span role="listitem" aria-label="Cecha: ${escapeHtml(getFeatureLabel(feature))}" class="rounded-full bg-slate-100 px-2.5 py-1 text-[10px] font-semibold text-slate-500">${escapeHtml(getFeatureLabel(feature))}</span>`)
+                    .map((feature) => `<span role="listitem" class="rounded-full bg-slate-100 px-2.5 py-1 text-[10px] font-semibold text-slate-500">${escapeHtml(getFeatureLabel(feature))}</span>`)
                     .join('');
 
                 const card = document.createElement('div');
