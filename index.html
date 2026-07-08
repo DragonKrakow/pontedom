@@ -164,7 +164,7 @@
                         <div id="feature-filters" class="flex flex-wrap gap-2" role="group" aria-label="Filtry cech nieruchomości"></div>
                     </div>
 
-                    <p id="filter-correction-message" class="mt-4 text-xs font-semibold text-sky-700" role="status" aria-live="assertive"></p>
+                    <p id="filter-correction-message" class="mt-4 text-xs font-semibold text-sky-700" role="status" aria-live="polite"></p>
                     <p id="active-filter-summary" class="mt-2 text-xs text-slate-500" role="status" aria-live="polite"></p>
                 </div>
                 
@@ -395,6 +395,7 @@
         const DEFAULT_MAP_ZOOM = 10;
         const SINGLE_MARKER_ZOOM = 12;
         const MAP_MARKER_BADGE_CLASS = "bg-sky-600 hover:bg-slate-900 text-white font-black text-[11px] px-2.5 py-1.5 rounded-xl shadow-lg border-2 border-white transition-all transform hover:scale-105";
+        const DEFAULT_IMAGE_URL = "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=80";
         const FEATURE_DEFINITIONS = [
             { key: "mare", labels: { it: "mare", en: "sea", pl: "morze" }, aliases: ["coast", "coastal"] },
             { key: "montagna", labels: { it: "montagna", en: "mountain", pl: "góra" }, aliases: ["mountains", "mountain view"] },
@@ -596,12 +597,19 @@
         function extractCanonicalFeatures(item) {
             const featureSet = new Set();
             [item?.features, item?.filters, item?.tags, item?.amenities, item?.attributes].forEach((source) => addFeatureMatches(source, featureSet));
-
-            if (!featureSet.size) {
-                addFeatureMatches([item?.badge, item?.title, item?.desc, item?.description], featureSet);
-            }
-
             return Array.from(featureSet);
+        }
+
+        function sanitizeImageUrl(value) {
+            const candidate = String(value || "").trim();
+            if (!candidate) return DEFAULT_IMAGE_URL;
+
+            try {
+                const resolvedUrl = new URL(candidate, window.location.href);
+                return ["http:", "https:"].includes(resolvedUrl.protocol) ? resolvedUrl.href : DEFAULT_IMAGE_URL;
+            } catch (error) {
+                return DEFAULT_IMAGE_URL;
+            }
         }
 
         function getEffectivePriceRange() {
@@ -788,9 +796,10 @@
             const priceValue = parsePriceValue(item?.priceValue ?? item?.price_amount ?? item?.priceNumber ?? item?.price ?? item?.priceText);
             const currency = item?.currency || item?.priceCurrency || "EUR";
 
-            const images = Array.isArray(item?.images)
+            const images = (Array.isArray(item?.images)
                 ? item.images.filter(Boolean)
-                : (item?.image ? [item.image] : []);
+                : (item?.image ? [item.image] : []))
+                .map(sanitizeImageUrl);
 
             return {
                 id: Number(item?.id) || fallbackId,
@@ -807,9 +816,7 @@
                 },
                 coords: validCoords ? [lat, lng] : null,
                 features: extractCanonicalFeatures(item),
-                images: images.length ? images : [
-                    "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=80"
-                ]
+                images: images.length ? images : [DEFAULT_IMAGE_URL]
             };
         }
 
