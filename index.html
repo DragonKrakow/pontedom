@@ -142,7 +142,7 @@
                     <p class="text-sm text-slate-500 mt-1">Wszystkie poniższe oferty zostały wstępnie zweryfikowane pod kątem formalno-prawnym.</p>
                 </div>
 
-                <div class="bg-white border border-slate-200 rounded-2xl shadow-sm p-5 sm:p-6 mb-8">
+                <div class="bg-white border border-slate-200 rounded-2xl shadow-sm p-5 sm:p-6 mb-8" role="region" aria-label="Filtry nieruchomości">
                     <div class="flex flex-col xl:flex-row xl:items-end gap-4 xl:gap-6">
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 flex-1">
                             <label class="block">
@@ -161,10 +161,10 @@
 
                     <div class="mt-5">
                         <p class="text-xs font-bold text-slate-500 uppercase tracking-wider mb-3">Cechy nieruchomości</p>
-                        <div id="feature-filters" class="flex flex-wrap gap-2"></div>
+                        <div id="feature-filters" class="flex flex-wrap gap-2" role="group" aria-label="Filtry cech nieruchomości"></div>
                     </div>
 
-                    <p id="active-filter-summary" class="mt-4 text-xs text-slate-500"></p>
+                    <p id="active-filter-summary" class="mt-4 text-xs text-slate-500" role="status" aria-live="polite"></p>
                 </div>
                 
                 <div class="flex flex-col lg:flex-row gap-8 h-[650px] overflow-hidden">
@@ -206,7 +206,7 @@
                 <div class="lg:col-span-5 p-6 sm:p-10 flex flex-col justify-between h-full">
                     <div>
                         <h1 id="detail-title" class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight mb-2"></h1>
-                        <p id="detail-loc" class="text-slate-400 text-sm flex items-center gap-2 mb-6"><i class="fa-solid fa-location-dot text-sky-500"></i> </p>
+                        <p class="text-slate-400 text-sm flex items-center gap-2 mb-6"><i class="fa-solid fa-location-dot text-sky-500"></i><span id="detail-loc"></span></p>
                         
                         <div class="border-y border-slate-100 py-4 mb-6 flex justify-between items-center">
                             <span class="text-slate-400 text-sm font-medium">Cena ofertowa</span>
@@ -467,7 +467,15 @@
         FEATURE_DEFINITIONS.forEach((feature) => {
             [feature.key, feature.labels.it, feature.labels.en, feature.labels.pl, ...(feature.aliases || [])]
                 .filter(Boolean)
-                .forEach((term) => FEATURE_LOOKUP.set(normalizeComparableText(term), feature.key));
+                .forEach((term) => {
+                    const normalized = normalizeComparableText(term);
+                    const existingKey = FEATURE_LOOKUP.get(normalized);
+                    if (existingKey && existingKey !== feature.key) {
+                        console.warn(`Duplicate feature alias detected for "${normalized}"`, { existingKey, nextKey: feature.key });
+                        return;
+                    }
+                    FEATURE_LOOKUP.set(normalized, feature.key);
+                });
         });
 
         function normalizeComparableText(value) {
@@ -537,6 +545,20 @@
             return `${feature.labels.pl} / ${feature.labels.en} / ${feature.labels.it}`;
         }
 
+        function formatPriceDisplay(priceValue, currency = "EUR") {
+            if (!Number.isFinite(priceValue)) return "Cena do ustalenia";
+
+            try {
+                return new Intl.NumberFormat("pl-PL", {
+                    style: "currency",
+                    currency,
+                    maximumFractionDigits: 0
+                }).format(priceValue);
+            } catch (error) {
+                return `${priceValue.toLocaleString("pl-PL")} ${currency}`;
+            }
+        }
+
         function addFeatureMatches(source, featureSet) {
             if (!source) return;
             if (Array.isArray(source)) {
@@ -579,9 +601,30 @@
             return Array.from(featureSet);
         }
 
+        function getEffectivePriceRange() {
+            let minPrice = filtersState.priceMin === "" ? null : Number(filtersState.priceMin);
+            let maxPrice = filtersState.priceMax === "" ? null : Number(filtersState.priceMax);
+
+            minPrice = Number.isFinite(minPrice) ? minPrice : null;
+            maxPrice = Number.isFinite(maxPrice) ? maxPrice : null;
+
+            if (minPrice !== null && maxPrice !== null && minPrice > maxPrice) {
+                [minPrice, maxPrice] = [maxPrice, minPrice];
+
+                const minInput = document.getElementById("filter-price-min");
+                const maxInput = document.getElementById("filter-price-max");
+                if (minInput) minInput.value = String(minPrice);
+                if (maxInput) maxInput.value = String(maxPrice);
+
+                filtersState.priceMin = String(minPrice);
+                filtersState.priceMax = String(maxPrice);
+            }
+
+            return { minPrice, maxPrice };
+        }
+
         function getFilteredListings() {
-            const minPrice = filtersState.priceMin === "" ? null : Number(filtersState.priceMin);
-            const maxPrice = filtersState.priceMax === "" ? null : Number(filtersState.priceMax);
+            const { minPrice, maxPrice } = getEffectivePriceRange();
             const activeFeatures = Array.from(filtersState.features);
 
             return dataStore.filter((listing) => {
@@ -610,6 +653,7 @@
                     type="button"
                     data-feature="${feature.key}"
                     title="${escapeHtml(getFeatureTranslations(feature.key))}"
+                    aria-pressed="false"
                     class="feature-filter rounded-full border border-slate-200 bg-white px-3 py-2 text-xs font-semibold text-slate-600 transition-colors hover:border-sky-500 hover:text-sky-600"
                 >
                     ${escapeHtml(feature.labels.pl)}
@@ -638,6 +682,7 @@
         function syncFeatureButtons() {
             document.querySelectorAll(".feature-filter").forEach((button) => {
                 const isActive = filtersState.features.has(button.dataset.feature);
+                button.setAttribute("aria-pressed", String(isActive));
                 button.classList.toggle("bg-sky-600", isActive);
                 button.classList.toggle("border-sky-600", isActive);
                 button.classList.toggle("text-white", isActive);
@@ -649,9 +694,10 @@
             const summary = document.getElementById("active-filter-summary");
             if (!summary) return;
 
+            const { minPrice, maxPrice } = getEffectivePriceRange();
             const activeParts = [];
-            if (filtersState.priceMin !== "") activeParts.push(`od ${Number(filtersState.priceMin).toLocaleString("pl-PL")}`);
-            if (filtersState.priceMax !== "") activeParts.push(`do ${Number(filtersState.priceMax).toLocaleString("pl-PL")}`);
+            if (minPrice !== null) activeParts.push(`od ${minPrice.toLocaleString("pl-PL")}`);
+            if (maxPrice !== null) activeParts.push(`do ${maxPrice.toLocaleString("pl-PL")}`);
             if (filtersState.features.size) {
                 activeParts.push(`cechy: ${Array.from(filtersState.features).map(getFeatureLabel).join(", ")}`);
             }
@@ -721,7 +767,7 @@
             return {
                 id: Number(item?.id) || fallbackId,
                 title: item?.title || item?.name || "Nowa oferta",
-                price: item?.price || item?.priceText || (Number.isFinite(priceValue) ? `${priceValue.toLocaleString("pl-PL")} ${currency}` : "Cena do ustalenia"),
+                price: item?.price || item?.priceText || formatPriceDisplay(priceValue, currency),
                 priceValue,
                 location: item?.location || item?.city || "Włochy",
                 badge: item?.badge || "Nowość",
@@ -834,7 +880,7 @@
             listings.forEach(p => {
                 const featureChips = (Array.isArray(p.features) ? p.features : [])
                     .slice(0, 3)
-                    .map((feature) => `<span class="rounded-full bg-slate-100 px-2.5 py-1 text-[10px] font-semibold text-slate-500">${escapeHtml(getFeatureLabel(feature))}</span>`)
+                    .map((feature) => `<span role="listitem" aria-label="Cecha: ${escapeHtml(getFeatureLabel(feature))}" class="rounded-full bg-slate-100 px-2.5 py-1 text-[10px] font-semibold text-slate-500">${escapeHtml(getFeatureLabel(feature))}</span>`)
                     .join('');
 
                 const card = document.createElement('div');
@@ -852,7 +898,7 @@
                                 <span class="text-sky-600 font-extrabold text-sm whitespace-nowrap">${escapeHtml(p.price)}</span>
                             </div>
                             <p class="text-slate-400 text-xs flex items-center gap-1 mb-3"><i class="fa-solid fa-location-dot"></i> ${escapeHtml(p.location)}</p>
-                            <div class="flex flex-wrap gap-1.5 mb-3">${featureChips}</div>
+                            <div class="flex flex-wrap gap-1.5 mb-3" role="list" aria-label="Cechy nieruchomości">${featureChips}</div>
                             <p class="text-slate-500 text-xs line-clamp-2 leading-relaxed mb-4">${escapeHtml(p.desc)}</p>
                         </div>
                         <div class="flex justify-between items-center text-[11px] font-medium text-slate-400 border-t border-slate-50 pt-3">
@@ -877,7 +923,7 @@
             
             document.getElementById('detail-title').innerText = currentProperty.title;
             document.getElementById('detail-price').innerText = currentProperty.price;
-            document.getElementById('detail-loc').innerHTML = `<i class="fa-solid fa-location-dot text-sky-500"></i> ${escapeHtml(currentProperty.location)}`;
+            document.getElementById('detail-loc').textContent = currentProperty.location;
             document.getElementById('detail-desc').innerText = currentProperty.desc;
             document.getElementById('detail-badge').innerText = currentProperty.badge;
             
