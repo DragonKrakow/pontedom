@@ -164,7 +164,8 @@
                         <div id="feature-filters" class="flex flex-wrap gap-2" role="group" aria-label="Filtry cech nieruchomości"></div>
                     </div>
 
-                    <p id="active-filter-summary" class="mt-4 text-xs text-slate-500" role="status" aria-live="polite"></p>
+                    <p id="filter-correction-message" class="mt-4 text-xs font-semibold text-sky-700" role="status" aria-live="assertive"></p>
+                    <p id="active-filter-summary" class="mt-2 text-xs text-slate-500" role="status" aria-live="polite"></p>
                 </div>
                 
                 <div class="flex flex-col lg:flex-row gap-8 h-[650px] overflow-hidden">
@@ -215,7 +216,7 @@
                         
                         <h3 class="text-xs font-bold text-slate-400 uppercase tracking-widest mb-3">Charakterystyka obiektu</h3>
                         <div id="detail-specs" class="grid grid-cols-3 gap-4 mb-8"></div>
-                        <div id="detail-features" class="flex flex-wrap gap-2 mb-8"></div>
+                        <div id="detail-features" class="flex flex-wrap gap-2 mb-8" role="list" aria-label="Cechy nieruchomości"></div>
                         
                         <p id="detail-desc" class="text-slate-500 text-sm leading-relaxed mb-8"></p>
                     </div>
@@ -467,7 +468,7 @@
         let currentImageIndex = 0;
 
         FEATURE_DEFINITIONS.forEach((feature) => {
-            [feature.key, feature.labels.it, feature.labels.en, feature.labels.pl, ...(feature.aliases || [])]
+            [feature.key, feature.labels.it, feature.labels.en, feature.labels.pl, ...feature.aliases]
                 .filter(Boolean)
                 .forEach((term) => {
                     const normalized = normalizeComparableText(term);
@@ -585,7 +586,7 @@
 
             const normalizedText = normalizeComparableText(text);
             FEATURE_DEFINITIONS.forEach((feature) => {
-                const knownTerms = [feature.key, feature.labels.it, feature.labels.en, feature.labels.pl, ...(feature.aliases || [])];
+                const knownTerms = [feature.key, feature.labels.it, feature.labels.en, feature.labels.pl, ...feature.aliases];
                 if (knownTerms.some((term) => normalizedText.includes(normalizeComparableText(term)))) {
                     featureSet.add(feature.key);
                 }
@@ -709,6 +710,7 @@
 
         function updateFilterSummary(filteredListings, priceRange) {
             const summary = document.getElementById("active-filter-summary");
+            const correctionMessage = document.getElementById("filter-correction-message");
             if (!summary) return;
 
             const { minPrice, maxPrice, wasSwapped } = priceRange;
@@ -721,8 +723,11 @@
 
             const missingPriceCount = countListingsHiddenByMissingPrice(priceRange);
             const extraMessages = [];
-            if (wasSwapped) extraMessages.push("Zakres cen został automatycznie skorygowany.");
             if (missingPriceCount) extraMessages.push(`Ukryto ${missingPriceCount} ofert bez podanej ceny przy aktywnym zakresie cenowym.`);
+
+            if (correctionMessage) {
+                correctionMessage.textContent = wasSwapped ? "Zakres cen został automatycznie skorygowany." : "";
+            }
 
             summary.textContent = activeParts.length
                 ? `Znaleziono ${filteredListings.length} ofert. Aktywne filtry: ${activeParts.join(", ")}.${extraMessages.length ? ` ${extraMessages.join(" ")}` : ""}`
@@ -960,7 +965,7 @@
             const featuresContainer = document.getElementById('detail-features');
             const features = Array.isArray(currentProperty.features) ? currentProperty.features : [];
             featuresContainer.innerHTML = features.length
-                ? features.map((feature) => `<span class="rounded-full bg-sky-50 px-3 py-1.5 text-xs font-semibold text-sky-700 border border-sky-100">${escapeHtml(getFeatureLabel(feature))}</span>`).join('')
+                ? features.map((feature) => `<span role="listitem" class="rounded-full bg-sky-50 px-3 py-1.5 text-xs font-semibold text-sky-700 border border-sky-100">${escapeHtml(getFeatureLabel(feature))}</span>`).join('')
                 : `<span class="text-xs text-slate-400">Brak dodatkowych cech do wyświetlenia.</span>`;
             
             updateCarousel();
