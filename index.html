@@ -141,6 +141,31 @@
                     <h2 class="text-3xl font-extrabold text-slate-900 tracking-tight">Dostępne Rezydencje Premium</h2>
                     <p class="text-sm text-slate-500 mt-1">Wszystkie poniższe oferty zostały wstępnie zweryfikowane pod kątem formalno-prawnym.</p>
                 </div>
+
+                <div class="bg-white border border-slate-200 rounded-2xl shadow-sm p-5 sm:p-6 mb-8">
+                    <div class="flex flex-col xl:flex-row xl:items-end gap-4 xl:gap-6">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 flex-1">
+                            <label class="block">
+                                <span class="text-xs font-bold text-slate-500 uppercase tracking-wider">Cena od</span>
+                                <input id="filter-price-min" type="number" min="0" step="1000" placeholder="np. 250000" class="mt-2 w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm focus:outline-none focus:border-sky-500">
+                            </label>
+                            <label class="block">
+                                <span class="text-xs font-bold text-slate-500 uppercase tracking-wider">Cena do</span>
+                                <input id="filter-price-max" type="number" min="0" step="1000" placeholder="np. 500000" class="mt-2 w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm focus:outline-none focus:border-sky-500">
+                            </label>
+                        </div>
+                        <button id="clear-filters" type="button" class="xl:self-end inline-flex items-center justify-center gap-2 rounded-xl border border-slate-200 px-4 py-3 text-xs font-bold uppercase tracking-wider text-slate-600 hover:border-sky-500 hover:text-sky-600 transition-colors">
+                            <i class="fa-solid fa-rotate-left"></i> Wyczyść filtry
+                        </button>
+                    </div>
+
+                    <div class="mt-5">
+                        <p class="text-xs font-bold text-slate-500 uppercase tracking-wider mb-3">Cechy nieruchomości</p>
+                        <div id="feature-filters" class="flex flex-wrap gap-2"></div>
+                    </div>
+
+                    <p id="active-filter-summary" class="mt-4 text-xs text-slate-500"></p>
+                </div>
                 
                 <div class="flex flex-col lg:flex-row gap-8 h-[650px] overflow-hidden">
                     <!-- Left Side: Listings Column -->
@@ -190,6 +215,7 @@
                         
                         <h3 class="text-xs font-bold text-slate-400 uppercase tracking-widest mb-3">Charakterystyka obiektu</h3>
                         <div id="detail-specs" class="grid grid-cols-3 gap-4 mb-8"></div>
+                        <div id="detail-features" class="flex flex-wrap gap-2 mb-8"></div>
                         
                         <p id="detail-desc" class="text-slate-500 text-sm leading-relaxed mb-8"></p>
                     </div>
@@ -364,17 +390,36 @@
     <!-- INTERACTION LOGIC ARCHITECTURE -->
     <script>
         const API_BASE = "https://adriatica-backend.onrender.com";
+        const DEFAULT_MAP_CENTER = [42.75, 13.95];
+        const DEFAULT_MAP_ZOOM = 10;
+        const FEATURE_DEFINITIONS = [
+            { key: "mare", labels: { it: "mare", en: "sea", pl: "morze" }, aliases: ["coast", "coastal"] },
+            { key: "montagna", labels: { it: "montagna", en: "mountain", pl: "góra" }, aliases: ["mountains", "mountain view"] },
+            { key: "fronte-mare", labels: { it: "fronte mare", en: "beachfront", pl: "przy plaży" }, aliases: ["seafront", "frontemare", "beach front"] },
+            { key: "centro", labels: { it: "centro", en: "downtown", pl: "centrum" }, aliases: ["city center", "centre", "center"] },
+            { key: "campagna", labels: { it: "campagna", en: "countryside", pl: "tereny wiejskie" }, aliases: ["country side", "rural"] },
+            { key: "vista-mare", labels: { it: "vista mare", en: "sea view", pl: "widok na morze" }, aliases: ["ocean view"] },
+            { key: "giardino", labels: { it: "giardino", en: "garden", pl: "ogród" }, aliases: [] },
+            { key: "garage", labels: { it: "garage", en: "garage", pl: "garaż" }, aliases: [] },
+            { key: "posto-auto", labels: { it: "posto auto", en: "parking space", pl: "miejsce parkingowe" }, aliases: ["parking", "car space"] },
+            { key: "cucina", labels: { it: "cucina", en: "kitchen", pl: "kuchnia" }, aliases: [] },
+            { key: "angolo-cottura", labels: { it: "angolo cottura", en: "kitchenette", pl: "aneks kuchenny" }, aliases: [] }
+        ];
+        const FEATURE_LOOKUP = new Map();
+        const filtersState = { priceMin: "", priceMax: "", features: new Set() };
 
         const dataStore = [
             {
                 id: 1,
                 title: "Dwupokojowy apartament z widokiem na morze",
                 price: "320 000 PLN",
+                priceValue: 320000,
                 location: "Tortoreto Lido, Włochy",
                 badge: "Top Premium",
                 desc: "Piękny, jasny apartament z dużym tarasem i bezpośrednim widokiem na linię brzegową Tortoreto Lido.",
                 specs: { space: "65 m²", beds: "2 Pokoje", baths: "1 Łazienka" },
                 coords: [42.802, 13.929],
+                features: ["mare", "vista-mare", "cucina"],
                 images: [
                     "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=800&q=80",
                     "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=800&q=80"
@@ -384,11 +429,13 @@
                 id: 2,
                 title: "Trzypokojowe mieszkanie z tarasem przy plaży",
                 price: "480 000 PLN",
+                priceValue: 480000,
                 location: "Alba Adriatica, Włochy",
                 badge: "Beachfront",
                 desc: "Wygodna posiadłość zaledwie kilka kroków od piaszczystej plaży w Alba Adriatica. Duży taras widokowy.",
                 specs: { space: "85 m²", beds: "3 Pokoje", baths: "2 Łazienki" },
                 coords: [42.831, 13.924],
+                features: ["mare", "fronte-mare", "vista-mare", "posto-auto", "cucina"],
                 images: [
                     "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=800&q=80",
                     "https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?auto=format&fit=crop&w=800&q=80"
@@ -398,11 +445,13 @@
                 id: 3,
                 title: "Apartament z widokiem panoramicznym",
                 price: "395 000 PLN",
+                priceValue: 395000,
                 location: "Pineto, Włochy",
                 badge: "Panoramic",
                 desc: "Kameralna, prestiżowa lokalizacja rezydencyjna w Pineto z piękną panoramą na morze adriatyckie.",
                 specs: { space: "78 m²", beds: "3 Pokoje", baths: "1 Łazienka" },
                 coords: [42.610, 14.065],
+                features: ["mare", "vista-mare", "centro", "angolo-cottura"],
                 images: [
                     "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=80",
                     "https://images.unsplash.com/photo-1583608205776-bfd35f0d9f83?auto=format&fit=crop&w=800&q=80"
@@ -415,11 +464,255 @@
         let currentProperty = null;
         let currentImageIndex = 0;
 
+        FEATURE_DEFINITIONS.forEach((feature) => {
+            [feature.key, feature.labels.it, feature.labels.en, feature.labels.pl, ...(feature.aliases || [])]
+                .filter(Boolean)
+                .forEach((term) => FEATURE_LOOKUP.set(normalizeComparableText(term), feature.key));
+        });
+
+        function normalizeComparableText(value) {
+            return String(value || "")
+                .normalize("NFD")
+                .replace(/[\u0300-\u036f]/g, "")
+                .toLowerCase()
+                .replace(/[^a-z0-9\s]/g, " ")
+                .replace(/\s+/g, " ")
+                .trim();
+        }
+
+        function escapeHtml(value) {
+            return String(value ?? "")
+                .replace(/&/g, "&amp;")
+                .replace(/</g, "&lt;")
+                .replace(/>/g, "&gt;")
+                .replace(/"/g, "&quot;")
+                .replace(/'/g, "&#39;");
+        }
+
+        function parsePriceValue(value) {
+            if (typeof value === "number" && Number.isFinite(value)) return value;
+            const raw = String(value ?? "").replace(/[^\d.,]/g, "").trim();
+            if (!raw) return null;
+
+            const lastComma = raw.lastIndexOf(",");
+            const lastDot = raw.lastIndexOf(".");
+
+            if (lastComma !== -1 && lastDot !== -1) {
+                const decimalSeparator = lastComma > lastDot ? "," : ".";
+                const thousandsSeparator = decimalSeparator === "," ? /\./g : /,/g;
+                const normalized = raw.replace(thousandsSeparator, "").replace(decimalSeparator, ".");
+                const parsed = Number(normalized);
+                return Number.isFinite(parsed) ? parsed : null;
+            }
+
+            if (lastComma !== -1) {
+                const decimals = raw.length - lastComma - 1;
+                const normalized = decimals <= 2 ? raw.replace(",", ".") : raw.replace(/,/g, "");
+                const parsed = Number(normalized);
+                return Number.isFinite(parsed) ? parsed : null;
+            }
+
+            if (lastDot !== -1) {
+                const decimals = raw.length - lastDot - 1;
+                const normalized = decimals <= 2 ? raw : raw.replace(/\./g, "");
+                const parsed = Number(normalized);
+                return Number.isFinite(parsed) ? parsed : null;
+            }
+
+            const parsed = Number(raw);
+            return Number.isFinite(parsed) ? parsed : null;
+        }
+
+        function getFeatureDefinition(featureKey) {
+            return FEATURE_DEFINITIONS.find((feature) => feature.key === featureKey) || null;
+        }
+
+        function getFeatureLabel(featureKey) {
+            return getFeatureDefinition(featureKey)?.labels?.pl || featureKey;
+        }
+
+        function getFeatureTranslations(featureKey) {
+            const feature = getFeatureDefinition(featureKey);
+            if (!feature) return featureKey;
+            return `${feature.labels.pl} / ${feature.labels.en} / ${feature.labels.it}`;
+        }
+
+        function addFeatureMatches(source, featureSet) {
+            if (!source) return;
+            if (Array.isArray(source)) {
+                source.forEach((entry) => addFeatureMatches(entry, featureSet));
+                return;
+            }
+
+            if (typeof source === "object") {
+                Object.values(source).forEach((entry) => addFeatureMatches(entry, featureSet));
+                return;
+            }
+
+            const text = String(source).trim();
+            if (!text) return;
+
+            text.split(/[,\n;|]+/).forEach((token) => {
+                const normalizedToken = normalizeComparableText(token);
+                if (FEATURE_LOOKUP.has(normalizedToken)) {
+                    featureSet.add(FEATURE_LOOKUP.get(normalizedToken));
+                }
+            });
+
+            const normalizedText = normalizeComparableText(text);
+            FEATURE_DEFINITIONS.forEach((feature) => {
+                const knownTerms = [feature.key, feature.labels.it, feature.labels.en, feature.labels.pl, ...(feature.aliases || [])];
+                if (knownTerms.some((term) => normalizedText.includes(normalizeComparableText(term)))) {
+                    featureSet.add(feature.key);
+                }
+            });
+        }
+
+        function extractCanonicalFeatures(item) {
+            const featureSet = new Set();
+            [item?.features, item?.filters, item?.tags, item?.amenities, item?.attributes].forEach((source) => addFeatureMatches(source, featureSet));
+
+            if (!featureSet.size) {
+                addFeatureMatches([item?.badge, item?.title, item?.desc, item?.description], featureSet);
+            }
+
+            return Array.from(featureSet);
+        }
+
+        function getFilteredListings() {
+            const minPrice = filtersState.priceMin === "" ? null : Number(filtersState.priceMin);
+            const maxPrice = filtersState.priceMax === "" ? null : Number(filtersState.priceMax);
+            const activeFeatures = Array.from(filtersState.features);
+
+            return dataStore.filter((listing) => {
+                if ((minPrice !== null || maxPrice !== null) && !Number.isFinite(listing.priceValue)) {
+                    return false;
+                }
+
+                if (minPrice !== null && listing.priceValue < minPrice) return false;
+                if (maxPrice !== null && listing.priceValue > maxPrice) return false;
+
+                if (activeFeatures.length) {
+                    const listingFeatures = Array.isArray(listing.features) ? listing.features : [];
+                    if (!activeFeatures.every((feature) => listingFeatures.includes(feature))) return false;
+                }
+
+                return true;
+            });
+        }
+
+        function renderFeatureFilters() {
+            const container = document.getElementById("feature-filters");
+            if (!container) return;
+
+            container.innerHTML = FEATURE_DEFINITIONS.map((feature) => `
+                <button
+                    type="button"
+                    data-feature="${feature.key}"
+                    title="${escapeHtml(getFeatureTranslations(feature.key))}"
+                    class="feature-filter rounded-full border border-slate-200 bg-white px-3 py-2 text-xs font-semibold text-slate-600 transition-colors hover:border-sky-500 hover:text-sky-600"
+                >
+                    ${escapeHtml(feature.labels.pl)}
+                </button>
+            `).join("");
+
+            container.querySelectorAll(".feature-filter").forEach((button) => {
+                button.addEventListener("click", () => {
+                    const featureKey = button.dataset.feature;
+                    if (!featureKey) return;
+
+                    if (filtersState.features.has(featureKey)) {
+                        filtersState.features.delete(featureKey);
+                    } else {
+                        filtersState.features.add(featureKey);
+                    }
+
+                    syncFeatureButtons();
+                    applyFilters();
+                });
+            });
+
+            syncFeatureButtons();
+        }
+
+        function syncFeatureButtons() {
+            document.querySelectorAll(".feature-filter").forEach((button) => {
+                const isActive = filtersState.features.has(button.dataset.feature);
+                button.classList.toggle("bg-sky-600", isActive);
+                button.classList.toggle("border-sky-600", isActive);
+                button.classList.toggle("text-white", isActive);
+                button.classList.toggle("text-slate-600", !isActive);
+            });
+        }
+
+        function updateFilterSummary(filteredListings) {
+            const summary = document.getElementById("active-filter-summary");
+            if (!summary) return;
+
+            const activeParts = [];
+            if (filtersState.priceMin !== "") activeParts.push(`od ${Number(filtersState.priceMin).toLocaleString("pl-PL")}`);
+            if (filtersState.priceMax !== "") activeParts.push(`do ${Number(filtersState.priceMax).toLocaleString("pl-PL")}`);
+            if (filtersState.features.size) {
+                activeParts.push(`cechy: ${Array.from(filtersState.features).map(getFeatureLabel).join(", ")}`);
+            }
+
+            summary.textContent = activeParts.length
+                ? `Znaleziono ${filteredListings.length} ofert • Aktywne filtry: ${activeParts.join(" • ")}`
+                : `Znaleziono ${filteredListings.length} ofert • Wybierz zakres cenowy lub cechy nieruchomości.`;
+        }
+
+        function clearFilters() {
+            filtersState.priceMin = "";
+            filtersState.priceMax = "";
+            filtersState.features.clear();
+
+            const minInput = document.getElementById("filter-price-min");
+            const maxInput = document.getElementById("filter-price-max");
+            if (minInput) minInput.value = "";
+            if (maxInput) maxInput.value = "";
+
+            syncFeatureButtons();
+            applyFilters();
+        }
+
+        function bindFilterControls() {
+            const minInput = document.getElementById("filter-price-min");
+            const maxInput = document.getElementById("filter-price-max");
+            const clearButton = document.getElementById("clear-filters");
+
+            if (minInput) {
+                minInput.addEventListener("input", (event) => {
+                    filtersState.priceMin = event.target.value;
+                    applyFilters();
+                });
+            }
+
+            if (maxInput) {
+                maxInput.addEventListener("input", (event) => {
+                    filtersState.priceMax = event.target.value;
+                    applyFilters();
+                });
+            }
+
+            if (clearButton) {
+                clearButton.addEventListener("click", clearFilters);
+            }
+        }
+
+        function applyFilters() {
+            const filteredListings = getFilteredListings();
+            populateCards(filteredListings);
+            populateMapMarkers(filteredListings);
+            updateFilterSummary(filteredListings);
+        }
+
         function normalizeListing(item, index) {
             const fallbackId = Date.now() + index;
             const lat = Number(item?.lat ?? item?.latitude ?? item?.coords?.[0]);
             const lng = Number(item?.lng ?? item?.longitude ?? item?.coords?.[1]);
             const validCoords = Number.isFinite(lat) && Number.isFinite(lng);
+            const priceValue = parsePriceValue(item?.priceValue ?? item?.price_amount ?? item?.priceNumber ?? item?.price ?? item?.priceText);
+            const currency = item?.currency || item?.priceCurrency || "EUR";
 
             const images = Array.isArray(item?.images)
                 ? item.images.filter(Boolean)
@@ -428,7 +721,8 @@
             return {
                 id: Number(item?.id) || fallbackId,
                 title: item?.title || item?.name || "Nowa oferta",
-                price: item?.price || item?.priceText || "Cena do ustalenia",
+                price: item?.price || item?.priceText || (Number.isFinite(priceValue) ? `${priceValue.toLocaleString("pl-PL")} ${currency}` : "Cena do ustalenia"),
+                priceValue,
                 location: item?.location || item?.city || "Włochy",
                 badge: item?.badge || "Nowość",
                 desc: item?.desc || item?.description || "Nowa nieruchomość dodana przez panel administracyjny.",
@@ -438,6 +732,7 @@
                     baths: item?.specs?.baths || item?.baths || item?.bathrooms || "—"
                 },
                 coords: validCoords ? [lat, lng] : null,
+                features: extractCanonicalFeatures(item),
                 images: images.length ? images : [
                     "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=80"
                 ]
@@ -463,8 +758,7 @@
                     if (!exists) dataStore.push(listing);
                 });
 
-                populateCards();
-                populateMapMarkers();
+                applyFilters();
             } catch (error) {
                 console.warn("Nie udało się pobrać ofert z API:", error);
             }
@@ -474,27 +768,27 @@
             const container = document.getElementById('map-container');
             if (!container || mapInstance) return;
             
-            mapInstance = L.map('map-container', { zoomControl: false, scrollWheelZoom: false }).setView([42.75, 13.95], 10);
+            mapInstance = L.map('map-container', { zoomControl: false, scrollWheelZoom: false }).setView(DEFAULT_MAP_CENTER, DEFAULT_MAP_ZOOM);
             L.control.zoom({ position: 'bottomright' }).addTo(mapInstance);
             
             L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
                 attribution: '&copy; OpenStreetMap contributors'
             }).addTo(mapInstance);
 
-            populateMapMarkers();
+            populateMapMarkers(getFilteredListings());
         }
 
-        function populateMapMarkers() {
+        function populateMapMarkers(listings = getFilteredListings()) {
             if (!mapInstance) return;
             markersGroup.forEach(m => mapInstance.removeLayer(m));
             markersGroup = [];
 
-            dataStore.forEach(p => {
+            listings.forEach(p => {
                 if (!Array.isArray(p.coords) || p.coords.length !== 2) return;
 
                 const markerIcon = L.divIcon({
                     className: 'custom-map-badge',
-                    html: `<div class="bg-sky-600 hover:bg-slate-900 text-white font-black text-[11px] px-2.5 py-1.5 rounded-xl shadow-lg border-2 border-white transition-all transform hover:scale-105">${p.price}</div>`,
+                    html: `<div class="bg-sky-600 hover:bg-slate-900 text-white font-black text-[11px] px-2.5 py-1.5 rounded-xl shadow-lg border-2 border-white transition-all transform hover:scale-105">${escapeHtml(p.price)}</div>`,
                     iconSize: [85, 30],
                     iconAnchor: [42, 15]
                 });
@@ -503,35 +797,68 @@
                 m.on('click', () => { showDetails(p.id); });
                 markersGroup.push(m);
             });
+
+            if (!listings.length) {
+                mapInstance.setView(DEFAULT_MAP_CENTER, DEFAULT_MAP_ZOOM);
+                return;
+            }
+
+            const validCoords = listings
+                .map((listing) => Array.isArray(listing.coords) ? listing.coords : null)
+                .filter(Boolean);
+
+            if (validCoords.length === 1) {
+                mapInstance.setView(validCoords[0], 12);
+                return;
+            }
+
+            if (validCoords.length > 1) {
+                mapInstance.fitBounds(validCoords, { padding: [25, 25] });
+            }
         }
 
-        function populateCards() {
+        function populateCards(listings = getFilteredListings()) {
             const grid = document.getElementById('properties-grid');
             if(!grid) return;
             grid.innerHTML = '';
+
+            if (!listings.length) {
+                grid.innerHTML = `
+                    <div class="sm:col-span-2 rounded-2xl border border-dashed border-slate-300 bg-white px-6 py-12 text-center text-sm text-slate-500">
+                        Brak ofert spełniających wybrane kryteria. Zmień zakres cenowy lub odznacz część filtrów.
+                    </div>
+                `;
+                return;
+            }
             
-            dataStore.forEach(p => {
+            listings.forEach(p => {
+                const featureChips = (Array.isArray(p.features) ? p.features : [])
+                    .slice(0, 3)
+                    .map((feature) => `<span class="rounded-full bg-slate-100 px-2.5 py-1 text-[10px] font-semibold text-slate-500">${escapeHtml(getFeatureLabel(feature))}</span>`)
+                    .join('');
+
                 const card = document.createElement('div');
                 card.className = "bg-white rounded-2xl border border-slate-100 shadow-sm overflow-hidden hover:shadow-md transition-all cursor-pointer group flex flex-col";
                 card.onclick = () => showDetails(p.id);
                 card.innerHTML = `
                     <div class="h-48 overflow-hidden relative bg-slate-100">
-                        <img src="${p.images[0]}" alt="${p.title}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
-                        <span class="absolute top-4 left-4 bg-slate-900/80 backdrop-blur-md text-white font-bold text-[10px] uppercase tracking-wider px-2.5 py-1 rounded-md z-10">${p.badge}</span>
+                        <img src="${escapeHtml(p.images[0])}" alt="${escapeHtml(p.title)}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        <span class="absolute top-4 left-4 bg-slate-900/80 backdrop-blur-md text-white font-bold text-[10px] uppercase tracking-wider px-2.5 py-1 rounded-md z-10">${escapeHtml(p.badge)}</span>
                     </div>
                     <div class="p-5 flex-col justify-between flex-1 flex">
                         <div>
                             <div class="flex justify-between items-start gap-2 mb-1">
-                                <h3 class="font-bold text-slate-900 group-hover:text-sky-600 transition-colors text-sm">${p.title}</h3>
-                                <span class="text-sky-600 font-extrabold text-sm whitespace-nowrap">${p.price}</span>
+                                <h3 class="font-bold text-slate-900 group-hover:text-sky-600 transition-colors text-sm">${escapeHtml(p.title)}</h3>
+                                <span class="text-sky-600 font-extrabold text-sm whitespace-nowrap">${escapeHtml(p.price)}</span>
                             </div>
-                            <p class="text-slate-400 text-xs flex items-center gap-1 mb-3"><i class="fa-solid fa-location-dot"></i> ${p.location}</p>
-                            <p class="text-slate-500 text-xs line-clamp-2 leading-relaxed mb-4">${p.desc}</p>
+                            <p class="text-slate-400 text-xs flex items-center gap-1 mb-3"><i class="fa-solid fa-location-dot"></i> ${escapeHtml(p.location)}</p>
+                            <div class="flex flex-wrap gap-1.5 mb-3">${featureChips}</div>
+                            <p class="text-slate-500 text-xs line-clamp-2 leading-relaxed mb-4">${escapeHtml(p.desc)}</p>
                         </div>
                         <div class="flex justify-between items-center text-[11px] font-medium text-slate-400 border-t border-slate-50 pt-3">
-                            <span><i class="fa-solid fa-vector-square text-sky-500"></i> ${p.specs.space}</span>
-                            <span><i class="fa-solid fa-bed text-sky-500"></i> ${p.specs.beds}</span>
-                            <span><i class="fa-solid fa-bath text-sky-500"></i> ${p.specs.baths}</span>
+                            <span><i class="fa-solid fa-vector-square text-sky-500"></i> ${escapeHtml(p.specs.space)}</span>
+                            <span><i class="fa-solid fa-bed text-sky-500"></i> ${escapeHtml(p.specs.beds)}</span>
+                            <span><i class="fa-solid fa-bath text-sky-500"></i> ${escapeHtml(p.specs.baths)}</span>
                         </div>
                     </div>
                 `;
@@ -550,16 +877,22 @@
             
             document.getElementById('detail-title').innerText = currentProperty.title;
             document.getElementById('detail-price').innerText = currentProperty.price;
-            document.getElementById('detail-loc').innerHTML = `<i class="fa-solid fa-location-dot text-sky-500"></i> ${currentProperty.location}`;
+            document.getElementById('detail-loc').innerHTML = `<i class="fa-solid fa-location-dot text-sky-500"></i> ${escapeHtml(currentProperty.location)}`;
             document.getElementById('detail-desc').innerText = currentProperty.desc;
             document.getElementById('detail-badge').innerText = currentProperty.badge;
             
             const specsContainer = document.getElementById('detail-specs');
             specsContainer.innerHTML = `
-                <div class="bg-slate-50 p-2.5 rounded-xl text-center border border-slate-100"><p class="text-[10px] text-slate-400 font-medium">Metraż</p><p class="text-xs font-bold text-slate-800">${currentProperty.specs.space}</p></div>
-                <div class="bg-slate-50 p-2.5 rounded-xl text-center border border-slate-100"><p class="text-[10px] text-slate-400 font-medium">Pokoje</p><p class="text-xs font-bold text-slate-800">${currentProperty.specs.beds}</p></div>
-                <div class="bg-slate-50 p-2.5 rounded-xl text-center border border-slate-100"><p class="text-[10px] text-slate-400 font-medium">Łazienki</p><p class="text-xs font-bold text-slate-800">${currentProperty.specs.baths}</p></div>
+                <div class="bg-slate-50 p-2.5 rounded-xl text-center border border-slate-100"><p class="text-[10px] text-slate-400 font-medium">Metraż</p><p class="text-xs font-bold text-slate-800">${escapeHtml(currentProperty.specs.space)}</p></div>
+                <div class="bg-slate-50 p-2.5 rounded-xl text-center border border-slate-100"><p class="text-[10px] text-slate-400 font-medium">Pokoje</p><p class="text-xs font-bold text-slate-800">${escapeHtml(currentProperty.specs.beds)}</p></div>
+                <div class="bg-slate-50 p-2.5 rounded-xl text-center border border-slate-100"><p class="text-[10px] text-slate-400 font-medium">Łazienki</p><p class="text-xs font-bold text-slate-800">${escapeHtml(currentProperty.specs.baths)}</p></div>
             `;
+
+            const featuresContainer = document.getElementById('detail-features');
+            const features = Array.isArray(currentProperty.features) ? currentProperty.features : [];
+            featuresContainer.innerHTML = features.length
+                ? features.map((feature) => `<span class="rounded-full bg-sky-50 px-3 py-1.5 text-xs font-semibold text-sky-700 border border-sky-100">${escapeHtml(getFeatureLabel(feature))}</span>`).join('')
+                : `<span class="text-xs text-slate-400">Brak dodatkowych cech do wyświetlenia.</span>`;
             
             updateCarousel();
             window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -639,7 +972,9 @@
         }
 
         document.addEventListener("DOMContentLoaded", async () => {
-            populateCards();
+            renderFeatureFilters();
+            bindFilterControls();
+            applyFilters();
             showPage('home');
             await loadDynamicListings();
         });
