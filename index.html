@@ -80,6 +80,169 @@
             </div>
         </header>
 
+        <!-- Regions Carousel -->
+        <section class="py-14 bg-white border-b border-slate-100">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-2xl mx-auto mb-10">
+                    <span class="text-sky-600 font-bold text-xs uppercase tracking-widest block mb-2">Nasze Regiony</span>
+                    <h2 class="text-3xl font-extrabold text-slate-900 tracking-tight mb-3">Działamy w Najpiękniejszych Regionach Włoch</h2>
+                    <p class="text-slate-500 text-sm">Od Dolomitów po Sycylię – odkryj regiony, w których pomagamy inwestować bezpiecznie.</p>
+                </div>
+                <!-- Carousel wrapper -->
+                <div class="relative" id="regions-carousel">
+                    <div class="overflow-hidden rounded-2xl">
+                        <div id="regions-track" class="flex transition-transform duration-500 ease-in-out">
+                            <!-- Cards injected by JS -->
+                        </div>
+                    </div>
+                    <!-- Prev/Next buttons -->
+                    <button id="regions-prev" aria-label="Poprzedni region" class="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 sm:-translate-x-6 z-10 bg-white shadow-lg border border-slate-200 rounded-full w-11 h-11 flex items-center justify-center hover:bg-sky-50 transition">
+                        <i class="fa-solid fa-chevron-left text-slate-600"></i>
+                    </button>
+                    <button id="regions-next" aria-label="Następny region" class="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 sm:translate-x-6 z-10 bg-white shadow-lg border border-slate-200 rounded-full w-11 h-11 flex items-center justify-center hover:bg-sky-50 transition">
+                        <i class="fa-solid fa-chevron-right text-slate-600"></i>
+                    </button>
+                    <!-- Dots -->
+                    <div id="regions-dots" class="flex justify-center gap-2 mt-5"></div>
+                </div>
+            </div>
+        </section>
+
+        <script>
+        (function(){
+            const regions = [
+                {
+                    name: "Dolomity – Północny Wschód",
+                    sub: "Val di Fassa, Trentino-Alto Adige",
+                    desc: "Majestatyczne szczyty wpisane na Listę Światowego Dziedzictwa UNESCO. Idealne pod inwestycje w nieruchomości górskie i agroturystykę.",
+                    img: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&q=80",
+                    tag: "Góry & Ośrodki Narciarskie"
+                },
+                {
+                    name: "Gran Paradiso – Północny Zachód",
+                    sub: "Cogne, Dolina Aosty",
+                    desc: "Serce pierwszego parku narodowego Włoch. Dzika przyroda, alpejskie wioski i nieruchomości premium z widokiem na czterotysięczniki.",
+                    img: "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=800&q=80",
+                    tag: "Alpejskie Rezydencje"
+                },
+                {
+                    name: "Liguria",
+                    sub: "Riwiera Włoska, Cinque Terre",
+                    desc: "Kolorowe wioski przytulone do klifów nad Morzem Liguryjskim. Wyjątkowy klimat śródziemnomorski i rosnący rynek nieruchomości nadmorskich.",
+                    img: "https://images.unsplash.com/photo-1555993539-1732b0258235?w=800&q=80",
+                    tag: "Riwiera & Nadmorskie Wille"
+                },
+                {
+                    name: "Toskania & Włochy Centralne",
+                    sub: "Florencja, Siena, Val d'Orcia",
+                    desc: "Ikona włoskiego stylu życia. Winnice, renesansowe miasteczka i rezydencje z wielowiekową historią – klasyczna inwestycja prestiżowa.",
+                    img: "https://images.unsplash.com/photo-1467269204594-9661b134dd2b?w=800&q=80",
+                    tag: "Winnice & Rezydencje Historyczne"
+                },
+                {
+                    name: "Abruzja",
+                    sub: "Pescara, Gran Sasso, Costa dei Trabocchi",
+                    desc: "Region niedoceniany przez zagranicznych inwestorów, a oferujący nieruchomości w cenach niższych o 30–50% niż Toskania przy porównywalnych walorach.",
+                    img: "https://images.unsplash.com/photo-1523531294919-4bcd7c65e216?w=800&q=80",
+                    tag: "Ukryte Perły Inwestycyjne"
+                },
+                {
+                    name: "Sycylia",
+                    sub: "Palermo, Taormina, Agrigento",
+                    desc: "Największa wyspa Morza Śródziemnego. Program 1 € za dom, ulgi podatkowe dla rezydentów zagranicznych i rosnący rynek turystyczny.",
+                    img: "https://images.unsplash.com/photo-1516483638261-f4dbaf036963?w=800&q=80",
+                    tag: "Wyspa Okazji Inwestycyjnych"
+                },
+                {
+                    name: "Apulia (Puglia)",
+                    sub: "Bari, Lecce, Trulli w Alberobello",
+                    desc: "Obcas włoskiego buta – kryształowe morze, oliwarki, unikalne trulli i jeden z najszybciej rozwijających się rynków nieruchomości w południu Włoch.",
+                    img: "https://images.unsplash.com/photo-1534445867742-43195f401b6c?w=800&q=80",
+                    tag: "Trulli & Wille Nadmorskie"
+                },
+                {
+                    name: "Sardynia",
+                    sub: "Costa Smeralda, Cagliari, Nuoro",
+                    desc: "Turkusowe laguny Costa Smeralda i dzikie, nieznane wnętrze wyspy. Nieruchomości od luksusowych rezydencji po rustykalne masserie.",
+                    img: "https://images.unsplash.com/photo-1498307833015-e7b400441eb8?w=800&q=80",
+                    tag: "Luksusy Costa Smeralda"
+                }
+            ];
+
+            let current = 0;
+            let visibleCount = window.innerWidth >= 1024 ? 3 : window.innerWidth >= 640 ? 2 : 1;
+
+            const track = document.getElementById('regions-track');
+            const dotsEl = document.getElementById('regions-dots');
+
+            function cardWidth() {
+                return 100 / visibleCount;
+            }
+
+            function buildCards() {
+                track.innerHTML = '';
+                regions.forEach((r, i) => {
+                    track.innerHTML += `
+                    <div class="flex-shrink-0 px-2" style="width:${cardWidth()}%">
+                        <div class="rounded-2xl overflow-hidden shadow-sm border border-slate-100 group h-full">
+                            <div class="relative overflow-hidden h-52">
+                                <img src="${r.img}" alt="${r.name}" loading="lazy"
+                                     class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                                     onerror="this.src='https://images.unsplash.com/photo-1523906630133-f6934a1ab2b9?w=800&q=80'">
+                                <span class="absolute top-3 left-3 bg-sky-600/90 backdrop-blur text-white text-xs font-semibold px-3 py-1 rounded-full">${r.tag}</span>
+                            </div>
+                            <div class="p-5 bg-white">
+                                <h3 class="font-extrabold text-slate-900 text-base mb-0.5">${r.name}</h3>
+                                <p class="text-sky-600 text-xs font-semibold mb-2">${r.sub}</p>
+                                <p class="text-slate-500 text-sm leading-relaxed">${r.desc}</p>
+                            </div>
+                        </div>
+                    </div>`;
+                });
+            }
+
+            function buildDots() {
+                dotsEl.innerHTML = '';
+                const pages = Math.ceil(regions.length / visibleCount);
+                for (let i = 0; i < pages; i++) {
+                    const d = document.createElement('button');
+                    d.className = `w-2.5 h-2.5 rounded-full transition-all ${i === 0 ? 'bg-sky-600 scale-125' : 'bg-slate-300'}`;
+                    d.setAttribute('aria-label', `Strona ${i+1}`);
+                    d.addEventListener('click', () => goTo(i * visibleCount));
+                    dotsEl.appendChild(d);
+                }
+            }
+
+            function goTo(idx) {
+                const max = regions.length - visibleCount;
+                current = Math.max(0, Math.min(idx, max));
+                track.style.transform = `translateX(-${current * cardWidth()}%)`;
+                updateDots();
+            }
+
+            function updateDots() {
+                const page = Math.round(current / visibleCount);
+                dotsEl.querySelectorAll('button').forEach((d, i) => {
+                    d.className = `w-2.5 h-2.5 rounded-full transition-all ${i === page ? 'bg-sky-600 scale-125' : 'bg-slate-300'}`;
+                });
+            }
+
+            document.getElementById('regions-prev').addEventListener('click', () => goTo(current - visibleCount));
+            document.getElementById('regions-next').addEventListener('click', () => goTo(current + visibleCount));
+
+            function init() {
+                visibleCount = window.innerWidth >= 1024 ? 3 : window.innerWidth >= 640 ? 2 : 1;
+                buildCards();
+                buildDots();
+                current = 0;
+                track.style.transform = 'translateX(0)';
+            }
+
+            init();
+            window.addEventListener('resize', init);
+        })();
+        </script>
+
         <!-- Blue Banner (Investment Indicators) -->
         <section class="bg-gradient-to-r from-sky-900 via-indigo-950 to-slate-900 text-white py-12 shadow-inner">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 sm:grid-cols-3 gap-8 text-center sm:text-left items-center">
