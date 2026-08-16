@@ -48,12 +48,19 @@
             </div>
 
             <div class="hidden md:flex items-center gap-8 font-medium text-slate-600 text-sm tracking-wide">
-                <span class="text-sky-600 font-bold cursor-pointer transition-colors" id="nav-home" onclick="showPage('home')">Strona Główna</span>
-                <span class="hover:text-sky-600 cursor-pointer transition-colors" onclick="scrollToSection('map-section')">Zobacz Mapę</span>
-                <span class="hover:text-sky-600 cursor-pointer transition-colors" id="nav-about" onclick="showPage('about')">O Nas & Bezpieczeństwo</span>
+                <span class="text-sky-600 font-bold cursor-pointer transition-colors" id="nav-home" onclick="showPage('home')" data-i18n="nav.home">Strona Główna</span>
+                <span class="hover:text-sky-600 cursor-pointer transition-colors" onclick="scrollToSection('map-section')" data-i18n="nav.map">Zobacz Mapę</span>
+                <span class="hover:text-sky-600 cursor-pointer transition-colors" id="nav-about" onclick="showPage('about')" data-i18n="nav.about">O Nas & Bezpieczeństwo</span>
+            </div>
+
+            <!-- Language Switcher -->
+            <div class="flex items-center gap-1.5" id="lang-switcher" role="group" aria-label="Language / Język / Lingua">
+                <button onclick="setLanguage('pl')" id="lang-pl" title="Polski" class="lang-btn w-9 h-9 rounded-lg flex items-center justify-center text-lg border-2 border-sky-500 transition-all hover:scale-110" aria-pressed="true">🇵🇱</button>
+                <button onclick="setLanguage('en')" id="lang-en" title="English" class="lang-btn w-9 h-9 rounded-lg flex items-center justify-center text-lg border-2 border-transparent transition-all hover:scale-110" aria-pressed="false">🇬🇧</button>
+                <button onclick="setLanguage('it')" id="lang-it" title="Italiano" class="lang-btn w-9 h-9 rounded-lg flex items-center justify-center text-lg border-2 border-transparent transition-all hover:scale-110" aria-pressed="false">🇮🇹</button>
             </div>
             
-            <button onclick="scrollToSection('map-section')" class="bg-slate-900 hover:bg-sky-600 text-white px-6 py-3 rounded-xl font-semibold text-xs tracking-wider uppercase transition-all shadow-lg shadow-slate-200">
+            <button onclick="scrollToSection('map-section')" class="bg-slate-900 hover:bg-sky-600 text-white px-6 py-3 rounded-xl font-semibold text-xs tracking-wider uppercase transition-all shadow-lg shadow-slate-200" data-i18n="nav.map">
                 Zobacz Mapę
             </button>
         </div>
@@ -64,16 +71,16 @@
         <!-- Hero Header -->
         <header class="hero-bg min-h-[85vh] flex items-center justify-center text-center px-4 relative">
             <div class="max-w-4xl mx-auto text-white z-10">
-                <span class="bg-white/10 backdrop-blur-md text-sky-300 text-xs tracking-widest font-bold px-4 py-2 rounded-full uppercase mb-6 inline-block border border-white/10">Włoska Riwiera Inwestycyjna</span>
-                <h1 class="text-4xl sm:text-6xl font-extrabold tracking-tight leading-none mb-6">Inwestuj Świadomie i Bezpiecznie we Włoszech</h1>
-                <p class="text-lg sm:text-xl text-slate-200 font-light max-w-2xl mx-auto mb-10 leading-relaxed">
+                <span class="bg-white/10 backdrop-blur-md text-sky-300 text-xs tracking-widest font-bold px-4 py-2 rounded-full uppercase mb-6 inline-block border border-white/10" data-i18n="hero.badge">Włoska Riwiera Inwestycyjna</span>
+                <h1 class="text-4xl sm:text-6xl font-extrabold tracking-tight leading-none mb-6" data-i18n="hero.h1">Inwestuj Świadomie i Bezpiecznie we Włoszech</h1>
+                <p class="text-lg sm:text-xl text-slate-200 font-light max-w-2xl mx-auto mb-10 leading-relaxed" data-i18n="hero.sub">
                     Nieruchomości z pełną asystą prawną, techniczną oraz niezależnym audytem transakcyjnym chroniącym Twój kapitał.
                 </p>
                 <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
-                    <button onclick="scrollToSection('map-section')" class="w-full sm:w-auto bg-sky-600 hover:bg-sky-500 text-white px-8 py-4 rounded-xl font-bold text-sm tracking-wider uppercase transition-all shadow-lg shadow-sky-700/30">
+                    <button onclick="scrollToSection('map-section')" class="w-full sm:w-auto bg-sky-600 hover:bg-sky-500 text-white px-8 py-4 rounded-xl font-bold text-sm tracking-wider uppercase transition-all shadow-lg shadow-sky-700/30" data-i18n="hero.cta1">
                         Zobacz Mapę Ofert
                     </button>
-                    <button onclick="showPage('about')" class="w-full sm:w-auto bg-white/10 hover:bg-white/20 backdrop-blur-md text-white border border-white/30 px-8 py-4 rounded-xl font-bold text-sm tracking-wider uppercase transition-all">
+                    <button onclick="showPage('about')" class="w-full sm:w-auto bg-white/10 hover:bg-white/20 backdrop-blur-md text-white border border-white/30 px-8 py-4 rounded-xl font-bold text-sm tracking-wider uppercase transition-all" data-i18n="hero.cta2">
                         Dowiedz się więcej o audycie
                     </button>
                 </div>
@@ -84,9 +91,9 @@
         <section class="py-14 bg-white border-b border-slate-100">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="text-center max-w-2xl mx-auto mb-10">
-                    <span class="text-sky-600 font-bold text-xs uppercase tracking-widest block mb-2">Nasze Regiony</span>
-                    <h2 class="text-3xl font-extrabold text-slate-900 tracking-tight mb-3">Działamy w Najpiękniejszych Regionach Włoch</h2>
-                    <p class="text-slate-500 text-sm">Od Dolomitów po Sycylię – odkryj regiony, w których pomagamy inwestować bezpiecznie.</p>
+                    <span class="text-sky-600 font-bold text-xs uppercase tracking-widest block mb-2" data-i18n="regions.label">Nasze Regiony</span>
+                    <h2 class="text-3xl font-extrabold text-slate-900 tracking-tight mb-3" data-i18n="regions.h2">Działamy w Najpiękniejszych Regionach Włoch</h2>
+                    <p class="text-slate-500 text-sm" data-i18n="regions.sub">Od Dolomitów po Sycylię – odkryj regiony, w których pomagamy inwestować bezpiecznie.</p>
                 </div>
                 <!-- Carousel wrapper -->
                 <div class="relative" id="regions-carousel">
@@ -109,138 +116,106 @@
         </section>
 
         <script>
-        (function(){
-            const regions = [
-                {
-                    name: "Dolomity – Północny Wschód",
-                    sub: "Val di Fassa, Trentino-Alto Adige",
-                    desc: "Majestatyczne szczyty wpisane na Listę Światowego Dziedzictwa UNESCO. Idealne pod inwestycje w nieruchomości górskie i agroturystykę.",
-                    img: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&q=80",
-                    tag: "Góry & Ośrodki Narciarskie"
-                },
-                {
-                    name: "Gran Paradiso – Północny Zachód",
-                    sub: "Cogne, Dolina Aosty",
-                    desc: "Serce pierwszego parku narodowego Włoch. Dzika przyroda, alpejskie wioski i nieruchomości premium z widokiem na czterotysięczniki.",
-                    img: "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=800&q=80",
-                    tag: "Alpejskie Rezydencje"
-                },
-                {
-                    name: "Liguria",
-                    sub: "Riwiera Włoska, Cinque Terre",
-                    desc: "Kolorowe wioski przytulone do klifów nad Morzem Liguryjskim. Wyjątkowy klimat śródziemnomorski i rosnący rynek nieruchomości nadmorskich.",
-                    img: "https://images.unsplash.com/photo-1555993539-1732b0258235?w=800&q=80",
-                    tag: "Riwiera & Nadmorskie Wille"
-                },
-                {
-                    name: "Toskania & Włochy Centralne",
-                    sub: "Florencja, Siena, Val d'Orcia",
-                    desc: "Ikona włoskiego stylu życia. Winnice, renesansowe miasteczka i rezydencje z wielowiekową historią – klasyczna inwestycja prestiżowa.",
-                    img: "https://images.unsplash.com/photo-1467269204594-9661b134dd2b?w=800&q=80",
-                    tag: "Winnice & Rezydencje Historyczne"
-                },
-                {
-                    name: "Abruzja",
-                    sub: "Pescara, Gran Sasso, Costa dei Trabocchi",
-                    desc: "Region niedoceniany przez zagranicznych inwestorów, a oferujący nieruchomości w cenach niższych o 30–50% niż Toskania przy porównywalnych walorach.",
-                    img: "https://images.unsplash.com/photo-1523531294919-4bcd7c65e216?w=800&q=80",
-                    tag: "Ukryte Perły Inwestycyjne"
-                },
-                {
-                    name: "Sycylia",
-                    sub: "Palermo, Taormina, Agrigento",
-                    desc: "Największa wyspa Morza Śródziemnego. Program 1 € za dom, ulgi podatkowe dla rezydentów zagranicznych i rosnący rynek turystyczny.",
-                    img: "https://images.unsplash.com/photo-1516483638261-f4dbaf036963?w=800&q=80",
-                    tag: "Wyspa Okazji Inwestycyjnych"
-                },
-                {
-                    name: "Apulia (Puglia)",
-                    sub: "Bari, Lecce, Trulli w Alberobello",
-                    desc: "Obcas włoskiego buta – kryształowe morze, oliwarki, unikalne trulli i jeden z najszybciej rozwijających się rynków nieruchomości w południu Włoch.",
-                    img: "https://images.unsplash.com/photo-1534445867742-43195f401b6c?w=800&q=80",
-                    tag: "Trulli & Wille Nadmorskie"
-                },
-                {
-                    name: "Sardynia",
-                    sub: "Costa Smeralda, Cagliari, Nuoro",
-                    desc: "Turkusowe laguny Costa Smeralda i dzikie, nieznane wnętrze wyspy. Nieruchomości od luksusowych rezydencji po rustykalne masserie.",
-                    img: "https://images.unsplash.com/photo-1498307833015-e7b400441eb8?w=800&q=80",
-                    tag: "Luksusy Costa Smeralda"
-                }
-            ];
+        const REGIONS_DATA = {
+            pl: [
+                { name: "Dolomity – Północny Wschód", sub: "Val di Fassa, Trentino-Alto Adige", desc: "Majestatyczne szczyty wpisane na Listę Światowego Dziedzictwa UNESCO. Idealne pod inwestycje w nieruchomości górskie i agroturystykę.", img: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&q=80", tag: "Góry & Ośrodki Narciarskie" },
+                { name: "Gran Paradiso – Północny Zachód", sub: "Cogne, Dolina Aosty", desc: "Serce pierwszego parku narodowego Włoch. Dzika przyroda, alpejskie wioski i nieruchomości premium z widokiem na czterotysięczniki.", img: "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=800&q=80", tag: "Alpejskie Rezydencje" },
+                { name: "Liguria", sub: "Riwiera Włoska, Cinque Terre", desc: "Kolorowe wioski przytulone do klifów nad Morzem Liguryjskim. Wyjątkowy klimat śródziemnomorski i rosnący rynek nieruchomości nadmorskich.", img: "https://images.unsplash.com/photo-1555993539-1732b0258235?w=800&q=80", tag: "Riwiera & Nadmorskie Wille" },
+                { name: "Toskania & Włochy Centralne", sub: "Florencja, Siena, Val d'Orcia", desc: "Ikona włoskiego stylu życia. Winnice, renesansowe miasteczka i rezydencje z wielowiekową historią – klasyczna inwestycja prestiżowa.", img: "https://images.unsplash.com/photo-1467269204594-9661b134dd2b?w=800&q=80", tag: "Winnice & Rezydencje Historyczne" },
+                { name: "Abruzja", sub: "Pescara, Gran Sasso, Costa dei Trabocchi", desc: "Region niedoceniany przez zagranicznych inwestorów, a oferujący nieruchomości w cenach niższych o 30–50% niż Toskania przy porównywalnych walorach.", img: "https://images.unsplash.com/photo-1523531294919-4bcd7c65e216?w=800&q=80", tag: "Ukryte Perły Inwestycyjne" },
+                { name: "Sycylia", sub: "Palermo, Taormina, Agrigento", desc: "Największa wyspa Morza Śródziemnego. Program 1 € za dom, ulgi podatkowe dla rezydentów zagranicznych i rosnący rynek turystyczny.", img: "https://images.unsplash.com/photo-1516483638261-f4dbaf036963?w=800&q=80", tag: "Wyspa Okazji Inwestycyjnych" },
+                { name: "Apulia (Puglia)", sub: "Bari, Lecce, Trulli w Alberobello", desc: "Obcas włoskiego buta – kryształowe morze, oliwarki, unikalne trulli i jeden z najszybciej rozwijających się rynków nieruchomości w południu Włoch.", img: "https://images.unsplash.com/photo-1534445867742-43195f401b6c?w=800&q=80", tag: "Trulli & Wille Nadmorskie" },
+                { name: "Sardynia", sub: "Costa Smeralda, Cagliari, Nuoro", desc: "Turkusowe laguny Costa Smeralda i dzikie, nieznane wnętrze wyspy. Nieruchomości od luksusowych rezydencji po rustykalne masserie.", img: "https://images.unsplash.com/photo-1498307833015-e7b400441eb8?w=800&q=80", tag: "Luksusy Costa Smeralda" }
+            ],
+            en: [
+                { name: "Dolomites – North East", sub: "Val di Fassa, Trentino-Alto Adige", desc: "Majestic peaks listed as a UNESCO World Heritage Site. Ideal for investments in mountain properties and agritourism.", img: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&q=80", tag: "Mountains & Ski Resorts" },
+                { name: "Gran Paradiso – North West", sub: "Cogne, Aosta Valley", desc: "Heart of Italy's first national park. Wild nature, alpine villages and premium properties with views of four-thousanders.", img: "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=800&q=80", tag: "Alpine Residences" },
+                { name: "Liguria", sub: "Italian Riviera, Cinque Terre", desc: "Colourful villages clinging to cliffs above the Ligurian Sea. Unique Mediterranean climate and a growing coastal property market.", img: "https://images.unsplash.com/photo-1555993539-1732b0258235?w=800&q=80", tag: "Riviera & Seaside Villas" },
+                { name: "Tuscany & Central Italy", sub: "Florence, Siena, Val d'Orcia", desc: "Icon of the Italian lifestyle. Vineyards, Renaissance towns and centuries-old residences – a classic prestige investment.", img: "https://images.unsplash.com/photo-1467269204594-9661b134dd2b?w=800&q=80", tag: "Vineyards & Historic Residences" },
+                { name: "Abruzzo", sub: "Pescara, Gran Sasso, Costa dei Trabocchi", desc: "An underrated region offering properties 30–50% cheaper than Tuscany with comparable quality. A hidden gem for savvy investors.", img: "https://images.unsplash.com/photo-1523531294919-4bcd7c65e216?w=800&q=80", tag: "Hidden Investment Gems" },
+                { name: "Sicily", sub: "Palermo, Taormina, Agrigento", desc: "The largest island in the Mediterranean. €1 house schemes, tax breaks for foreign residents and a booming tourism market.", img: "https://images.unsplash.com/photo-1516483638261-f4dbaf036963?w=800&q=80", tag: "Island of Investment Opportunities" },
+                { name: "Apulia (Puglia)", sub: "Bari, Lecce, Trulli in Alberobello", desc: "The heel of Italy's boot – crystal-clear sea, olive groves, unique trulli and one of the fastest-growing property markets in southern Italy.", img: "https://images.unsplash.com/photo-1534445867742-43195f401b6c?w=800&q=80", tag: "Trulli & Seaside Villas" },
+                { name: "Sardinia", sub: "Costa Smeralda, Cagliari, Nuoro", desc: "Turquoise lagoons of Costa Smeralda and the wild, unexplored island interior. Properties ranging from luxury residences to rustic masserie.", img: "https://images.unsplash.com/photo-1498307833015-e7b400441eb8?w=800&q=80", tag: "Costa Smeralda Luxury" }
+            ],
+            it: [
+                { name: "Dolomiti – Nord Est", sub: "Val di Fassa, Trentino-Alto Adige", desc: "Vette maestose patrimonio UNESCO. Ideali per investimenti in immobili di montagna e agriturismo.", img: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&q=80", tag: "Montagna & Stazioni Sciistiche" },
+                { name: "Gran Paradiso – Nord Ovest", sub: "Cogne, Valle d'Aosta", desc: "Cuore del primo parco nazionale italiano. Natura selvaggia, borghi alpini e immobili premium con vista sulle vette.", img: "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=800&q=80", tag: "Residenze Alpine" },
+                { name: "Liguria", sub: "Riviera Italiana, Cinque Terre", desc: "Borghi colorati aggrappati alle scogliere sul Mar Ligure. Clima mediterraneo unico e mercato immobiliare costiero in crescita.", img: "https://images.unsplash.com/photo-1555993539-1732b0258235?w=800&q=80", tag: "Riviera & Ville sul Mare" },
+                { name: "Toscana & Italia Centrale", sub: "Firenze, Siena, Val d'Orcia", desc: "Icona dello stile di vita italiano. Vigneti, borghi rinascimentali e residenze storiche – un investimento di prestigio classico.", img: "https://images.unsplash.com/photo-1467269204594-9661b134dd2b?w=800&q=80", tag: "Vigneti & Residenze Storiche" },
+                { name: "Abruzzo", sub: "Pescara, Gran Sasso, Costa dei Trabocchi", desc: "Una regione sottovalutata che offre immobili con prezzi inferiori del 30–50% rispetto alla Toscana con qualità comparabile.", img: "https://images.unsplash.com/photo-1523531294919-4bcd7c65e216?w=800&q=80", tag: "Gemme Nascoste" },
+                { name: "Sicilia", sub: "Palermo, Taormina, Agrigento", desc: "La più grande isola del Mediterraneo. Case a 1 €, agevolazioni fiscali per residenti stranieri e un mercato turistico in forte crescita.", img: "https://images.unsplash.com/photo-1516483638261-f4dbaf036963?w=800&q=80", tag: "Isola delle Opportunità" },
+                { name: "Puglia", sub: "Bari, Lecce, Trulli di Alberobello", desc: "Il tacco d'Italia – mare cristallino, ulivi, trulli unici e uno dei mercati immobiliari a più rapida crescita nel Sud Italia.", img: "https://images.unsplash.com/photo-1534445867742-43195f401b6c?w=800&q=80", tag: "Trulli & Ville sul Mare" },
+                { name: "Sardegna", sub: "Costa Smeralda, Cagliari, Nuoro", desc: "Le lagune turchesi della Costa Smeralda e l'entroterra selvaggio. Immobili dalle residenze di lusso alle rustiche masserie.", img: "https://images.unsplash.com/photo-1498307833015-e7b400441eb8?w=800&q=80", tag: "Lusso della Costa Smeralda" }
+            ]
+        };
 
-            let current = 0;
-            let visibleCount = window.innerWidth >= 1024 ? 3 : window.innerWidth >= 640 ? 2 : 1;
+        let regionsCarouselCurrent = 0;
+        let regionsVisibleCount = window.innerWidth >= 1024 ? 3 : window.innerWidth >= 640 ? 2 : 1;
 
+        function initRegionsCarousel() {
+            const lang = (typeof currentLang !== 'undefined') ? currentLang : 'pl';
+            const regions = REGIONS_DATA[lang] || REGIONS_DATA.pl;
             const track = document.getElementById('regions-track');
             const dotsEl = document.getElementById('regions-dots');
+            if (!track || !dotsEl) return;
 
-            function cardWidth() {
-                return 100 / visibleCount;
-            }
+            regionsVisibleCount = window.innerWidth >= 1024 ? 3 : window.innerWidth >= 640 ? 2 : 1;
+            regionsCarouselCurrent = 0;
 
-            function buildCards() {
-                track.innerHTML = '';
-                regions.forEach((r, i) => {
-                    track.innerHTML += `
-                    <div class="flex-shrink-0 px-2" style="width:${cardWidth()}%">
-                        <div class="rounded-2xl overflow-hidden shadow-sm border border-slate-100 group h-full">
-                            <div class="relative overflow-hidden h-52">
-                                <img src="${r.img}" alt="${r.name}" loading="lazy"
-                                     class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                                     onerror="this.src='https://images.unsplash.com/photo-1523906630133-f6934a1ab2b9?w=800&q=80'">
-                                <span class="absolute top-3 left-3 bg-sky-600/90 backdrop-blur text-white text-xs font-semibold px-3 py-1 rounded-full">${r.tag}</span>
-                            </div>
-                            <div class="p-5 bg-white">
-                                <h3 class="font-extrabold text-slate-900 text-base mb-0.5">${r.name}</h3>
-                                <p class="text-sky-600 text-xs font-semibold mb-2">${r.sub}</p>
-                                <p class="text-slate-500 text-sm leading-relaxed">${r.desc}</p>
-                            </div>
+            const cw = 100 / regionsVisibleCount;
+            track.innerHTML = '';
+            regions.forEach((r) => {
+                track.innerHTML += `
+                <div class="flex-shrink-0 px-2" style="width:${cw}%">
+                    <div class="rounded-2xl overflow-hidden shadow-sm border border-slate-100 group h-full">
+                        <div class="relative overflow-hidden h-52">
+                            <img src="${r.img}" alt="${r.name}" loading="lazy"
+                                 class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                                 onerror="this.src='https://images.unsplash.com/photo-1523906630133-f6934a1ab2b9?w=800&q=80'">
+                            <span class="absolute top-3 left-3 bg-sky-600/90 backdrop-blur text-white text-xs font-semibold px-3 py-1 rounded-full">${r.tag}</span>
                         </div>
-                    </div>`;
-                });
-            }
+                        <div class="p-5 bg-white">
+                            <h3 class="font-extrabold text-slate-900 text-base mb-0.5">${r.name}</h3>
+                            <p class="text-sky-600 text-xs font-semibold mb-2">${r.sub}</p>
+                            <p class="text-slate-500 text-sm leading-relaxed">${r.desc}</p>
+                        </div>
+                    </div>
+                </div>`;
+            });
+            track.style.transform = 'translateX(0)';
 
-            function buildDots() {
-                dotsEl.innerHTML = '';
-                const pages = Math.ceil(regions.length / visibleCount);
-                for (let i = 0; i < pages; i++) {
-                    const d = document.createElement('button');
-                    d.className = `w-2.5 h-2.5 rounded-full transition-all ${i === 0 ? 'bg-sky-600 scale-125' : 'bg-slate-300'}`;
-                    d.setAttribute('aria-label', `Strona ${i+1}`);
-                    d.addEventListener('click', () => goTo(i * visibleCount));
-                    dotsEl.appendChild(d);
-                }
+            dotsEl.innerHTML = '';
+            const pages = Math.ceil(regions.length / regionsVisibleCount);
+            for (let i = 0; i < pages; i++) {
+                const d = document.createElement('button');
+                d.className = `w-2.5 h-2.5 rounded-full transition-all ${i === 0 ? 'bg-sky-600 scale-125' : 'bg-slate-300'}`;
+                d.setAttribute('aria-label', (typeof T !== 'undefined' ? T("regions.page") : "Page {n}").replace("{n}", i + 1));
+                d.addEventListener('click', () => regionsGoTo(i * regionsVisibleCount));
+                dotsEl.appendChild(d);
             }
+        }
 
-            function goTo(idx) {
-                const max = regions.length - visibleCount;
-                current = Math.max(0, Math.min(idx, max));
-                track.style.transform = `translateX(-${current * cardWidth()}%)`;
-                updateDots();
-            }
-
-            function updateDots() {
-                const page = Math.round(current / visibleCount);
+        function regionsGoTo(idx) {
+            const lang = (typeof currentLang !== 'undefined') ? currentLang : 'pl';
+            const regions = REGIONS_DATA[lang] || REGIONS_DATA.pl;
+            const cw = 100 / regionsVisibleCount;
+            const max = regions.length - regionsVisibleCount;
+            regionsCarouselCurrent = Math.max(0, Math.min(idx, max));
+            const track = document.getElementById('regions-track');
+            if (track) track.style.transform = `translateX(-${regionsCarouselCurrent * cw}%)`;
+            const dotsEl = document.getElementById('regions-dots');
+            if (dotsEl) {
+                const page = Math.round(regionsCarouselCurrent / regionsVisibleCount);
                 dotsEl.querySelectorAll('button').forEach((d, i) => {
                     d.className = `w-2.5 h-2.5 rounded-full transition-all ${i === page ? 'bg-sky-600 scale-125' : 'bg-slate-300'}`;
                 });
             }
+        }
 
-            document.getElementById('regions-prev').addEventListener('click', () => goTo(current - visibleCount));
-            document.getElementById('regions-next').addEventListener('click', () => goTo(current + visibleCount));
-
-            function init() {
-                visibleCount = window.innerWidth >= 1024 ? 3 : window.innerWidth >= 640 ? 2 : 1;
-                buildCards();
-                buildDots();
-                current = 0;
-                track.style.transform = 'translateX(0)';
-            }
-
-            init();
-            window.addEventListener('resize', init);
-        })();
+        document.getElementById('regions-prev').addEventListener('click', () => regionsGoTo(regionsCarouselCurrent - regionsVisibleCount));
+        document.getElementById('regions-next').addEventListener('click', () => regionsGoTo(regionsCarouselCurrent + regionsVisibleCount));
+        window.addEventListener('resize', initRegionsCarousel);
+        initRegionsCarousel();
         </script>
 
         <!-- Blue Banner (Investment Indicators) -->
@@ -249,22 +224,22 @@
                 <div class="flex items-center gap-4 justify-center sm:justify-start border-b sm:border-b-0 sm:border-r border-white/10 pb-6 sm:pb-0">
                     <div class="text-3xl text-sky-400"><i class="fa-solid fa-hotel"></i></div>
                     <div>
-                        <h4 class="font-extrabold text-lg tracking-tight">Kolekcja Wyselekcjonowanych Willi</h4>
-                        <p class="text-xs text-slate-300">Zweryfikowane i bezpieczne rezydencje</p>
+                        <h4 class="font-extrabold text-lg tracking-tight" data-i18n="banner.villas.title">Kolekcja Wyselekcjonowanych Willi</h4>
+                        <p class="text-xs text-slate-300" data-i18n="banner.villas.sub">Zweryfikowane i bezpieczne rezydencje</p>
                     </div>
                 </div>
                 <div class="flex items-center gap-4 justify-center sm:justify-start border-b sm:border-b-0 sm:border-r border-white/10 pb-6 sm:pb-0">
                     <div class="text-3xl text-emerald-400"><i class="fa-solid fa-chart-line"></i></div>
                     <div>
-                        <h4 class="font-extrabold text-lg tracking-tight">Stabilny Wzrost Kapitału</h4>
-                        <p class="text-xs text-slate-300">Włoski rynek o wysokiej płynności</p>
+                        <h4 class="font-extrabold text-lg tracking-tight" data-i18n="banner.growth.title">Stabilny Wzrost Kapitału</h4>
+                        <p class="text-xs text-slate-300" data-i18n="banner.growth.sub">Włoski rynek o wysokiej płynności</p>
                     </div>
                 </div>
                 <div class="flex items-center gap-4 justify-center sm:justify-start">
                     <div class="text-3xl text-amber-400"><i class="fa-solid fa-file-shield"></i></div>
                     <div>
-                        <h4 class="font-extrabold text-lg tracking-tight">Niezależny System Audytu</h4>
-                        <p class="text-xs text-slate-300">100% ochrony przed wadami prawnymi i ukrytymi</p>
+                        <h4 class="font-extrabold text-lg tracking-tight" data-i18n="banner.audit.title">Niezależny System Audytu</h4>
+                        <p class="text-xs text-slate-300" data-i18n="banner.audit.sub">100% ochrony przed wadami prawnymi i ukrytymi</p>
                     </div>
                 </div>
             </div>
@@ -273,25 +248,25 @@
         <!-- Investment Pillars Section -->
         <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
             <div class="text-center max-w-3xl mx-auto mb-16">
-                <h2 class="text-3xl font-bold text-slate-900 tracking-tight mb-4">Filary Inwestycji Bridge House</h2>
-                <p class="text-slate-500">Przekształcamy standardowe pośrednictwo w transparentny, bezpieczny proces chroniony przez niezależną grupę ekspertów.</p>
+                <h2 class="text-3xl font-bold text-slate-900 tracking-tight mb-4" data-i18n="pillars.h2">Filary Inwestycji Bridge House</h2>
+                <p class="text-slate-500" data-i18n="pillars.sub">Przekształcamy standardowe pośrednictwo w transparentny, bezpieczny proces chroniony przez niezależną grupę ekspertów.</p>
             </div>
             
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                 <div class="bg-white p-8 rounded-2xl border border-slate-100 shadow-sm hover:shadow-md transition-all">
                     <div class="w-12 h-12 bg-sky-50 text-sky-600 rounded-xl flex items-center justify-center text-xl mb-6 font-bold"><i class="fa-solid fa-shield-halved"></i></div>
-                    <h3 class="text-xl font-bold mb-3 text-slate-800">Niezależny Audyt Prawny</h3>
-                    <p class="text-slate-500 text-sm leading-relaxed">Każda nieruchomość przechodzi rygorystyczny proces due diligence. Weryfikujemy księgi wieczyste, stan katastralny oraz zgodność urbanistyczną przed publikacją oferty.</p>
+                    <h3 class="text-xl font-bold mb-3 text-slate-800" data-i18n="pillars.audit.title">Niezależny Audyt Prawny</h3>
+                    <p class="text-slate-500 text-sm leading-relaxed" data-i18n="pillars.audit.desc">Każda nieruchomość przechodzi rygorystyczny proces due diligence. Weryfikujemy księgi wieczyste, stan katastralny oraz zgodność urbanistyczną przed publikacją oferty.</p>
                 </div>
                 <div class="bg-white p-8 rounded-2xl border border-slate-100 shadow-sm hover:shadow-md transition-all">
                     <div class="w-12 h-12 bg-emerald-50 text-emerald-600 rounded-xl flex items-center justify-center text-xl mb-6 font-bold"><i class="fa-solid fa-users-gear"></i></div>
-                    <h3 class="text-xl font-bold mb-3 text-slate-800">Task Force Ekspertów</h3>
-                    <p class="text-slate-500 text-sm leading-relaxed">Zapewniamy bezpośrednie wsparcie inżynierów, prawników i doradców podatkowych, eliminując ryzyka ukrytych wad budowlanych i proceduralnych.</p>
+                    <h3 class="text-xl font-bold mb-3 text-slate-800" data-i18n="pillars.taskforce.title">Task Force Ekspertów</h3>
+                    <p class="text-slate-500 text-sm leading-relaxed" data-i18n="pillars.taskforce.desc">Zapewniamy bezpośrednie wsparcie inżynierów, prawników i doradców podatkowych, eliminując ryzyka ukrytych wad budowlanych i proceduralnych.</p>
                 </div>
                 <div class="bg-white p-8 rounded-2xl border border-slate-100 shadow-sm hover:shadow-md transition-all">
                     <div class="w-12 h-12 bg-amber-50 text-amber-600 rounded-xl flex items-center justify-center text-xl mb-6 font-bold"><i class="fa-solid fa-handshake-angle"></i></div>
-                    <h3 class="text-xl font-bold mb-3 text-slate-800">Pełna Autonomia Klienta</h3>
-                    <p class="text-slate-500 text-sm leading-relaxed">Nie narzucamy sztywnych struktur. Ty wybierasz zakres naszego wsparcia, zachowując bezpośredni kontakt i kontrolę nad finalnym procesem zakupu.</p>
+                    <h3 class="text-xl font-bold mb-3 text-slate-800" data-i18n="pillars.autonomy.title">Pełna Autonomia Klienta</h3>
+                    <p class="text-slate-500 text-sm leading-relaxed" data-i18n="pillars.autonomy.desc">Nie narzucamy sztywnych struktur. Ty wybierasz zakres naszego wsparcia, zachowując bezpośredni kontakt i kontrolę nad finalnym procesem zakupu.</p>
                 </div>
             </div>
         </section>
@@ -300,30 +275,30 @@
         <section id="map-section" class="border-t border-slate-200 bg-slate-50/50 py-16">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="mb-8">
-                    <span class="text-sky-600 font-bold text-xs uppercase tracking-widest block mb-2">Kolekcja Śródziemnomorska</span>
-                    <h2 class="text-3xl font-extrabold text-slate-900 tracking-tight">Dostępne Rezydencje Premium</h2>
-                    <p class="text-sm text-slate-500 mt-1">Wszystkie poniższe oferty zostały wstępnie zweryfikowane pod kątem formalno-prawnym.</p>
+                    <span class="text-sky-600 font-bold text-xs uppercase tracking-widest block mb-2" data-i18n="map.label">Kolekcja Śródziemnomorska</span>
+                    <h2 class="text-3xl font-extrabold text-slate-900 tracking-tight" data-i18n="map.h2">Dostępne Rezydencje Premium</h2>
+                    <p class="text-sm text-slate-500 mt-1" data-i18n="map.sub">Wszystkie poniższe oferty zostały wstępnie zweryfikowane pod kątem formalno-prawnym.</p>
                 </div>
 
                 <div class="bg-white border border-slate-200 rounded-2xl shadow-sm p-5 sm:p-6 mb-8" role="region" aria-label="Filtry nieruchomości">
                     <div class="flex flex-col xl:flex-row xl:items-end gap-4 xl:gap-6">
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 flex-1">
                             <label class="block">
-                                <span class="text-xs font-bold text-slate-500 uppercase tracking-wider">Cena od</span>
-                                <input id="filter-price-min" type="number" min="0" step="1000" placeholder="np. 250000" class="mt-2 w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm focus:outline-none focus:border-sky-500">
+                                <span class="text-xs font-bold text-slate-500 uppercase tracking-wider" data-i18n="filter.priceFrom">Cena od</span>
+                                <input id="filter-price-min" type="number" min="0" step="1000" placeholder="np. 250000" data-i18n-placeholder="filter.priceFromPlaceholder" class="mt-2 w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm focus:outline-none focus:border-sky-500">
                             </label>
                             <label class="block">
-                                <span class="text-xs font-bold text-slate-500 uppercase tracking-wider">Cena do</span>
-                                <input id="filter-price-max" type="number" min="0" step="1000" placeholder="np. 500000" class="mt-2 w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm focus:outline-none focus:border-sky-500">
+                                <span class="text-xs font-bold text-slate-500 uppercase tracking-wider" data-i18n="filter.priceTo">Cena do</span>
+                                <input id="filter-price-max" type="number" min="0" step="1000" placeholder="np. 500000" data-i18n-placeholder="filter.priceToPlaceholder" class="mt-2 w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm focus:outline-none focus:border-sky-500">
                             </label>
                         </div>
                         <button id="clear-filters" type="button" class="xl:self-end inline-flex items-center justify-center gap-2 rounded-xl border border-slate-200 px-4 py-3 text-xs font-bold uppercase tracking-wider text-slate-600 hover:border-sky-500 hover:text-sky-600 transition-colors">
-                            <i class="fa-solid fa-rotate-left"></i> Wyczyść filtry
+                            <i class="fa-solid fa-rotate-left"></i> <span data-i18n="filter.clear">Wyczyść filtry</span>
                         </button>
                     </div>
 
                     <div class="mt-5">
-                        <p class="text-xs font-bold text-slate-500 uppercase tracking-wider mb-3">Cechy nieruchomości</p>
+                        <p class="text-xs font-bold text-slate-500 uppercase tracking-wider mb-3" data-i18n="filter.features">Cechy nieruchomości</p>
                         <div id="feature-filters" class="flex flex-wrap gap-2" role="group" aria-label="Filtry cech nieruchomości"></div>
                     </div>
 
@@ -347,7 +322,7 @@
     <div id="detail-page" class="hidden bg-slate-50/30 py-12">
         <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             <button onclick="backToExplore()" class="inline-flex items-center gap-2 text-slate-500 hover:text-sky-600 font-semibold text-sm mb-8 transition-colors bg-white px-4 py-2 rounded-xl shadow-sm border border-slate-100">
-                <i class="fa-solid fa-arrow-left"></i> Wróć do mapy ofert
+                <i class="fa-solid fa-arrow-left"></i> <span data-i18n="detail.back">Wróć do mapy ofert</span>
             </button>
             
             <div class="bg-white rounded-3xl border border-slate-100 shadow-sm overflow-hidden grid grid-cols-1 lg:grid-cols-12">
@@ -373,11 +348,11 @@
                         <p class="text-slate-400 text-sm flex items-center gap-2 mb-6"><i class="fa-solid fa-location-dot text-sky-500"></i><span id="detail-loc"></span></p>
                         
                         <div class="border-y border-slate-100 py-4 mb-6 flex justify-between items-center">
-                            <span class="text-slate-400 text-sm font-medium">Cena ofertowa</span>
+                            <span class="text-slate-400 text-sm font-medium" data-i18n="detail.priceLabel">Cena ofertowa</span>
                             <span id="detail-price" class="text-2xl font-black text-sky-600 tracking-tight"></span>
                         </div>
                         
-                        <h3 class="text-xs font-bold text-slate-400 uppercase tracking-widest mb-3">Charakterystyka obiektu</h3>
+                        <h3 class="text-xs font-bold text-slate-400 uppercase tracking-widest mb-3" data-i18n="detail.specs">Charakterystyka obiektu</h3>
                         <div id="detail-specs" class="grid grid-cols-3 gap-4 mb-8"></div>
                         <div id="detail-features" class="flex flex-wrap gap-2 mb-8" role="list" aria-label="Cechy nieruchomości"></div>
                         
@@ -386,19 +361,19 @@
 
                     <div class="bg-amber-50/60 border border-amber-200/60 rounded-2xl p-4 mb-6">
                         <h4 class="text-xs font-bold text-amber-800 flex items-center gap-2 mb-1">
-                            <i class="fa-solid fa-triangle-exclamation"></i> Tarcza Ochronna Inwestora
+                            <i class="fa-solid fa-triangle-exclamation"></i> <span data-i18n="detail.shield.title">Tarcza Ochronna Inwestora</span>
                         </h4>
-                        <p class="text-[11px] text-amber-700/90 leading-normal">
+                        <p class="text-[11px] text-amber-700/90 leading-normal" data-i18n="detail.shield.desc">
                             W trosce o pełne bezpieczeństwo transakcyjne, ta nieruchomość kwalifikuje się do niezależnego audytu architektoniczno-katastralnego przed podpisaniem umowy przedwstępnej.
                         </p>
                     </div>
                     
                     <form onsubmit="submitForm(event)" class="space-y-3">
-                        <h3 class="text-sm font-bold text-slate-800">Zapytaj o audyt i prezentację</h3>
-                        <input type="text" placeholder="Imię i nazwisko" required class="w-full bg-slate-50 border border-slate-200 px-4 py-3 rounded-xl text-sm focus:outline-none focus:border-sky-500">
-                        <input type="email" placeholder="Adres e-mail" required class="w-full bg-slate-50 border border-slate-200 px-4 py-3 rounded-xl text-sm focus:outline-none focus:border-sky-500">
-                        <input type="tel" placeholder="Numer telefonu" required class="w-full bg-slate-50 border border-slate-200 px-4 py-3 rounded-xl text-sm focus:outline-none focus:border-sky-500">
-                        <button type="submit" class="w-full bg-sky-600 hover:bg-sky-500 text-white font-bold text-xs tracking-wider uppercase py-4 rounded-xl transition-all shadow-md shadow-sky-100">
+                        <h3 class="text-sm font-bold text-slate-800" data-i18n="detail.form.title">Zapytaj o audyt i prezentację</h3>
+                        <input type="text" data-i18n-placeholder="detail.form.name" placeholder="Imię i nazwisko" required class="w-full bg-slate-50 border border-slate-200 px-4 py-3 rounded-xl text-sm focus:outline-none focus:border-sky-500">
+                        <input type="email" data-i18n-placeholder="detail.form.email" placeholder="Adres e-mail" required class="w-full bg-slate-50 border border-slate-200 px-4 py-3 rounded-xl text-sm focus:outline-none focus:border-sky-500">
+                        <input type="tel" data-i18n-placeholder="detail.form.phone" placeholder="Numer telefonu" required class="w-full bg-slate-50 border border-slate-200 px-4 py-3 rounded-xl text-sm focus:outline-none focus:border-sky-500">
+                        <button type="submit" class="w-full bg-sky-600 hover:bg-sky-500 text-white font-bold text-xs tracking-wider uppercase py-4 rounded-xl transition-all shadow-md shadow-sky-100" data-i18n="detail.form.submit">
                             Wyślij zgłoszenie
                         </button>
                     </form>
@@ -412,62 +387,62 @@
         <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
             
             <div class="bg-white rounded-3xl border border-slate-100 shadow-sm p-8 sm:p-12 mb-12">
-                <span class="text-sky-600 font-bold text-xs uppercase tracking-widest block mb-2">O nas</span>
-                <h1 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight mb-6">Doskonałość i przejrzystość w inwestycjach nieruchomościowych we Włoszech</h1>
+                <span class="text-sky-600 font-bold text-xs uppercase tracking-widest block mb-2" data-i18n="about.label">O nas</span>
+                <h1 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight mb-6" data-i18n="about.h1">Doskonałość i przejrzystość w inwestycjach nieruchomościowych we Włoszech</h1>
                 
                 <div class="prose prose-slate max-w-none text-slate-600 text-sm sm:text-base space-y-6 leading-relaxed">
-                    <p>
+                    <p data-i18n="about.p1">
                         Nasz projekt narodził się z krytycznej obserwacji włoskiego rynku nieruchomości, który często charakteryzuje się nadmierną fragmentacją oraz ofertą dla klientów zagranicznych obarczoną lukami informacyjnymi.
                     </p>
-                    <p>
+                    <p data-i18n="about.p2">
                         Naszą misją jest oferowanie wsparcia wielodyscyplinarnej grupy ekspertów (<strong>Task Force</strong>), gwarantującej bezpieczeństwo procesu akwizycji, dostępnej na każdym etapie ścieżki inwestycyjnej.
                     </p>
                     
-                    <h2 class="text-xl font-bold text-slate-900 pt-4">Nasze podejście: Swoboda wyboru i najwyższe standardy</h2>
-                    <p>Zrewolucjonizowaliśmy model doradztwa, odrzucając sztywne, narzucone z góry ograniczenia. Wierzymy, że jakość świadczonych usług powinna być jedyną podstawą współpracy.</p>
+                    <h2 class="text-xl font-bold text-slate-900 pt-4" data-i18n="about.approach.title">Nasze podejście: Swoboda wyboru i najwyższe standardy</h2>
+                    <p data-i18n="about.approach.p">Zrewolucjonizowaliśmy model doradztwa, odrzucając sztywne, narzucone z góry ograniczenia. Wierzymy, że jakość świadczonych usług powinna być jedyną podstawą współpracy.</p>
                     <ul class="space-y-3 list-none pl-0">
                         <li class="flex items-start gap-3">
                             <i class="fa-solid fa-check text-emerald-500 mt-1"></i>
-                            <span><strong>Brak zbędnych powiązań i pełna transparentność:</strong> Nasza struktura usługowa nie jest etapem obowiązkowym. Klient ma pełną swobodę w bezpośrednim działaniu.</span>
+                            <span data-i18n="about.approach.li1"><strong>Brak zbędnych powiązań i pełna transparentność:</strong> Nasza struktura usługowa nie jest etapem obowiązkowym. Klient ma pełną swobodę w bezpośrednim działaniu.</span>
                         </li>
                         <li class="flex items-start gap-3">
                             <i class="fa-solid fa-check text-emerald-500 mt-1"></i>
-                            <span><strong>Państwa zaufany partner, gdy jest potrzebny:</strong> Nasza rola polega na oferowaniu kwalifikowanego i bezstronnego wsparcia w sytuacjach, w których użytkownik tego oczekuje.</span>
+                            <span data-i18n="about.approach.li2"><strong>Państwa zaufany partner, gdy jest potrzebny:</strong> Nasza rola polega na oferowaniu kwalifikowanego i bezstronnego wsparcia w sytuacjach, w których użytkownik tego oczekuje.</span>
                         </li>
                     </ul>
 
-                    <h2 class="text-xl font-bold text-slate-900 pt-4">Dlaczego warto nas wybrać: Wartość dodana Task Force</h2>
-                    <p>Nie jesteśmy agencją, która ogranicza klienta, lecz Państwa ramieniem operacyjnym we Włoszech, dostępnym na każde życzenie w każdej fazie inwestycji. Nasza metodologia opiera się na:</p>
+                    <h2 class="text-xl font-bold text-slate-900 pt-4" data-i18n="about.why.title">Dlaczego warto nas wybrać: Wartość dodana Task Force</h2>
+                    <p data-i18n="about.why.p">Nie jesteśmy agencją, która ogranicza klienta, lecz Państwa ramieniem operacyjnym we Włoszech, dostępnym na każde życzenie w każdej fazie inwestycji. Nasza metodologia opiera się na:</p>
                     <ul class="space-y-3 list-none pl-0">
                         <li class="flex items-start gap-3">
                             <i class="fa-solid fa-star text-sky-500 mt-1"></i>
-                            <span><strong>Rygorystyczna selekcja partnerów:</strong> Współpracujemy wyłącznie z agentami nieruchomości, prawnikami i technikami o udokumentowanym doświadczeniu.</span>
+                            <span data-i18n="about.why.li1"><strong>Rygorystyczna selekcja partnerów:</strong> Współpracujemy wyłącznie z agentami nieruchomości, prawnikami i technikami o udokumentowanym doświadczeniu.</span>
                         </li>
                         <li class="flex items-start gap-3">
                             <i class="fa-solid fa-language text-sky-500 mt-1"></i>
-                            <span><strong>Mediacja kulturowa i językowa:</strong> Nasz zespół działa jako pomost między kulturą polską a włoską, eliminując bariery komunikacyjne.</span>
+                            <span data-i18n="about.why.li2"><strong>Mediacja kulturowa i językowa:</strong> Nasz zespół działa jako pomost między kulturą polską a włoską, eliminując bariery komunikacyjne.</span>
                         </li>
                         <li class="flex items-start gap-3">
                             <i class="fa-solid fa-sliders text-sky-500 mt-1"></i>
-                            <span><strong>Model "szyty na miarę" (Tailor-made) bez zobowiązań:</strong> Odrzucamy sztywne ryczałty i długoterminowe umowy. Nasz serwis jest projektowany pod konkretne potrzeby klienta.</span>
+                            <span data-i18n="about.why.li3"><strong>Model "szyty na miarę" (Tailor-made) bez zobowiązań:</strong> Odrzucamy sztywne ryczałty i długoterminowe umowy. Nasz serwis jest projektowany pod konkretne potrzeby klienta.</span>
                         </li>
                     </ul>
 
-                    <h2 class="text-xl font-bold text-slate-900 pt-4">Bezpieczeństwo i profilaktyka: Nasze wsparcie opcjonalne</h2>
-                    <p>Zakup nieruchomości we Włoszech nie musi być procesem obarczonym ryzykiem. Dzięki naszej sieci oferujemy asystę najwyższej klasy:</p>
+                    <h2 class="text-xl font-bold text-slate-900 pt-4" data-i18n="about.safety.title">Bezpieczeństwo i profilaktyka: Nasze wsparcie opcjonalne</h2>
+                    <p data-i18n="about.safety.p">Zakup nieruchomości we Włoszech nie musi być procesem obarczonym ryzykiem. Dzięki naszej sieci oferujemy asystę najwyższej klasy:</p>
                     <ul class="space-y-2 list-disc pl-5">
-                        <li><strong>Due Diligence techniczna i prawna:</strong> Analizujemy każdą nieruchomość, aby zapobiec problemom urbanistycznym, samowolom budowlanym czy nieujawnionym obciążeniom.</li>
-                        <li><strong>Pełna ochrona:</strong> Dzięki partnerstwu z wyspecjalizowanymi brokerami ubezpieczeniowymi, pomagamy zabezpieczyć mienie od wszelkich ryzyk.</li>
-                        <li><strong>Wsparcie ciągłe "A La Carte":</strong> Od pierwszego kontaktu po podpisanie aktu notarialnego, wspieramy Państwa zgodnie z Państwa wytycznymi, minimalizując ryzyko decyzji.</li>
+                        <li data-i18n="about.safety.li1"><strong>Due Diligence techniczna i prawna:</strong> Analizujemy każdą nieruchomość, aby zapobiec problemom urbanistycznym, samowolom budowlanym czy nieujawnionym obciążeniom.</li>
+                        <li data-i18n="about.safety.li2"><strong>Pełna ochrona:</strong> Dzięki partnerstwu z wyspecjalizowanymi brokerami ubezpieczeniowymi, pomagamy zabezpieczyć mienie od wszelkich ryzyk.</li>
+                        <li data-i18n="about.safety.li3"><strong>Wsparcie ciągłe "A La Carte":</strong> Od pierwszego kontaktu po podpisanie aktu notarialnego, wspieramy Państwa zgodnie z Państwa wytycznymi, minimalizując ryzyko decyzji.</li>
                     </ul>
 
-                    <h2 class="text-xl font-bold text-slate-900 pt-4">Nasz cel</h2>
-                    <p>Pragniemy zapewnić Państwu najbezpieczniejszą drogę na włoskim rynku nieruchomości, pozostawiając zawsze pełną swobodę w prowadzeniu negocjacji. Naszą misją jest transparentność i ochrona kapitału.</p>
-                    <p class="font-bold text-slate-900">Czy są Państwo gotowi inwestować świadomie? Zapraszamy do współpracy. Nasze kompetencje są do Państwa dyspozycji.</p>
+                    <h2 class="text-xl font-bold text-slate-900 pt-4" data-i18n="about.goal.title">Nasz cel</h2>
+                    <p data-i18n="about.goal.p1">Pragniemy zapewnić Państwu najbezpieczniejszą drogę na włoskim rynku nieruchomości, pozostawiając zawsze pełną swobodę w prowadzeniu negocjacji. Naszą misją jest transparentność i ochrona kapitału.</p>
+                    <p class="font-bold text-slate-900" data-i18n="about.goal.p2">Czy są Państwo gotowi inwestować świadomie? Zapraszamy do współpracy. Nasze kompetencje są do Państwa dyspozycji.</p>
                     
                     <div class="border-t border-slate-100 pt-6 mt-6">
-                        <h2 class="text-xl font-bold text-slate-900 mb-2">Zakup nieruchomości we Włoszech: Bezpieczna realizacja marzeń</h2>
-                        <p>Wielu inwestorów marzy o posiadłości we Włoszech – kraju, który oferuje wyjątkowy styl życia i doskonałe perspektywy kapitałowe. Jednak za pocztówkowym krajobrazem może kryć się złożona rzeczywistość formalno-prawna.</p>
+                        <h2 class="text-xl font-bold text-slate-900 mb-2" data-i18n="about.dream.title">Zakup nieruchomości we Włoszech: Bezpieczna realizacja marzeń</h2>
+                        <p data-i18n="about.dream.p">Wielu inwestorów marzy o posiadłości we Włoszech – kraju, który oferuje wyjątkowy styl życia i doskonałe perspektywy kapitałowe. Jednak za pocztówkowym krajobrazem może kryć się złożona rzeczywistość formalno-prawna.</p>
                     </div>
                 </div>
             </div>
@@ -476,64 +451,64 @@
             <div class="bg-white rounded-3xl border border-slate-100 shadow-sm p-8 sm:p-12">
                 <div class="flex items-center gap-3 mb-4">
                     <span class="w-3 h-3 rounded-full bg-red-500 animate-pulse"></span>
-                    <span class="text-xs font-bold text-red-600 tracking-wider uppercase">Q&A: Inwestycja we Włoszech – pytania kluczowe</span>
+                    <span class="text-xs font-bold text-red-600 tracking-wider uppercase" data-i18n="faq.label">Q&A: Inwestycja we Włoszech – pytania kluczowe</span>
                 </div>
-                <h2 class="text-2xl font-black text-slate-900 tracking-tight mb-6">Instrukcja Bezpieczeństwa Transakcyjnego</h2>
+                <h2 class="text-2xl font-black text-slate-900 tracking-tight mb-6" data-i18n="faq.h2">Instrukcja Bezpieczeństwa Transakcyjnego</h2>
 
                 <div class="space-y-4">
                     <div class="border border-slate-100 rounded-2xl overflow-hidden faq-item">
                         <button onclick="toggleFaq(this)" class="w-full bg-slate-50/60 hover:bg-slate-50 px-6 py-5 flex justify-between items-center text-left transition-colors">
-                            <span class="font-bold text-sm text-slate-800">Jakie główne ryzyka przy zakupie nieruchomości do remontu, np. na Sycylii?</span>
+                            <span class="font-bold text-sm text-slate-800" data-i18n="faq.q1">Jakie główne ryzyka przy zakupie nieruchomości do remontu, np. na Sycylii?</span>
                             <i class="fa-solid fa-chevron-down text-slate-400 text-xs transition-transform duration-300"></i>
                         </button>
                         <div class="faq-body hidden bg-white px-6 py-5 border-t border-slate-50 text-xs sm:text-sm text-slate-600 space-y-2">
-                            <p><strong>Odpowiedź:</strong> Największym wyzwaniem jest asymetria informacji. Inwestorzy polegający na niezweryfikowanych pośrednikach często nabywają obiekty obarczone wadami formalnymi lub technicznymi.</p>
+                            <p data-i18n="faq.a1"><strong>Odpowiedź:</strong> Największym wyzwaniem jest asymetria informacji. Inwestorzy polegający na niezweryfikowanych pośrednikach często nabywają obiekty obarczone wadami formalnymi lub technicznymi.</p>
                         </div>
                     </div>
 
                     <div class="border border-slate-100 rounded-2xl overflow-hidden faq-item">
                         <button onclick="toggleFaq(this)" class="w-full bg-slate-50/60 hover:bg-slate-50 px-6 py-5 flex justify-between items-center text-left transition-colors">
-                            <span class="font-bold text-sm text-slate-800">Jak rzetelnie zweryfikować wiarygodność podmiotu oferującego nieruchomość?</span>
+                            <span class="font-bold text-sm text-slate-800" data-i18n="faq.q2">Jak rzetelnie zweryfikować wiarygodność podmiotu oferującego nieruchomość?</span>
                             <i class="fa-solid fa-chevron-down text-slate-400 text-xs transition-transform duration-300"></i>
                         </button>
                         <div class="faq-body hidden bg-white px-6 py-5 border-t border-slate-50 text-xs sm:text-sm text-slate-600 space-y-2">
-                            <p><strong>Odpowiedź:</strong> Niezbędna jest niezależna weryfikacja kwalifikacji, dokumentacji i historii transakcyjnej partnera.</p>
+                            <p data-i18n="faq.a2"><strong>Odpowiedź:</strong> Niezbędna jest niezależna weryfikacja kwalifikacji, dokumentacji i historii transakcyjnej partnera.</p>
                         </div>
                     </div>
 
                     <div class="border border-slate-100 rounded-2xl overflow-hidden faq-item">
                         <button onclick="toggleFaq(this)" class="w-full bg-slate-50/60 hover:bg-slate-50 px-6 py-5 flex justify-between items-center text-left transition-colors">
-                            <span class="font-bold text-sm text-slate-800">Na co zwrócić uwagę w kosztorysach remontowych i przy rządowych bonusach?</span>
+                            <span class="font-bold text-sm text-slate-800" data-i18n="faq.q3">Na co zwrócić uwagę w kosztorysach remontowych i przy rządowych bonusach?</span>
                             <i class="fa-solid fa-chevron-down text-slate-400 text-xs transition-transform duration-300"></i>
                         </button>
                         <div class="faq-body hidden bg-white px-6 py-5 border-t border-slate-50 text-xs sm:text-sm text-slate-600 space-y-2">
-                            <p><strong>Odpowiedź:</strong> Podstawą jest szczegółowy i przejrzysty kosztorys (computo metrico) oraz weryfikacja podstaw prawnych do bonusów.</p>
+                            <p data-i18n="faq.a3"><strong>Odpowiedź:</strong> Podstawą jest szczegółowy i przejrzysty kosztorys (computo metrico) oraz weryfikacja podstaw prawnych do bonusów.</p>
                         </div>
                     </div>
 
                     <div class="border border-slate-100 rounded-2xl overflow-hidden faq-item">
                         <button onclick="toggleFaq(this)" class="w-full bg-slate-50/60 hover:bg-slate-50 px-6 py-5 flex justify-between items-center text-left transition-colors">
-                            <span class="font-bold text-sm text-slate-800">Jak skutecznie zabezpieczyć interesy w fazie transakcji?</span>
+                            <span class="font-bold text-sm text-slate-800" data-i18n="faq.q4">Jak skutecznie zabezpieczyć interesy w fazie transakcji?</span>
                             <i class="fa-solid fa-chevron-down text-slate-400 text-xs transition-transform duration-300"></i>
                         </button>
                         <div class="faq-body hidden bg-white px-6 py-5 border-t border-slate-50 text-xs sm:text-sm text-slate-600 space-y-3">
-                            <p><strong>Odpowiedź:</strong></p>
+                            <p><strong data-i18n="faq.answer">Odpowiedź:</strong></p>
                             <ul class="list-disc pl-5 space-y-1">
-                                <li><strong>Transparentność finansowa:</strong> Każda płatność musi być udokumentowana przelewem i fakturą.</li>
-                                <li><strong>Weryfikacje prawne:</strong> Należy upewnić się, że stan katastralny w pełni odpowiada stanowi faktycznemu nieruchomości.</li>
-                                <li><strong>Bezpośredni kontakt:</strong> Negocjacje powinny zapewniać pełną śledzalność płatności bezpośrednio do podmiotu uprawnionego.</li>
-                                <li><strong>Niezależni eksperci:</strong> Przed podpisaniem umowy, warto powierzyć audyt niezależnym doradcom.</li>
+                                <li data-i18n="faq.a4.li1"><strong>Transparentność finansowa:</strong> Każda płatność musi być udokumentowana przelewem i fakturą.</li>
+                                <li data-i18n="faq.a4.li2"><strong>Weryfikacje prawne:</strong> Należy upewnić się, że stan katastralny w pełni odpowiada stanowi faktycznemu nieruchomości.</li>
+                                <li data-i18n="faq.a4.li3"><strong>Bezpośredni kontakt:</strong> Negocjacje powinny zapewniać pełną śledzalność płatności bezpośrednio do podmiotu uprawnionego.</li>
+                                <li data-i18n="faq.a4.li4"><strong>Niezależni eksperci:</strong> Przed podpisaniem umowy, warto powierzyć audyt niezależnym doradcom.</li>
                             </ul>
                         </div>
                     </div>
                 </div>
 
                 <div class="mt-10 pt-8 border-t border-slate-100 text-slate-600 text-sm space-y-4">
-                    <h3 class="font-bold text-slate-900 text-lg">Dlaczego niezależne doradztwo to najlepsza obrona?</h3>
-                    <p>Doświadczenia inwestorów pokazują, że entuzjazm nigdy nie powinien zastępować ostrożności. Zakup nieruchomości za granicą wymaga kompetencji prawnych i technicznych.</p>
-                    <p>Jako profesjonalista, moim celem jest towarzyszenie klientowi w każdej fazie procesu: od weryfikacji katastralnej i urbanistycznej, po zarządzanie transparentnością kosztów.</p>
-                    <p class="font-medium text-slate-800">Nie pozwól, aby zaufanie zostało ulokowane w niewłaściwych rękach. Zapraszamy do kontaktu w celu wstępnej oceny strategii inwestycyjnej.</p>
-                    <p class="text-xs text-slate-400 italic pt-2">Nota: Powyższe informacje opierają się na analizie udokumentowanych przypadków nieprawidłowości na włoskim rynku nieruchomości.</p>
+                    <h3 class="font-bold text-slate-900 text-lg" data-i18n="faq.independent.title">Dlaczego niezależne doradztwo to najlepsza obrona?</h3>
+                    <p data-i18n="faq.independent.p1">Doświadczenia inwestorów pokazują, że entuzjazm nigdy nie powinien zastępować ostrożności. Zakup nieruchomości za granicą wymaga kompetencji prawnych i technicznych.</p>
+                    <p data-i18n="faq.independent.p2">Jako profesjonalista, moim celem jest towarzyszenie klientowi w każdej fazie procesu: od weryfikacji katastralnej i urbanistycznej, po zarządzanie transparentnością kosztów.</p>
+                    <p class="font-medium text-slate-800" data-i18n="faq.independent.p3">Nie pozwól, aby zaufanie zostało ulokowane w niewłaściwych rękach. Zapraszamy do kontaktu w celu wstępnej oceny strategii inwestycyjnej.</p>
+                    <p class="text-xs text-slate-400 italic pt-2" data-i18n="faq.independent.note">Nota: Powyższe informacje opierają się na analizie udokumentowanych przypadków nieprawidłowości na włoskim rynku nieruchomości.</p>
                 </div>
             </div>
 
@@ -547,12 +522,393 @@
                 <div class="w-6 h-6 bg-sky-600 rounded-md flex items-center justify-center text-white font-bold text-xs">B</div>
                 <span class="text-sm font-bold text-white tracking-tight">Bridge House</span>
             </div>
-            <p>© 2026 Bridge House Premium Auditing Engine. Wszelkie prawa zastrzeżone.</p>
+            <p data-i18n="footer.copy">© 2026 Bridge House Premium Auditing Engine. Wszelkie prawa zastrzeżone.</p>
         </div>
     </footer>
 
     <!-- INTERACTION LOGIC ARCHITECTURE -->
     <script>
+        // ── i18n ──────────────────────────────────────────────────────────────────
+        let currentLang = localStorage.getItem('bh_lang') || 'pl';
+
+        const TRANSLATIONS = {
+            pl: {
+                "nav.home": "Strona Główna",
+                "nav.map": "Zobacz Mapę",
+                "nav.about": "O Nas & Bezpieczeństwo",
+                "hero.badge": "Włoska Riwiera Inwestycyjna",
+                "hero.h1": "Inwestuj Świadomie i Bezpiecznie we Włoszech",
+                "hero.sub": "Nieruchomości z pełną asystą prawną, techniczną oraz niezależnym audytem transakcyjnym chroniącym Twój kapitał.",
+                "hero.cta1": "Zobacz Mapę Ofert",
+                "hero.cta2": "Dowiedz się więcej o audycie",
+                "regions.label": "Nasze Regiony",
+                "regions.h2": "Działamy w Najpiękniejszych Regionach Włoch",
+                "regions.sub": "Od Dolomitów po Sycylię – odkryj regiony, w których pomagamy inwestować bezpiecznie.",
+                "banner.villas.title": "Kolekcja Wyselekcjonowanych Willi",
+                "banner.villas.sub": "Zweryfikowane i bezpieczne rezydencje",
+                "banner.growth.title": "Stabilny Wzrost Kapitału",
+                "banner.growth.sub": "Włoski rynek o wysokiej płynności",
+                "banner.audit.title": "Niezależny System Audytu",
+                "banner.audit.sub": "100% ochrony przed wadami prawnymi i ukrytymi",
+                "pillars.h2": "Filary Inwestycji Bridge House",
+                "pillars.sub": "Przekształcamy standardowe pośrednictwo w transparentny, bezpieczny proces chroniony przez niezależną grupę ekspertów.",
+                "pillars.audit.title": "Niezależny Audyt Prawny",
+                "pillars.audit.desc": "Każda nieruchomość przechodzi rygorystyczny proces due diligence. Weryfikujemy księgi wieczyste, stan katastralny oraz zgodność urbanistyczną przed publikacją oferty.",
+                "pillars.taskforce.title": "Task Force Ekspertów",
+                "pillars.taskforce.desc": "Zapewniamy bezpośrednie wsparcie inżynierów, prawników i doradców podatkowych, eliminując ryzyka ukrytych wad budowlanych i proceduralnych.",
+                "pillars.autonomy.title": "Pełna Autonomia Klienta",
+                "pillars.autonomy.desc": "Nie narzucamy sztywnych struktur. Ty wybierasz zakres naszego wsparcia, zachowując bezpośredni kontakt i kontrolę nad finalnym procesem zakupu.",
+                "map.label": "Kolekcja Śródziemnomorska",
+                "map.h2": "Dostępne Rezydencje Premium",
+                "map.sub": "Wszystkie poniższe oferty zostały wstępnie zweryfikowane pod kątem formalno-prawnym.",
+                "filter.priceFrom": "Cena od",
+                "filter.priceFromPlaceholder": "np. 250000",
+                "filter.priceTo": "Cena do",
+                "filter.priceToPlaceholder": "np. 500000",
+                "filter.clear": "Wyczyść filtry",
+                "filter.features": "Cechy nieruchomości",
+                "filter.swapped": "Zakres cen został automatycznie skorygowany.",
+                "filter.found": "Znaleziono {n} ofert.",
+                "filter.active": "Aktywne filtry: {parts}.",
+                "filter.choose": "Wybierz zakres cenowy lub cechy nieruchomości.",
+                "filter.from": "od",
+                "filter.to": "do",
+                "filter.featureLabel": "cechy",
+                "filter.hiddenPrice": "Ukryto {n} ofert bez podanej ceny przy aktywnym zakresie cenowym.",
+                "filter.noResults": "Brak ofert spełniających wybrane kryteria. Zmień zakres cenowy lub odznacz część filtrów.",
+                "detail.back": "Wróć do mapy ofert",
+                "detail.priceLabel": "Cena ofertowa",
+                "detail.specs": "Charakterystyka obiektu",
+                "detail.spec.area": "Metraż",
+                "detail.spec.rooms": "Pokoje",
+                "detail.spec.baths": "Łazienki",
+                "detail.noFeatures": "Brak dodatkowych cech do wyświetlenia.",
+                "detail.shield.title": "Tarcza Ochronna Inwestora",
+                "detail.shield.desc": "W trosce o pełne bezpieczeństwo transakcyjne, ta nieruchomość kwalifikuje się do niezależnego audytu architektoniczno-katastralnego przed podpisaniem umowy przedwstępnej.",
+                "detail.form.title": "Zapytaj o audyt i prezentację",
+                "detail.form.name": "Imię i nazwisko",
+                "detail.form.email": "Adres e-mail",
+                "detail.form.phone": "Numer telefonu",
+                "detail.form.submit": "Wyślij zgłoszenie",
+                "detail.form.success": "✅ Zapytanie przesłane pomyślnie!",
+                "detail.priceUnknown": "Cena do ustalenia",
+                "about.label": "O nas",
+                "about.h1": "Doskonałość i przejrzystość w inwestycjach nieruchomościowych we Włoszech",
+                "about.p1": "Nasz projekt narodził się z krytycznej obserwacji włoskiego rynku nieruchomości, który często charakteryzuje się nadmierną fragmentacją oraz ofertą dla klientów zagranicznych obarczoną lukami informacyjnymi.",
+                "about.p2": "Naszą misją jest oferowanie wsparcia wielodyscyplinarnej grupy ekspertów (<strong>Task Force</strong>), gwarantującej bezpieczeństwo procesu akwizycji, dostępnej na każdym etapie ścieżki inwestycyjnej.",
+                "about.approach.title": "Nasze podejście: Swoboda wyboru i najwyższe standardy",
+                "about.approach.p": "Zrewolucjonizowaliśmy model doradztwa, odrzucając sztywne, narzucone z góry ograniczenia. Wierzymy, że jakość świadczonych usług powinna być jedyną podstawą współpracy.",
+                "about.approach.li1": "<strong>Brak zbędnych powiązań i pełna transparentność:</strong> Nasza struktura usługowa nie jest etapem obowiązkowym. Klient ma pełną swobodę w bezpośrednim działaniu.",
+                "about.approach.li2": "<strong>Państwa zaufany partner, gdy jest potrzebny:</strong> Nasza rola polega na oferowaniu kwalifikowanego i bezstronnego wsparcia w sytuacjach, w których użytkownik tego oczekuje.",
+                "about.why.title": "Dlaczego warto nas wybrać: Wartość dodana Task Force",
+                "about.why.p": "Nie jesteśmy agencją, która ogranicza klienta, lecz Państwa ramieniem operacyjnym we Włoszech, dostępnym na każde życzenie w każdej fazie inwestycji. Nasza metodologia opiera się na:",
+                "about.why.li1": "<strong>Rygorystyczna selekcja partnerów:</strong> Współpracujemy wyłącznie z agentami nieruchomości, prawnikami i technikami o udokumentowanym doświadczeniu.",
+                "about.why.li2": "<strong>Mediacja kulturowa i językowa:</strong> Nasz zespół działa jako pomost między kulturą polską a włoską, eliminując bariery komunikacyjne.",
+                "about.why.li3": "<strong>Model \"szyty na miarę\" (Tailor-made) bez zobowiązań:</strong> Odrzucamy sztywne ryczałty i długoterminowe umowy. Nasz serwis jest projektowany pod konkretne potrzeby klienta.",
+                "about.safety.title": "Bezpieczeństwo i profilaktyka: Nasze wsparcie opcjonalne",
+                "about.safety.p": "Zakup nieruchomości we Włoszech nie musi być procesem obarczonym ryzykiem. Dzięki naszej sieci oferujemy asystę najwyższej klasy:",
+                "about.safety.li1": "<strong>Due Diligence techniczna i prawna:</strong> Analizujemy każdą nieruchomość, aby zapobiec problemom urbanistycznym, samowolom budowlanym czy nieujawnionym obciążeniom.",
+                "about.safety.li2": "<strong>Pełna ochrona:</strong> Dzięki partnerstwu z wyspecjalizowanymi brokerami ubezpieczeniowymi, pomagamy zabezpieczyć mienie od wszelkich ryzyk.",
+                "about.safety.li3": "<strong>Wsparcie ciągłe \"A La Carte\":</strong> Od pierwszego kontaktu po podpisanie aktu notarialnego, wspieramy Państwa zgodnie z Państwa wytycznymi, minimalizując ryzyko decyzji.",
+                "about.goal.title": "Nasz cel",
+                "about.goal.p1": "Pragniemy zapewnić Państwu najbezpieczniejszą drogę na włoskim rynku nieruchomości, pozostawiając zawsze pełną swobodę w prowadzeniu negocjacji. Naszą misją jest transparentność i ochrona kapitału.",
+                "about.goal.p2": "Czy są Państwo gotowi inwestować świadomie? Zapraszamy do współpracy. Nasze kompetencje są do Państwa dyspozycji.",
+                "about.dream.title": "Zakup nieruchomości we Włoszech: Bezpieczna realizacja marzeń",
+                "about.dream.p": "Wielu inwestorów marzy o posiadłości we Włoszech – kraju, który oferuje wyjątkowy styl życia i doskonałe perspektywy kapitałowe. Jednak za pocztówkowym krajobrazem może kryć się złożona rzeczywistość formalno-prawna.",
+                "faq.label": "Q&A: Inwestycja we Włoszech – pytania kluczowe",
+                "faq.h2": "Instrukcja Bezpieczeństwa Transakcyjnego",
+                "faq.q1": "Jakie główne ryzyka przy zakupie nieruchomości do remontu, np. na Sycylii?",
+                "faq.a1": "<strong>Odpowiedź:</strong> Największym wyzwaniem jest asymetria informacji. Inwestorzy polegający na niezweryfikowanych pośrednikach często nabywają obiekty obarczone wadami formalnymi lub technicznymi.",
+                "faq.q2": "Jak rzetelnie zweryfikować wiarygodność podmiotu oferującego nieruchomość?",
+                "faq.a2": "<strong>Odpowiedź:</strong> Niezbędna jest niezależna weryfikacja kwalifikacji, dokumentacji i historii transakcyjnej partnera.",
+                "faq.q3": "Na co zwrócić uwagę w kosztorysach remontowych i przy rządowych bonusach?",
+                "faq.a3": "<strong>Odpowiedź:</strong> Podstawą jest szczegółowy i przejrzysty kosztorys (computo metrico) oraz weryfikacja podstaw prawnych do bonusów.",
+                "faq.q4": "Jak skutecznie zabezpieczyć interesy w fazie transakcji?",
+                "faq.answer": "Odpowiedź:",
+                "faq.a4.li1": "<strong>Transparentność finansowa:</strong> Każda płatność musi być udokumentowana przelewem i fakturą.",
+                "faq.a4.li2": "<strong>Weryfikacje prawne:</strong> Należy upewnić się, że stan katastralny w pełni odpowiada stanowi faktycznemu nieruchomości.",
+                "faq.a4.li3": "<strong>Bezpośredni kontakt:</strong> Negocjacje powinny zapewniać pełną śledzalność płatności bezpośrednio do podmiotu uprawnionego.",
+                "faq.a4.li4": "<strong>Niezależni eksperci:</strong> Przed podpisaniem umowy, warto powierzyć audyt niezależnym doradcom.",
+                "faq.independent.title": "Dlaczego niezależne doradztwo to najlepsza obrona?",
+                "faq.independent.p1": "Doświadczenia inwestorów pokazują, że entuzjazm nigdy nie powinien zastępować ostrożności. Zakup nieruchomości za granicą wymaga kompetencji prawnych i technicznych.",
+                "faq.independent.p2": "Jako profesjonalista, moim celem jest towarzyszenie klientowi w każdej fazie procesu: od weryfikacji katastralnej i urbanistycznej, po zarządzanie transparentnością kosztów.",
+                "faq.independent.p3": "Nie pozwól, aby zaufanie zostało ulokowane w niewłaściwych rękach. Zapraszamy do kontaktu w celu wstępnej oceny strategii inwestycyjnej.",
+                "faq.independent.note": "Nota: Powyższe informacje opierają się na analizie udokumentowanych przypadków nieprawidłowości na włoskim rynku nieruchomości.",
+                "footer.copy": "© 2026 Bridge House Premium Auditing Engine. Wszelkie prawa zastrzeżone.",
+                "listing.new": "Nowa oferta",
+                "listing.italy": "Włochy",
+                "listing.badge": "Nowość",
+                "listing.newDesc": "Nowa nieruchomość dodana przez panel administracyjny.",
+                "regions.page": "Strona {n}"
+            },
+            en: {
+                "nav.home": "Home",
+                "nav.map": "View Map",
+                "nav.about": "About Us & Security",
+                "hero.badge": "Italian Investment Riviera",
+                "hero.h1": "Invest Wisely and Safely in Italy",
+                "hero.sub": "Properties with full legal and technical assistance, plus independent transaction auditing to protect your capital.",
+                "hero.cta1": "View Property Map",
+                "hero.cta2": "Learn more about the audit",
+                "regions.label": "Our Regions",
+                "regions.h2": "We Operate in Italy's Most Beautiful Regions",
+                "regions.sub": "From the Dolomites to Sicily – discover the regions where we help you invest safely.",
+                "banner.villas.title": "Curated Villa Collection",
+                "banner.villas.sub": "Verified and secure residences",
+                "banner.growth.title": "Stable Capital Growth",
+                "banner.growth.sub": "Italian market with high liquidity",
+                "banner.audit.title": "Independent Audit System",
+                "banner.audit.sub": "100% protection against legal and hidden defects",
+                "pillars.h2": "The Pillars of Bridge House Investment",
+                "pillars.sub": "We transform standard brokerage into a transparent, secure process protected by an independent group of experts.",
+                "pillars.audit.title": "Independent Legal Audit",
+                "pillars.audit.desc": "Every property undergoes a rigorous due diligence process. We verify land registers, cadastral status and urban planning compliance before publishing any listing.",
+                "pillars.taskforce.title": "Expert Task Force",
+                "pillars.taskforce.desc": "We provide direct support from engineers, lawyers and tax advisors, eliminating the risks of hidden structural and procedural defects.",
+                "pillars.autonomy.title": "Full Client Autonomy",
+                "pillars.autonomy.desc": "We impose no rigid structures. You choose the scope of our support, maintaining direct contact and control over the final purchase process.",
+                "map.label": "Mediterranean Collection",
+                "map.h2": "Available Premium Residences",
+                "map.sub": "All listings below have been pre-verified from a legal and formal standpoint.",
+                "filter.priceFrom": "Price from",
+                "filter.priceFromPlaceholder": "e.g. 250000",
+                "filter.priceTo": "Price to",
+                "filter.priceToPlaceholder": "e.g. 500000",
+                "filter.clear": "Clear filters",
+                "filter.features": "Property features",
+                "filter.swapped": "Price range was automatically corrected.",
+                "filter.found": "Found {n} listings.",
+                "filter.active": "Active filters: {parts}.",
+                "filter.choose": "Choose a price range or property features.",
+                "filter.from": "from",
+                "filter.to": "to",
+                "filter.featureLabel": "features",
+                "filter.hiddenPrice": "Hidden {n} listings without a stated price due to active price range filter.",
+                "filter.noResults": "No listings match the selected criteria. Adjust the price range or deselect some filters.",
+                "detail.back": "Back to property map",
+                "detail.priceLabel": "Asking price",
+                "detail.specs": "Property characteristics",
+                "detail.spec.area": "Area",
+                "detail.spec.rooms": "Rooms",
+                "detail.spec.baths": "Bathrooms",
+                "detail.noFeatures": "No additional features to display.",
+                "detail.shield.title": "Investor Protection Shield",
+                "detail.shield.desc": "To ensure full transaction security, this property qualifies for an independent architectural and cadastral audit before signing a preliminary agreement.",
+                "detail.form.title": "Ask about an audit and viewing",
+                "detail.form.name": "Full name",
+                "detail.form.email": "Email address",
+                "detail.form.phone": "Phone number",
+                "detail.form.submit": "Send enquiry",
+                "detail.form.success": "✅ Enquiry submitted successfully!",
+                "detail.priceUnknown": "Price on request",
+                "about.label": "About us",
+                "about.h1": "Excellence and transparency in Italian real estate investment",
+                "about.p1": "Our project was born from a critical observation of the Italian property market, which is often characterised by excessive fragmentation and offerings for foreign clients burdened with information gaps.",
+                "about.p2": "Our mission is to provide support from a multidisciplinary group of experts (<strong>Task Force</strong>), guaranteeing the security of the acquisition process at every stage of the investment journey.",
+                "about.approach.title": "Our approach: Freedom of choice and the highest standards",
+                "about.approach.p": "We have revolutionised the advisory model by rejecting rigid, top-down constraints. We believe that the quality of services rendered should be the only basis for cooperation.",
+                "about.approach.li1": "<strong>No unnecessary ties and full transparency:</strong> Our service structure is not a mandatory step. The client has full freedom to act directly.",
+                "about.approach.li2": "<strong>Your trusted partner when needed:</strong> Our role is to offer qualified and impartial support in situations where the client expects it.",
+                "about.why.title": "Why choose us: The added value of the Task Force",
+                "about.why.p": "We are not an agency that restricts the client, but your operational arm in Italy, available on demand at every phase of the investment. Our methodology is based on:",
+                "about.why.li1": "<strong>Rigorous partner selection:</strong> We work exclusively with real estate agents, lawyers and technicians with a proven track record.",
+                "about.why.li2": "<strong>Cultural and linguistic mediation:</strong> Our team acts as a bridge between Polish and Italian culture, eliminating communication barriers.",
+                "about.why.li3": "<strong>Tailor-made model with no obligations:</strong> We reject fixed fees and long-term contracts. Our service is designed for the specific needs of each client.",
+                "about.safety.title": "Safety and prevention: Our optional support",
+                "about.safety.p": "Buying property in Italy does not have to be a risky process. Through our network we offer top-class assistance:",
+                "about.safety.li1": "<strong>Technical and legal due diligence:</strong> We analyse every property to prevent urban planning issues, unauthorised construction or undisclosed encumbrances.",
+                "about.safety.li2": "<strong>Full protection:</strong> Through partnerships with specialist insurance brokers, we help protect your assets from all risks.",
+                "about.safety.li3": "<strong>Continuous \"à la carte\" support:</strong> From first contact to signing the notarial deed, we support you according to your guidelines, minimising decision risk.",
+                "about.goal.title": "Our goal",
+                "about.goal.p1": "We strive to provide you with the safest path in the Italian real estate market, always leaving you full freedom in conducting negotiations. Our mission is transparency and capital protection.",
+                "about.goal.p2": "Are you ready to invest wisely? We invite you to cooperate. Our expertise is at your disposal.",
+                "about.dream.title": "Buying property in Italy: A safe way to realise your dreams",
+                "about.dream.p": "Many investors dream of owning property in Italy – a country that offers a unique lifestyle and excellent capital prospects. However, behind the postcard landscape may lie a complex legal and formal reality.",
+                "faq.label": "Q&A: Investment in Italy – key questions",
+                "faq.h2": "Transaction Security Guide",
+                "faq.q1": "What are the main risks when buying a renovation property, e.g. in Sicily?",
+                "faq.a1": "<strong>Answer:</strong> The biggest challenge is information asymmetry. Investors relying on unverified intermediaries often acquire properties burdened with formal or technical defects.",
+                "faq.q2": "How to reliably verify the credibility of a property offering entity?",
+                "faq.a2": "<strong>Answer:</strong> Independent verification of the partner's qualifications, documentation and transaction history is essential.",
+                "faq.q3": "What to look out for in renovation estimates and government bonus schemes?",
+                "faq.a3": "<strong>Answer:</strong> The foundation is a detailed and transparent cost estimate (computo metrico) and verification of the legal basis for bonuses.",
+                "faq.q4": "How to effectively protect interests during the transaction phase?",
+                "faq.answer": "Answer:",
+                "faq.a4.li1": "<strong>Financial transparency:</strong> Every payment must be documented by bank transfer and invoice.",
+                "faq.a4.li2": "<strong>Legal verifications:</strong> Ensure that the cadastral status fully matches the actual condition of the property.",
+                "faq.a4.li3": "<strong>Direct contact:</strong> Negotiations should ensure full traceability of payments directly to the authorised entity.",
+                "faq.a4.li4": "<strong>Independent experts:</strong> Before signing the contract, entrust the audit to independent advisors.",
+                "faq.independent.title": "Why is independent advice the best defence?",
+                "faq.independent.p1": "Investor experience shows that enthusiasm should never replace caution. Buying property abroad requires legal and technical expertise.",
+                "faq.independent.p2": "As a professional, my goal is to accompany the client through every phase of the process: from cadastral and urban planning verification to managing cost transparency.",
+                "faq.independent.p3": "Do not let trust be placed in the wrong hands. We invite you to contact us for an initial assessment of your investment strategy.",
+                "faq.independent.note": "Note: The above information is based on an analysis of documented cases of irregularities in the Italian property market.",
+                "footer.copy": "© 2026 Bridge House Premium Auditing Engine. All rights reserved.",
+                "listing.new": "New listing",
+                "listing.italy": "Italy",
+                "listing.badge": "New",
+                "listing.newDesc": "New property added via the admin panel.",
+                "regions.page": "Page {n}"
+            },
+            it: {
+                "nav.home": "Home",
+                "nav.map": "Vedi Mappa",
+                "nav.about": "Chi Siamo & Sicurezza",
+                "hero.badge": "La Riviera Italiana degli Investimenti",
+                "hero.h1": "Investi in Italia con Consapevolezza e Sicurezza",
+                "hero.sub": "Immobili con assistenza legale e tecnica completa, più una verifica indipendente delle transazioni a protezione del tuo capitale.",
+                "hero.cta1": "Vedi Mappa degli Immobili",
+                "hero.cta2": "Scopri di più sulla due diligence",
+                "regions.label": "Le Nostre Regioni",
+                "regions.h2": "Operiamo nelle Più Belle Regioni d'Italia",
+                "regions.sub": "Dalle Dolomiti alla Sicilia – scopri le regioni in cui ti aiutiamo a investire in sicurezza.",
+                "banner.villas.title": "Collezione di Ville Selezionate",
+                "banner.villas.sub": "Residenze verificate e sicure",
+                "banner.growth.title": "Crescita Stabile del Capitale",
+                "banner.growth.sub": "Mercato italiano ad alta liquidità",
+                "banner.audit.title": "Sistema di Audit Indipendente",
+                "banner.audit.sub": "100% di protezione dai vizi giuridici e occulti",
+                "pillars.h2": "I Pilastri dell'Investimento Bridge House",
+                "pillars.sub": "Trasformiamo la mediazione standard in un processo trasparente e sicuro, protetto da un gruppo indipendente di esperti.",
+                "pillars.audit.title": "Audit Legale Indipendente",
+                "pillars.audit.desc": "Ogni immobile è sottoposto a un rigoroso processo di due diligence. Verifichiamo i registri fondiari, lo stato catastale e la conformità urbanistica prima di pubblicare qualsiasi offerta.",
+                "pillars.taskforce.title": "Task Force di Esperti",
+                "pillars.taskforce.desc": "Forniamo supporto diretto da ingegneri, avvocati e consulenti fiscali, eliminando i rischi di vizi strutturali e procedurali nascosti.",
+                "pillars.autonomy.title": "Piena Autonomia del Cliente",
+                "pillars.autonomy.desc": "Non imponiamo strutture rigide. Sei tu a scegliere la portata del nostro supporto, mantenendo il contatto diretto e il controllo sull'intero processo di acquisto.",
+                "map.label": "Collezione Mediterranea",
+                "map.h2": "Residenze Premium Disponibili",
+                "map.sub": "Tutte le offerte sottostanti sono state pre-verificate dal punto di vista legale e formale.",
+                "filter.priceFrom": "Prezzo da",
+                "filter.priceFromPlaceholder": "es. 250000",
+                "filter.priceTo": "Prezzo a",
+                "filter.priceToPlaceholder": "es. 500000",
+                "filter.clear": "Cancella filtri",
+                "filter.features": "Caratteristiche immobile",
+                "filter.swapped": "L'intervallo di prezzo è stato corretto automaticamente.",
+                "filter.found": "Trovati {n} immobili.",
+                "filter.active": "Filtri attivi: {parts}.",
+                "filter.choose": "Scegli un intervallo di prezzo o caratteristiche.",
+                "filter.from": "da",
+                "filter.to": "a",
+                "filter.featureLabel": "caratteristiche",
+                "filter.hiddenPrice": "Nascosti {n} immobili senza prezzo con filtro prezzo attivo.",
+                "filter.noResults": "Nessun immobile corrisponde ai criteri selezionati. Modifica il range di prezzo o deseleziona alcuni filtri.",
+                "detail.back": "Torna alla mappa",
+                "detail.priceLabel": "Prezzo richiesto",
+                "detail.specs": "Caratteristiche dell'immobile",
+                "detail.spec.area": "Superficie",
+                "detail.spec.rooms": "Locali",
+                "detail.spec.baths": "Bagni",
+                "detail.noFeatures": "Nessuna caratteristica aggiuntiva da visualizzare.",
+                "detail.shield.title": "Scudo di Protezione dell'Investitore",
+                "detail.shield.desc": "Per garantire la piena sicurezza della transazione, questo immobile è idoneo a un audit architettonico e catastale indipendente prima della firma del contratto preliminare.",
+                "detail.form.title": "Richiedi una due diligence e una visita",
+                "detail.form.name": "Nome e cognome",
+                "detail.form.email": "Indirizzo e-mail",
+                "detail.form.phone": "Numero di telefono",
+                "detail.form.submit": "Invia richiesta",
+                "detail.form.success": "✅ Richiesta inviata con successo!",
+                "detail.priceUnknown": "Prezzo da concordare",
+                "about.label": "Chi siamo",
+                "about.h1": "Eccellenza e trasparenza negli investimenti immobiliari in Italia",
+                "about.p1": "Il nostro progetto nasce da un'osservazione critica del mercato immobiliare italiano, spesso caratterizzato da eccessiva frammentazione e da offerte per clienti stranieri gravate da lacune informative.",
+                "about.p2": "La nostra missione è offrire il supporto di un gruppo multidisciplinare di esperti (<strong>Task Force</strong>), che garantisce la sicurezza del processo di acquisizione in ogni fase del percorso di investimento.",
+                "about.approach.title": "Il nostro approccio: Libertà di scelta e massimi standard",
+                "about.approach.p": "Abbiamo rivoluzionato il modello consulenziale, rifiutando vincoli rigidi imposti dall'alto. Crediamo che la qualità dei servizi resi debba essere l'unica base della collaborazione.",
+                "about.approach.li1": "<strong>Nessun legame superfluo e piena trasparenza:</strong> La nostra struttura di servizi non è un passaggio obbligatorio. Il cliente ha piena libertà di agire direttamente.",
+                "about.approach.li2": "<strong>Il vostro partner di fiducia quando serve:</strong> Il nostro ruolo è offrire un supporto qualificato e imparziale nelle situazioni in cui l'utente lo richiede.",
+                "about.why.title": "Perché sceglierci: Il valore aggiunto della Task Force",
+                "about.why.p": "Non siamo un'agenzia che limita il cliente, ma il vostro braccio operativo in Italia, disponibile su richiesta in ogni fase dell'investimento. La nostra metodologia si basa su:",
+                "about.why.li1": "<strong>Selezione rigorosa dei partner:</strong> Lavoriamo esclusivamente con agenti immobiliari, avvocati e tecnici con esperienza comprovata.",
+                "about.why.li2": "<strong>Mediazione culturale e linguistica:</strong> Il nostro team funge da ponte tra la cultura polacca e quella italiana, eliminando le barriere comunicative.",
+                "about.why.li3": "<strong>Modello \"su misura\" (Tailor-made) senza vincoli:</strong> Rifiutiamo tariffe fisse e contratti a lungo termine. Il nostro servizio è progettato sulle esigenze specifiche del cliente.",
+                "about.safety.title": "Sicurezza e prevenzione: Il nostro supporto opzionale",
+                "about.safety.p": "L'acquisto di immobili in Italia non deve essere un processo rischioso. Attraverso la nostra rete offriamo assistenza di altissimo livello:",
+                "about.safety.li1": "<strong>Due diligence tecnica e legale:</strong> Analizziamo ogni immobile per prevenire problemi urbanistici, abusi edilizi o vincoli non dichiarati.",
+                "about.safety.li2": "<strong>Protezione completa:</strong> Grazie alla partnership con broker assicurativi specializzati, aiutiamo a tutelare il patrimonio da tutti i rischi.",
+                "about.safety.li3": "<strong>Supporto continuo \"à la carte\":</strong> Dal primo contatto alla firma dell'atto notarile, vi supportiamo secondo le vostre indicazioni, riducendo al minimo il rischio decisionale.",
+                "about.goal.title": "Il nostro obiettivo",
+                "about.goal.p1": "Vogliamo offrirvi il percorso più sicuro sul mercato immobiliare italiano, lasciando sempre piena libertà di condurre le trattative. La nostra missione è la trasparenza e la protezione del capitale.",
+                "about.goal.p2": "Siete pronti a investire con consapevolezza? Vi invitiamo a collaborare. Le nostre competenze sono a vostra disposizione.",
+                "about.dream.title": "Acquistare casa in Italia: La realizzazione sicura di un sogno",
+                "about.dream.p": "Molti investitori sognano di possedere un immobile in Italia – un paese che offre uno stile di vita unico ed eccellenti prospettive di capitale. Tuttavia, dietro il paesaggio da cartolina può celarsi una complessa realtà formale e giuridica.",
+                "faq.label": "Q&A: Investimento in Italia – domande chiave",
+                "faq.h2": "Guida alla Sicurezza delle Transazioni",
+                "faq.q1": "Quali sono i principali rischi nell'acquisto di un immobile da ristrutturare, ad es. in Sicilia?",
+                "faq.a1": "<strong>Risposta:</strong> La sfida principale è l'asimmetria informativa. Gli investitori che si affidano a intermediari non verificati spesso acquistano immobili gravati da vizi formali o tecnici.",
+                "faq.q2": "Come verificare in modo affidabile la credibilità del soggetto che offre l'immobile?",
+                "faq.a2": "<strong>Risposta:</strong> È indispensabile una verifica indipendente delle qualifiche, della documentazione e della storia transazionale del partner.",
+                "faq.q3": "A cosa prestare attenzione nei preventivi di ristrutturazione e nei bonus governativi?",
+                "faq.a3": "<strong>Risposta:</strong> La base è un computo metrico dettagliato e trasparente, con verifica dei presupposti giuridici per l'accesso ai bonus.",
+                "faq.q4": "Come tutelare efficacemente gli interessi nella fase della transazione?",
+                "faq.answer": "Risposta:",
+                "faq.a4.li1": "<strong>Trasparenza finanziaria:</strong> Ogni pagamento deve essere documentato da bonifico e fattura.",
+                "faq.a4.li2": "<strong>Verifiche legali:</strong> Assicurarsi che lo stato catastale corrisponda pienamente allo stato di fatto dell'immobile.",
+                "faq.a4.li3": "<strong>Contatto diretto:</strong> Le trattative devono garantire la piena tracciabilità dei pagamenti direttamente al soggetto titolato.",
+                "faq.a4.li4": "<strong>Esperti indipendenti:</strong> Prima della firma del contratto, affidare l'audit a consulenti indipendenti.",
+                "faq.independent.title": "Perché la consulenza indipendente è la migliore difesa?",
+                "faq.independent.p1": "L'esperienza degli investitori mostra che l'entusiasmo non deve mai sostituire la prudenza. L'acquisto di immobili all'estero richiede competenze legali e tecniche.",
+                "faq.independent.p2": "Come professionista, il mio obiettivo è accompagnare il cliente in ogni fase del processo: dalla verifica catastale e urbanistica alla gestione della trasparenza dei costi.",
+                "faq.independent.p3": "Non lasciare che la fiducia venga riposta nelle mani sbagliate. Vi invitiamo a contattarci per una valutazione preliminare della vostra strategia di investimento.",
+                "faq.independent.note": "Nota: Le informazioni di cui sopra si basano sull'analisi di casi documentati di irregolarità nel mercato immobiliare italiano.",
+                "footer.copy": "© 2026 Bridge House Premium Auditing Engine. Tutti i diritti riservati.",
+                "listing.new": "Nuovo annuncio",
+                "listing.italy": "Italia",
+                "listing.badge": "Novità",
+                "listing.newDesc": "Nuovo immobile aggiunto tramite il pannello di amministrazione.",
+                "regions.page": "Pagina {n}"
+            }
+        };
+
+        function T(key) {
+            return TRANSLATIONS[currentLang]?.[key] ?? TRANSLATIONS.pl[key] ?? key;
+        }
+
+        function setLanguage(lang, refreshDynamic = true) {
+            if (!TRANSLATIONS[lang]) return;
+            currentLang = lang;
+            localStorage.setItem('bh_lang', lang);
+            document.documentElement.lang = lang;
+
+            // Update all static data-i18n elements
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                const text = T(key);
+                if (el.children.length === 0 || key.startsWith('about.') || key.startsWith('faq.')) {
+                    el.innerHTML = text;
+                } else {
+                    el.textContent = text;
+                }
+            });
+
+            // Update placeholder attributes
+            document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+                el.placeholder = T(el.getAttribute('data-i18n-placeholder'));
+            });
+
+            // Update lang button states
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                const active = btn.id === `lang-${lang}`;
+                btn.classList.toggle('border-sky-500', active);
+                btn.classList.toggle('border-transparent', !active);
+                btn.setAttribute('aria-pressed', String(active));
+            });
+
+            if (!refreshDynamic) return;
+
+            // Re-render regions carousel
+            initRegionsCarousel();
+
+            // Re-render dynamic content
+            renderFeatureFilters();
+            applyFilters();
+
+            // If detail page is visible, re-render it
+            if (currentProperty && !document.getElementById('detail-page').classList.contains('hidden')) {
+                showDetails(currentProperty.id);
+            }
+        }
         const API_BASE = "https://adriatica-backend.onrender.com";
         const DEFAULT_MAP_CENTER = [42.75, 13.95];
         const DEFAULT_MAP_ZOOM = 10;
@@ -703,7 +1059,9 @@
         }
 
         function getFeatureLabel(featureKey) {
-            return getFeatureDefinition(featureKey)?.labels?.pl || featureKey;
+            const feature = getFeatureDefinition(featureKey);
+            if (!feature) return featureKey;
+            return feature.labels[currentLang] || feature.labels.pl || featureKey;
         }
 
         function getFeatureTranslations(featureKey) {
@@ -713,16 +1071,18 @@
         }
 
         function formatPriceDisplay(priceValue, currency = "EUR") {
-            if (!Number.isFinite(priceValue)) return "Cena do ustalenia";
+            if (!Number.isFinite(priceValue)) return T("detail.priceUnknown");
 
+            const locales = { pl: "pl-PL", en: "en-GB", it: "it-IT" };
+            const locale = locales[currentLang] || "pl-PL";
             try {
-                return new Intl.NumberFormat("pl-PL", {
+                return new Intl.NumberFormat(locale, {
                     style: "currency",
                     currency,
                     maximumFractionDigits: 0
                 }).format(priceValue);
             } catch (error) {
-                return `${priceValue.toLocaleString("pl-PL")} ${currency}`;
+                return `${priceValue.toLocaleString(locale)} ${currency}`;
             }
         }
 
@@ -845,7 +1205,7 @@
                     aria-pressed="false"
                     class="feature-filter rounded-full border border-slate-200 bg-white px-3 py-2 text-xs font-semibold text-slate-600 transition-colors hover:border-sky-500 hover:text-sky-600"
                 >
-                    ${escapeHtml(feature.labels.pl)}
+                    ${escapeHtml(getFeatureLabel(feature.key))}
                 </button>
             `).join("");
 
@@ -885,24 +1245,26 @@
             if (!summary) return;
 
             const { minPrice, maxPrice, wasSwapped } = priceRange;
+            const locale = { pl: "pl-PL", en: "en-GB", it: "it-IT" }[currentLang] || "pl-PL";
             const activeParts = [];
-            if (minPrice !== null) activeParts.push(`od ${minPrice.toLocaleString("pl-PL")}`);
-            if (maxPrice !== null) activeParts.push(`do ${maxPrice.toLocaleString("pl-PL")}`);
+            if (minPrice !== null) activeParts.push(`${T("filter.from")} ${minPrice.toLocaleString(locale)}`);
+            if (maxPrice !== null) activeParts.push(`${T("filter.to")} ${maxPrice.toLocaleString(locale)}`);
             if (filtersState.features.size) {
-                activeParts.push(`cechy: ${Array.from(filtersState.features).map(getFeatureLabel).join(", ")}`);
+                activeParts.push(`${T("filter.featureLabel")}: ${Array.from(filtersState.features).map(getFeatureLabel).join(", ")}`);
             }
 
             const missingPriceCount = countListingsHiddenByMissingPrice(priceRange);
             const extraMessages = [];
-            if (missingPriceCount) extraMessages.push(`Ukryto ${missingPriceCount} ofert bez podanej ceny przy aktywnym zakresie cenowym.`);
+            if (missingPriceCount) extraMessages.push(T("filter.hiddenPrice").replace("{n}", missingPriceCount));
 
             if (correctionMessage) {
-                correctionMessage.textContent = wasSwapped ? "Zakres cen został automatycznie skorygowany." : "";
+                correctionMessage.textContent = wasSwapped ? T("filter.swapped") : "";
             }
 
+            const found = T("filter.found").replace("{n}", filteredListings.length);
             summary.textContent = activeParts.length
-                ? `Znaleziono ${filteredListings.length} ofert. Aktywne filtry: ${activeParts.join(", ")}.${extraMessages.length ? ` ${extraMessages.join(" ")}` : ""}`
-                : `Znaleziono ${filteredListings.length} ofert. Wybierz zakres cenowy lub cechy nieruchomości.`;
+                ? `${found} ${T("filter.active").replace("{parts}", activeParts.join(", "))}${extraMessages.length ? ` ${extraMessages.join(" ")}` : ""}`
+                : `${found} ${T("filter.choose")}`;
         }
 
         function clearFilters() {
@@ -966,12 +1328,12 @@
 
             return {
                 id: Number(item?.id) || fallbackId,
-                title: item?.title || item?.name || "Nowa oferta",
+                title: item?.title || item?.name || T("listing.new"),
                 price: item?.price || item?.priceText || formatPriceDisplay(priceValue, currency),
                 priceValue,
-                location: item?.location || item?.city || "Włochy",
-                badge: item?.badge || "Nowość",
-                desc: item?.desc || item?.description || "Nowa nieruchomość dodana przez panel administracyjny.",
+                location: item?.location || item?.city || T("listing.italy"),
+                badge: item?.badge || T("listing.badge"),
+                desc: item?.desc || item?.description || T("listing.newDesc"),
                 specs: {
                     space: item?.specs?.space || item?.space || item?.area || "—",
                     beds: item?.specs?.beds || item?.beds || item?.rooms || "—",
@@ -1069,7 +1431,7 @@
             if (!listings.length) {
                 grid.innerHTML = `
                     <div class="sm:col-span-2 rounded-2xl border border-dashed border-slate-300 bg-white px-6 py-12 text-center text-sm text-slate-500">
-                        Brak ofert spełniających wybrane kryteria. Zmień zakres cenowy lub odznacz część filtrów.
+                        ${T("filter.noResults")}
                     </div>
                 `;
                 return;
@@ -1127,16 +1489,16 @@
             
             const specsContainer = document.getElementById('detail-specs');
             specsContainer.innerHTML = `
-                <div class="bg-slate-50 p-2.5 rounded-xl text-center border border-slate-100"><p class="text-[10px] text-slate-400 font-medium">Metraż</p><p class="text-xs font-bold text-slate-800">${escapeHtml(currentProperty.specs.space)}</p></div>
-                <div class="bg-slate-50 p-2.5 rounded-xl text-center border border-slate-100"><p class="text-[10px] text-slate-400 font-medium">Pokoje</p><p class="text-xs font-bold text-slate-800">${escapeHtml(currentProperty.specs.beds)}</p></div>
-                <div class="bg-slate-50 p-2.5 rounded-xl text-center border border-slate-100"><p class="text-[10px] text-slate-400 font-medium">Łazienki</p><p class="text-xs font-bold text-slate-800">${escapeHtml(currentProperty.specs.baths)}</p></div>
+                <div class="bg-slate-50 p-2.5 rounded-xl text-center border border-slate-100"><p class="text-[10px] text-slate-400 font-medium">${T("detail.spec.area")}</p><p class="text-xs font-bold text-slate-800">${escapeHtml(currentProperty.specs.space)}</p></div>
+                <div class="bg-slate-50 p-2.5 rounded-xl text-center border border-slate-100"><p class="text-[10px] text-slate-400 font-medium">${T("detail.spec.rooms")}</p><p class="text-xs font-bold text-slate-800">${escapeHtml(currentProperty.specs.beds)}</p></div>
+                <div class="bg-slate-50 p-2.5 rounded-xl text-center border border-slate-100"><p class="text-[10px] text-slate-400 font-medium">${T("detail.spec.baths")}</p><p class="text-xs font-bold text-slate-800">${escapeHtml(currentProperty.specs.baths)}</p></div>
             `;
 
             const featuresContainer = document.getElementById('detail-features');
             const features = Array.isArray(currentProperty.features) ? currentProperty.features : [];
             featuresContainer.innerHTML = features.length
                 ? features.map((feature) => `<span role="listitem" class="rounded-full bg-sky-50 px-3 py-1.5 text-xs font-semibold text-sky-700 border border-sky-100">${escapeHtml(getFeatureLabel(feature))}</span>`).join('')
-                : `<span class="text-xs text-slate-400">Brak dodatkowych cech do wyświetlenia.</span>`;
+                : `<span class="text-xs text-slate-400">${T("detail.noFeatures")}</span>`;
             
             updateCarousel();
             window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -1211,7 +1573,7 @@
 
         function submitForm(e) {
             e.preventDefault();
-            alert("✅ Zapytanie przesłane pomyślnie!");
+            alert(T("detail.form.success"));
             e.target.reset();
         }
 
@@ -1220,6 +1582,8 @@
             bindFilterControls();
             applyFilters();
             showPage('home');
+            setLanguage(currentLang, false);
+            initRegionsCarousel();
             await loadDynamicListings();
         });
     </script>
