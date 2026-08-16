@@ -905,6 +905,9 @@
             renderFeatureFilters();
             applyFilters();
 
+            // If a property detail page is currently open, refresh its text too
+            if (currentProperty) showDetails(currentProperty.id);
+
             // If detail page is visible, re-render it
             if (currentProperty && !document.getElementById('detail-page').classList.contains('hidden')) {
                 showDetails(currentProperty.id);
@@ -935,13 +938,17 @@
         const dataStore = [
             {
                 id: 1,
-                title: "Dwupokojowy apartament z widokiem na morze",
+                title: { pl: "Dwupokojowy apartament z widokiem na morze", en: "Two-room apartment with sea view", it: "Bilocale con vista mare" },
                 price: "320 000 PLN",
                 priceValue: 320000,
-                location: "Tortoreto Lido, Włochy",
+                location: { pl: "Tortoreto Lido, Włochy", en: "Tortoreto Lido, Italy", it: "Tortoreto Lido, Italia" },
                 badge: "Top Premium",
-                desc: "Piękny, jasny apartament z dużym tarasem i bezpośrednim widokiem na linię brzegową Tortoreto Lido.",
-                specs: { space: "65 m²", beds: "2 Pokoje", baths: "1 Łazienka" },
+                desc: {
+                    pl: "Piękny, jasny apartament z dużym tarasem i bezpośrednim widokiem na linię brzegową Tortoreto Lido.",
+                    en: "Beautiful, bright apartment with a large terrace and direct views over the Tortoreto Lido coastline.",
+                    it: "Bellissimo appartamento luminoso con ampio terrazzo e vista diretta sulla costa di Tortoreto Lido."
+                },
+                specs: { space: "65 m²", beds: 2, baths: 1 },
                 coords: [42.802, 13.929],
                 features: ["mare", "vista-mare", "cucina"],
                 images: [
@@ -951,13 +958,17 @@
             },
             {
                 id: 2,
-                title: "Trzypokojowe mieszkanie z tarasem przy plaży",
+                title: { pl: "Trzypokojowe mieszkanie z tarasem przy plaży", en: "Three-room apartment with beachfront terrace", it: "Trilocale con terrazza fronte mare" },
                 price: "480 000 PLN",
                 priceValue: 480000,
-                location: "Alba Adriatica, Włochy",
+                location: { pl: "Alba Adriatica, Włochy", en: "Alba Adriatica, Italy", it: "Alba Adriatica, Italia" },
                 badge: "Beachfront",
-                desc: "Wygodna posiadłość zaledwie kilka kroków od piaszczystej plaży w Alba Adriatica. Duży taras widokowy.",
-                specs: { space: "85 m²", beds: "3 Pokoje", baths: "2 Łazienki" },
+                desc: {
+                    pl: "Wygodna posiadłość zaledwie kilka kroków od piaszczystej plaży w Alba Adriatica. Duży taras widokowy.",
+                    en: "A comfortable property just a few steps from the sandy beach in Alba Adriatica. Large panoramic terrace.",
+                    it: "Comoda proprietà a pochi passi dalla spiaggia sabbiosa di Alba Adriatica. Ampia terrazza panoramica."
+                },
+                specs: { space: "85 m²", beds: 3, baths: 2 },
                 coords: [42.831, 13.924],
                 features: ["mare", "fronte-mare", "vista-mare", "posto-auto", "cucina"],
                 images: [
@@ -967,13 +978,17 @@
             },
             {
                 id: 3,
-                title: "Apartament z widokiem panoramicznym",
+                title: { pl: "Apartament z widokiem panoramicznym", en: "Apartment with panoramic views", it: "Appartamento con vista panoramica" },
                 price: "395 000 PLN",
                 priceValue: 395000,
-                location: "Pineto, Włochy",
+                location: { pl: "Pineto, Włochy", en: "Pineto, Italy", it: "Pineto, Italia" },
                 badge: "Panoramic",
-                desc: "Kameralna, prestiżowa lokalizacja rezydencyjna w Pineto z piękną panoramą na morze adriatyckie.",
-                specs: { space: "78 m²", beds: "3 Pokoje", baths: "1 Łazienka" },
+                desc: {
+                    pl: "Kameralna, prestiżowa lokalizacja rezydencyjna w Pineto z piękną panoramą na morze adriatyckie.",
+                    en: "An intimate, prestigious residential location in Pineto with a beautiful panoramic view over the Adriatic Sea.",
+                    it: "Location residenziale raccolta e prestigiosa a Pineto con splendida vista panoramica sul mare Adriatico."
+                },
+                specs: { space: "78 m²", beds: 3, baths: 1 },
                 coords: [42.610, 14.065],
                 features: ["mare", "vista-mare", "centro", "angolo-cottura"],
                 images: [
@@ -982,6 +997,15 @@
                 ]
             }
         ];
+
+        // Returns the value for the current language from a {pl,en,it} object,
+        // or passes plain strings/numbers through unchanged (used for API-loaded listings).
+        function L2(value) {
+            if (value && typeof value === 'object' && !Array.isArray(value)) {
+                return value[currentLang] ?? value.pl ?? Object.values(value)[0] ?? '';
+            }
+            return value;
+        }
 
         let mapInstance = null;
         let markersGroup = [];
@@ -1449,18 +1473,18 @@
                 card.onclick = () => showDetails(p.id);
                 card.innerHTML = `
                     <div class="h-48 overflow-hidden relative bg-slate-100">
-                        <img src="${escapeHtml(p.images[0])}" alt="${escapeHtml(p.title)}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
-                        <span class="absolute top-4 left-4 bg-slate-900/80 backdrop-blur-md text-white font-bold text-[10px] uppercase tracking-wider px-2.5 py-1 rounded-md z-10">${escapeHtml(p.badge)}</span>
+                        <img src="${escapeHtml(p.images[0])}" alt="${escapeHtml(L2(p.title))}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        <span class="absolute top-4 left-4 bg-slate-900/80 backdrop-blur-md text-white font-bold text-[10px] uppercase tracking-wider px-2.5 py-1 rounded-md z-10">${escapeHtml(L2(p.badge))}</span>
                     </div>
                     <div class="p-5 flex-col justify-between flex-1 flex">
                         <div>
                             <div class="flex justify-between items-start gap-2 mb-1">
-                                <h3 class="font-bold text-slate-900 group-hover:text-sky-600 transition-colors text-sm">${escapeHtml(p.title)}</h3>
+                                <h3 class="font-bold text-slate-900 group-hover:text-sky-600 transition-colors text-sm">${escapeHtml(L2(p.title))}</h3>
                                 <span class="text-sky-600 font-extrabold text-sm whitespace-nowrap">${escapeHtml(p.price)}</span>
                             </div>
-                            <p class="text-slate-400 text-xs flex items-center gap-1 mb-3"><i class="fa-solid fa-location-dot"></i> ${escapeHtml(p.location)}</p>
+                            <p class="text-slate-400 text-xs flex items-center gap-1 mb-3"><i class="fa-solid fa-location-dot"></i> ${escapeHtml(L2(p.location))}</p>
                             <div class="flex flex-wrap gap-1.5 mb-3" role="list" aria-label="Cechy nieruchomości">${featureChips}</div>
-                            <p class="text-slate-500 text-xs line-clamp-2 leading-relaxed mb-4">${escapeHtml(p.desc)}</p>
+                            <p class="text-slate-500 text-xs line-clamp-2 leading-relaxed mb-4">${escapeHtml(L2(p.desc))}</p>
                         </div>
                         <div class="flex justify-between items-center text-[11px] font-medium text-slate-400 border-t border-slate-50 pt-3">
                             <span><i class="fa-solid fa-vector-square text-sky-500"></i> ${escapeHtml(p.specs.space)}</span>
@@ -1482,11 +1506,11 @@
             document.getElementById('about-page').classList.add('hidden');
             document.getElementById('detail-page').classList.remove('hidden');
             
-            document.getElementById('detail-title').innerText = currentProperty.title;
+            document.getElementById('detail-title').innerText = L2(currentProperty.title);
             document.getElementById('detail-price').innerText = currentProperty.price;
-            document.getElementById('detail-loc').textContent = currentProperty.location;
-            document.getElementById('detail-desc').innerText = currentProperty.desc;
-            document.getElementById('detail-badge').innerText = currentProperty.badge;
+            document.getElementById('detail-loc').textContent = L2(currentProperty.location);
+            document.getElementById('detail-desc').innerText = L2(currentProperty.desc);
+            document.getElementById('detail-badge').innerText = L2(currentProperty.badge);
             
             const specsContainer = document.getElementById('detail-specs');
             specsContainer.innerHTML = `
