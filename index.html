@@ -189,7 +189,7 @@
             for (let i = 0; i < pages; i++) {
                 const d = document.createElement('button');
                 d.className = `w-2.5 h-2.5 rounded-full transition-all ${i === 0 ? 'bg-sky-600 scale-125' : 'bg-slate-300'}`;
-                d.setAttribute('aria-label', `${i + 1}`);
+                d.setAttribute('aria-label', (typeof T !== 'undefined' ? T("regions.page") : "Page {n}").replace("{n}", i + 1));
                 d.addEventListener('click', () => regionsGoTo(i * regionsVisibleCount));
                 dotsEl.appendChild(d);
             }
@@ -638,7 +638,8 @@
                 "listing.new": "Nowa oferta",
                 "listing.italy": "Włochy",
                 "listing.badge": "Nowość",
-                "listing.newDesc": "Nowa nieruchomość dodana przez panel administracyjny."
+                "listing.newDesc": "Nowa nieruchomość dodana przez panel administracyjny.",
+                "regions.page": "Strona {n}"
             },
             en: {
                 "nav.home": "Home",
@@ -746,7 +747,8 @@
                 "listing.new": "New listing",
                 "listing.italy": "Italy",
                 "listing.badge": "New",
-                "listing.newDesc": "New property added via the admin panel."
+                "listing.newDesc": "New property added via the admin panel.",
+                "regions.page": "Page {n}"
             },
             it: {
                 "nav.home": "Home",
@@ -854,7 +856,8 @@
                 "listing.new": "Nuovo annuncio",
                 "listing.italy": "Italia",
                 "listing.badge": "Novità",
-                "listing.newDesc": "Nuovo immobile aggiunto tramite il pannello di amministrazione."
+                "listing.newDesc": "Nuovo immobile aggiunto tramite il pannello di amministrazione.",
+                "regions.page": "Pagina {n}"
             }
         };
 
@@ -862,7 +865,7 @@
             return TRANSLATIONS[currentLang]?.[key] ?? TRANSLATIONS.pl[key] ?? key;
         }
 
-        function setLanguage(lang) {
+        function setLanguage(lang, refreshDynamic = true) {
             if (!TRANSLATIONS[lang]) return;
             currentLang = lang;
             localStorage.setItem('bh_lang', lang);
@@ -891,6 +894,8 @@
                 btn.classList.toggle('border-transparent', !active);
                 btn.setAttribute('aria-pressed', String(active));
             });
+
+            if (!refreshDynamic) return;
 
             // Re-render regions carousel
             initRegionsCarousel();
@@ -1240,9 +1245,10 @@
             if (!summary) return;
 
             const { minPrice, maxPrice, wasSwapped } = priceRange;
+            const locale = { pl: "pl-PL", en: "en-GB", it: "it-IT" }[currentLang] || "pl-PL";
             const activeParts = [];
-            if (minPrice !== null) activeParts.push(`${T("filter.from")} ${minPrice.toLocaleString()}`);
-            if (maxPrice !== null) activeParts.push(`${T("filter.to")} ${maxPrice.toLocaleString()}`);
+            if (minPrice !== null) activeParts.push(`${T("filter.from")} ${minPrice.toLocaleString(locale)}`);
+            if (maxPrice !== null) activeParts.push(`${T("filter.to")} ${maxPrice.toLocaleString(locale)}`);
             if (filtersState.features.size) {
                 activeParts.push(`${T("filter.featureLabel")}: ${Array.from(filtersState.features).map(getFeatureLabel).join(", ")}`);
             }
@@ -1576,7 +1582,8 @@
             bindFilterControls();
             applyFilters();
             showPage('home');
-            setLanguage(currentLang);
+            setLanguage(currentLang, false);
+            initRegionsCarousel();
             await loadDynamicListings();
         });
     </script>
