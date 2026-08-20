@@ -74,7 +74,7 @@
         <!-- Hero Header -->
         <header class="hero-bg min-h-[85vh] flex items-center justify-center text-center px-4 relative">
             <div class="max-w-4xl mx-auto text-white z-10">
-                <span class="bg-white/10 backdrop-blur-md text-sky-300 text-xs tracking-widest font-bold px-4 py-2 rounded-full uppercase mb-6 inline-block border border-white/10" data-i18n="hero.badge">Włoska Riwiera Inwestycyjna</span>
+                <span class="bg-white/10 backdrop-blur-md text-sky-300 text-xs tracking-widest font-bold px-4 py-2 rounded-full uppercase mb-6 inline-block border border-white/10" data-i18n="hero.badge">Wsparcie inwestora w całych Włoszech</span>
                 <h1 class="text-4xl sm:text-6xl font-extrabold tracking-tight leading-none mb-6" data-i18n="hero.h1">Inwestuj Świadomie i Bezpiecznie we Włoszech</h1>
                 <p class="text-lg sm:text-xl text-slate-200 font-light max-w-2xl mx-auto mb-10 leading-relaxed" data-i18n="hero.sub">
                     Nieruchomości z pełną asystą prawną, techniczną oraz niezależnym audytem transakcyjnym chroniącym Twój kapitał.
@@ -90,13 +90,13 @@
             </div>
         </header>
 
-        <!-- Regions Carousel -->
+        <!-- Nationwide Support Carousel -->
         <section class="py-14 bg-white border-b border-slate-100">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="text-center max-w-2xl mx-auto mb-10">
-                    <span class="text-sky-600 font-bold text-xs uppercase tracking-widest block mb-2" data-i18n="regions.label">Nasze Regiony</span>
-                    <h2 class="text-3xl font-extrabold text-slate-900 tracking-tight mb-3" data-i18n="regions.h2">Działamy we wszystkich regionach Włoch.</h2>
-                    <p class="text-slate-500 text-sm" data-i18n="regions.sub">Od Dolomitów po Sycylię – odkryj regiony, w których pomagamy inwestować bezpiecznie.</p>
+                    <span class="text-sky-600 font-bold text-xs uppercase tracking-widest block mb-2" data-i18n="regions.label">Nasze wsparcie</span>
+                    <h2 class="text-3xl font-extrabold text-slate-900 tracking-tight mb-3" data-i18n="regions.h2">Działamy na terenie całych Włoch.</h2>
+                    <p class="text-slate-500 text-sm" data-i18n="regions.sub">Pomagamy polskim inwestorom kupować i analizować nieruchomości we Włoszech niezależnie od regionu, miasta i typu inwestycji.</p>
                 </div>
                 <!-- Carousel wrapper -->
                 <div class="relative" id="regions-carousel">
@@ -106,10 +106,10 @@
                         </div>
                     </div>
                     <!-- Prev/Next buttons -->
-                    <button id="regions-prev" aria-label="Poprzedni region" class="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 sm:-translate-x-6 z-10 bg-white shadow-lg border border-slate-200 rounded-full w-11 h-11 flex items-center justify-center hover:bg-sky-50 transition">
+                    <button id="regions-prev" aria-label="Poprzednia karta" class="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 sm:-translate-x-6 z-10 bg-white shadow-lg border border-slate-200 rounded-full w-11 h-11 flex items-center justify-center hover:bg-sky-50 transition">
                         <i class="fa-solid fa-chevron-left text-slate-600"></i>
                     </button>
-                    <button id="regions-next" aria-label="Następny region" class="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 sm:translate-x-6 z-10 bg-white shadow-lg border border-slate-200 rounded-full w-11 h-11 flex items-center justify-center hover:bg-sky-50 transition">
+                    <button id="regions-next" aria-label="Następna karta" class="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 sm:translate-x-6 z-10 bg-white shadow-lg border border-slate-200 rounded-full w-11 h-11 flex items-center justify-center hover:bg-sky-50 transition">
                         <i class="fa-solid fa-chevron-right text-slate-600"></i>
                     </button>
                     <!-- Dots -->
@@ -121,34 +121,34 @@
         <script>
         const REGIONS_DATA = {
             pl: [
-                { name: "Dolomity – Północny Wschód", sub: "Val di Fassa, Trentino-Alto Adige", desc: "Majestatyczne szczyty wpisane na Listę Światowego Dziedzictwa UNESCO. Idealne pod inwestycje w nieruchomości górskie i agroturystykę.", img: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&q=80", tag: "Góry & Ośrodki Narciarskie" },
-                { name: "Gran Paradiso – Północny Zachód", sub: "Cogne, Dolina Aosty", desc: "Serce pierwszego parku narodowego Włoch. Dzika przyroda, alpejskie wioski i nieruchomości premium z widokiem na czterotysięczniki.", img: "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=800&q=80", tag: "Alpejskie Rezydencje" },
-                { name: "Liguria", sub: "Riwiera Włoska, Cinque Terre", desc: "Kolorowe wioski przytulone do klifów nad Morzem Liguryjskim. Wyjątkowy klimat śródziemnomorski i rosnący rynek nieruchomości nadmorskich.", img: "https://images.unsplash.com/photo-1555993539-1732b0258235?w=800&q=80", tag: "Riwiera & Nadmorskie Wille" },
-                { name: "Toskania & Włochy Centralne", sub: "Florencja, Siena, Val d'Orcia", desc: "Ikona włoskiego stylu życia. Winnice, renesansowe miasteczka i rezydencje z wielowiekową historią – klasyczna inwestycja prestiżowa.", img: "https://images.unsplash.com/photo-1467269204594-9661b134dd2b?w=800&q=80", tag: "Winnice & Rezydencje Historyczne" },
-                { name: "Abruzja", sub: "Pescara, Gran Sasso, Costa dei Trabocchi", desc: "Region niedoceniany przez zagranicznych inwestorów, a oferujący nieruchomości w cenach niższych o 30–50% niż Toskania przy porównywalnych walorach.", img: "https://images.unsplash.com/photo-1523531294919-4bcd7c65e216?w=800&q=80", tag: "Ukryte Perły Inwestycyjne" },
-                { name: "Sycylia", sub: "Palermo, Taormina, Agrigento", desc: "Największa wyspa Morza Śródziemnego. Program 1 € za dom, ulgi podatkowe dla rezydentów zagranicznych i rosnący rynek turystyczny.", img: "https://images.unsplash.com/photo-1516483638261-f4dbaf036963?w=800&q=80", tag: "Wyspa Okazji Inwestycyjnych" },
-                { name: "Apulia (Puglia)", sub: "Bari, Lecce, Trulli w Alberobello", desc: "Obcas włoskiego buta – kryształowe morze, oliwarki, unikalne trulli i jeden z najszybciej rozwijających się rynków nieruchomości w południu Włoch.", img: "https://images.unsplash.com/photo-1534445867742-43195f401b6c?w=800&q=80", tag: "Trulli & Wille Nadmorskie" },
-                { name: "Sardynia", sub: "Costa Smeralda, Cagliari, Nuoro", desc: "Turkusowe laguny Costa Smeralda i dzikie, nieznane wnętrze wyspy. Nieruchomości od luksusowych rezydencji po rustykalne masserie.", img: "https://images.unsplash.com/photo-1498307833015-e7b400441eb8?w=800&q=80", tag: "Luksusy Costa Smeralda" }
+                { name: "Zakup mieszkania lub domu", sub: "Drugi dom, relokacja, zakup prywatny", desc: "Wspieramy polskiego inwestora, który chce bezpiecznie kupić nieruchomość we Włoszech na własne potrzeby lub jako drugi dom.", img: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&q=80", tag: "Zakup prywatny" },
+                { name: "Apartament wakacyjny i najem", sub: "Wynajem krótkoterminowy i użytek sezonowy", desc: "Pomagamy ocenić potencjał najmu, dokumentację, koszty utrzymania i ryzyka związane z użytkowaniem nieruchomości.", img: "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=800&q=80", tag: "Najem & wakacje" },
+                { name: "Nieruchomość inwestycyjna", sub: "Ochrona kapitału i strategia zwrotu", desc: "Zakres wsparcia może obejmować analizę oferty, due diligence i koordynację specjalistów przed podjęciem decyzji inwestycyjnej.", img: "https://images.unsplash.com/photo-1555993539-1732b0258235?w=800&q=80", tag: "Inwestowanie we Włoszech" },
+                { name: "Nieruchomość do remontu", sub: "Weryfikacja techniczna, urbanistyczna i kosztowa", desc: "Sprawdzamy zgodność dokumentacji ze stanem faktycznym oraz pomagamy ocenić realność planowanych prac i budżetu.", img: "https://images.unsplash.com/photo-1467269204594-9661b134dd2b?w=800&q=80", tag: "Due diligence" },
+                { name: "Nieruchomość komercyjna lub grunt", sub: "Obiekty biznesowe i potencjał inwestycyjny", desc: "Możemy wesprzeć analizę dokumentów, ograniczeń, przeznaczenia oraz możliwości dalszego wykorzystania nieruchomości.", img: "https://images.unsplash.com/photo-1523531294919-4bcd7c65e216?w=800&q=80", tag: "Analiza potencjału" },
+                { name: "Przed zakupem", sub: "Oferta, dokumenty, koszty, ryzyka", desc: "Wsparcie może rozpocząć się jeszcze przed wyborem nieruchomości, gdy inwestor potrzebuje wstępnej oceny i większej kontroli nad procesem.", img: "https://images.unsplash.com/photo-1516483638261-f4dbaf036963?w=800&q=80", tag: "Etap wstępny" },
+                { name: "W trakcie transakcji", sub: "Negocjacje, koordynacja, finalizacja", desc: "Pomagamy uporządkować współpracę z agentem, prawnikiem, notariuszem, technikiem i innymi specjalistami potrzebnymi do zakupu.", img: "https://images.unsplash.com/photo-1534445867742-43195f401b6c?w=800&q=80", tag: "Proces zakupu" },
+                { name: "Po zakupie", sub: "Remont, ubezpieczenie, kolejne etapy", desc: "W zależności od potrzeb inwestora możemy wspierać również działania po finalizacji transakcji i dalsze etapy inwestycji.", img: "https://images.unsplash.com/photo-1498307833015-e7b400441eb8?w=800&q=80", tag: "Wsparcie A La Carte" }
             ],
             en: [
-                { name: "Dolomites – North East", sub: "Val di Fassa, Trentino-Alto Adige", desc: "Majestic peaks listed as a UNESCO World Heritage Site. Ideal for investments in mountain properties and agritourism.", img: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&q=80", tag: "Mountains & Ski Resorts" },
-                { name: "Gran Paradiso – North West", sub: "Cogne, Aosta Valley", desc: "Heart of Italy's first national park. Wild nature, alpine villages and premium properties with views of four-thousanders.", img: "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=800&q=80", tag: "Alpine Residences" },
-                { name: "Liguria", sub: "Italian Riviera, Cinque Terre", desc: "Colourful villages clinging to cliffs above the Ligurian Sea. Unique Mediterranean climate and a growing coastal property market.", img: "https://images.unsplash.com/photo-1555993539-1732b0258235?w=800&q=80", tag: "Riviera & Seaside Villas" },
-                { name: "Tuscany & Central Italy", sub: "Florence, Siena, Val d'Orcia", desc: "Icon of the Italian lifestyle. Vineyards, Renaissance towns and centuries-old residences – a classic prestige investment.", img: "https://images.unsplash.com/photo-1467269204594-9661b134dd2b?w=800&q=80", tag: "Vineyards & Historic Residences" },
-                { name: "Abruzzo", sub: "Pescara, Gran Sasso, Costa dei Trabocchi", desc: "An underrated region offering properties 30–50% cheaper than Tuscany with comparable quality. A hidden gem for savvy investors.", img: "https://images.unsplash.com/photo-1523531294919-4bcd7c65e216?w=800&q=80", tag: "Hidden Investment Gems" },
-                { name: "Sicily", sub: "Palermo, Taormina, Agrigento", desc: "The largest island in the Mediterranean. €1 house schemes, tax breaks for foreign residents and a booming tourism market.", img: "https://images.unsplash.com/photo-1516483638261-f4dbaf036963?w=800&q=80", tag: "Island of Investment Opportunities" },
-                { name: "Apulia (Puglia)", sub: "Bari, Lecce, Trulli in Alberobello", desc: "The heel of Italy's boot – crystal-clear sea, olive groves, unique trulli and one of the fastest-growing property markets in southern Italy.", img: "https://images.unsplash.com/photo-1534445867742-43195f401b6c?w=800&q=80", tag: "Trulli & Seaside Villas" },
-                { name: "Sardinia", sub: "Costa Smeralda, Cagliari, Nuoro", desc: "Turquoise lagoons of Costa Smeralda and the wild, unexplored island interior. Properties ranging from luxury residences to rustic masserie.", img: "https://images.unsplash.com/photo-1498307833015-e7b400441eb8?w=800&q=80", tag: "Costa Smeralda Luxury" }
+                { name: "Home or apartment purchase", sub: "Second home, relocation, private use", desc: "We support Polish investors who want to buy property in Italy safely for personal use or as a second home.", img: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&q=80", tag: "Private purchase" },
+                { name: "Holiday apartment and rental", sub: "Short-term rental and seasonal use", desc: "We help assess rental potential, documentation, holding costs and risks linked to owning and using the property.", img: "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=800&q=80", tag: "Rental & holiday use" },
+                { name: "Investment property", sub: "Capital protection and return strategy", desc: "Our support can include offer analysis, due diligence and coordination of specialists before an investment decision is made.", img: "https://images.unsplash.com/photo-1555993539-1732b0258235?w=800&q=80", tag: "Investing in Italy" },
+                { name: "Renovation property", sub: "Technical, planning and cost verification", desc: "We verify whether the documentation matches the actual condition of the property and assess the realism of the planned works and budget.", img: "https://images.unsplash.com/photo-1467269204594-9661b134dd2b?w=800&q=80", tag: "Due diligence" },
+                { name: "Commercial property or land", sub: "Business assets and investment potential", desc: "We can support the review of documents, restrictions, intended use and future development options.", img: "https://images.unsplash.com/photo-1523531294919-4bcd7c65e216?w=800&q=80", tag: "Potential analysis" },
+                { name: "Before purchase", sub: "Offer, documents, costs, risks", desc: "Support can start before a property is chosen, when the investor needs an initial assessment and greater control over the process.", img: "https://images.unsplash.com/photo-1516483638261-f4dbaf036963?w=800&q=80", tag: "Early stage" },
+                { name: "During the transaction", sub: "Negotiation, coordination, closing", desc: "We help organise cooperation with the agent, lawyer, notary, surveyor and other specialists required for the purchase.", img: "https://images.unsplash.com/photo-1534445867742-43195f401b6c?w=800&q=80", tag: "Purchase process" },
+                { name: "After purchase", sub: "Renovation, insurance, next steps", desc: "Depending on the investor's needs, we can also support post-closing work and later stages of the investment.", img: "https://images.unsplash.com/photo-1498307833015-e7b400441eb8?w=800&q=80", tag: "À la carte support" }
             ],
             it: [
-                { name: "Dolomiti – Nord Est", sub: "Val di Fassa, Trentino-Alto Adige", desc: "Vette maestose patrimonio UNESCO. Ideali per investimenti in immobili di montagna e agriturismo.", img: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&q=80", tag: "Montagna & Stazioni Sciistiche" },
-                { name: "Gran Paradiso – Nord Ovest", sub: "Cogne, Valle d'Aosta", desc: "Cuore del primo parco nazionale italiano. Natura selvaggia, borghi alpini e immobili premium con vista sulle vette.", img: "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=800&q=80", tag: "Residenze Alpine" },
-                { name: "Liguria", sub: "Riviera Italiana, Cinque Terre", desc: "Borghi colorati aggrappati alle scogliere sul Mar Ligure. Clima mediterraneo unico e mercato immobiliare costiero in crescita.", img: "https://images.unsplash.com/photo-1555993539-1732b0258235?w=800&q=80", tag: "Riviera & Ville sul Mare" },
-                { name: "Toscana & Italia Centrale", sub: "Firenze, Siena, Val d'Orcia", desc: "Icona dello stile di vita italiano. Vigneti, borghi rinascimentali e residenze storiche – un investimento di prestigio classico.", img: "https://images.unsplash.com/photo-1467269204594-9661b134dd2b?w=800&q=80", tag: "Vigneti & Residenze Storiche" },
-                { name: "Abruzzo", sub: "Pescara, Gran Sasso, Costa dei Trabocchi", desc: "Una regione sottovalutata che offre immobili con prezzi inferiori del 30–50% rispetto alla Toscana con qualità comparabile.", img: "https://images.unsplash.com/photo-1523531294919-4bcd7c65e216?w=800&q=80", tag: "Gemme Nascoste" },
-                { name: "Sicilia", sub: "Palermo, Taormina, Agrigento", desc: "La più grande isola del Mediterraneo. Case a 1 €, agevolazioni fiscali per residenti stranieri e un mercato turistico in forte crescita.", img: "https://images.unsplash.com/photo-1516483638261-f4dbaf036963?w=800&q=80", tag: "Isola delle Opportunità" },
-                { name: "Puglia", sub: "Bari, Lecce, Trulli di Alberobello", desc: "Il tacco d'Italia – mare cristallino, ulivi, trulli unici e uno dei mercati immobiliari a più rapida crescita nel Sud Italia.", img: "https://images.unsplash.com/photo-1534445867742-43195f401b6c?w=800&q=80", tag: "Trulli & Ville sul Mare" },
-                { name: "Sardegna", sub: "Costa Smeralda, Cagliari, Nuoro", desc: "Le lagune turchesi della Costa Smeralda e l'entroterra selvaggio. Immobili dalle residenze di lusso alle rustiche masserie.", img: "https://images.unsplash.com/photo-1498307833015-e7b400441eb8?w=800&q=80", tag: "Lusso della Costa Smeralda" }
+                { name: "Acquisto di casa o appartamento", sub: "Seconda casa, relocation, uso privato", desc: "Supportiamo gli investitori polacchi che vogliono acquistare un immobile in Italia in modo sicuro per uso personale o come seconda casa.", img: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&q=80", tag: "Acquisto privato" },
+                { name: "Appartamento vacanze e affitto", sub: "Locazione breve e uso stagionale", desc: "Aiutiamo a valutare il potenziale di locazione, la documentazione, i costi di gestione e i rischi legati al possesso dell'immobile.", img: "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=800&q=80", tag: "Affitto & vacanze" },
+                { name: "Immobile da investimento", sub: "Protezione del capitale e strategia di rendimento", desc: "Il nostro supporto può includere analisi dell'offerta, due diligence e coordinamento degli specialisti prima della decisione di investimento.", img: "https://images.unsplash.com/photo-1555993539-1732b0258235?w=800&q=80", tag: "Investire in Italia" },
+                { name: "Immobile da ristrutturare", sub: "Verifica tecnica, urbanistica e dei costi", desc: "Verifichiamo se la documentazione corrisponde allo stato reale dell'immobile e valutiamo la fattibilità dei lavori e del budget.", img: "https://images.unsplash.com/photo-1467269204594-9661b134dd2b?w=800&q=80", tag: "Due diligence" },
+                { name: "Immobile commerciale o terreno", sub: "Asset aziendali e potenziale di investimento", desc: "Possiamo supportare l'analisi di documenti, vincoli, destinazione d'uso e opzioni di sviluppo futuro.", img: "https://images.unsplash.com/photo-1523531294919-4bcd7c65e216?w=800&q=80", tag: "Analisi del potenziale" },
+                { name: "Prima dell'acquisto", sub: "Offerta, documenti, costi, rischi", desc: "Il supporto può iniziare prima della scelta dell'immobile, quando l'investitore ha bisogno di una valutazione iniziale e di maggiore controllo sul processo.", img: "https://images.unsplash.com/photo-1516483638261-f4dbaf036963?w=800&q=80", tag: "Fase iniziale" },
+                { name: "Durante la transazione", sub: "Negoziazione, coordinamento, chiusura", desc: "Aiutiamo a organizzare la collaborazione con agente, avvocato, notaio, tecnico e altri specialisti necessari all'acquisto.", img: "https://images.unsplash.com/photo-1534445867742-43195f401b6c?w=800&q=80", tag: "Processo di acquisto" },
+                { name: "Dopo l'acquisto", sub: "Ristrutturazione, assicurazione, passi successivi", desc: "In base alle esigenze dell'investitore, possiamo supportare anche le attività post-closing e le fasi successive dell'investimento.", img: "https://images.unsplash.com/photo-1498307833015-e7b400441eb8?w=800&q=80", tag: "Supporto à la carte" }
             ]
         };
 
@@ -278,7 +278,7 @@
         <section id="map-section" class="border-t border-slate-200 bg-slate-50/50 py-16">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="mb-8">
-                    <span class="text-sky-600 font-bold text-xs uppercase tracking-widest block mb-2" data-i18n="map.label">Kolekcja Śródziemnomorska</span>
+                    <span class="text-sky-600 font-bold text-xs uppercase tracking-widest block mb-2" data-i18n="map.label">Zakup nieruchomości we Włoszech</span>
                     <h2 class="text-3xl font-extrabold text-slate-900 tracking-tight" data-i18n="map.h2">Dostępne Rezydencje</h2>
                     <p class="text-sm text-slate-500 mt-1" data-i18n="map.sub">Wszystkie poniższe oferty zostały wstępnie zweryfikowane pod kątem formalno-prawnym.</p>
                 </div>
@@ -391,61 +391,61 @@
             
             <div class="bg-white rounded-3xl border border-slate-100 shadow-sm p-8 sm:p-12 mb-12">
                 <span class="text-sky-600 font-bold text-xs uppercase tracking-widest block mb-2" data-i18n="about.label">O nas</span>
-                <h1 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight mb-6" data-i18n="about.h1">Doskonałość i przejrzystość w inwestycjach nieruchomościowych we Włoszech</h1>
+                <h1 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight mb-6" data-i18n="about.h1">Bezpieczne i transparentne inwestowanie w nieruchomości we Włoszech</h1>
                 
                 <div class="prose prose-slate max-w-none text-slate-600 text-sm sm:text-base space-y-6 leading-relaxed">
                     <p data-i18n="about.p1">
-                        Nasz projekt narodził się z krytycznej obserwacji włoskiego rynku nieruchomości, który często charakteryzuje się nadmierną fragmentacją oraz ofertą dla klientów zagranicznych obarczoną lukami informacyjnymi.
+                        Pomagamy polskim inwestorom bezpiecznie i świadomie poruszać się po włoskim rynku nieruchomości na terenie całych Włoch, niezależnie od regionu, miasta i lokalizacji nieruchomości.
                     </p>
                     <p data-i18n="about.p2">
-                        Naszą misją jest oferowanie wsparcia wielodyscyplinarnej grupy ekspertów (<strong>Task Force</strong>), gwarantującej bezpieczeństwo procesu akwizycji, dostępnej na każdym etapie ścieżki inwestycyjnej.
+                        Nasz model współpracy powstał w odpowiedzi na rzeczywiste wyzwania związane z zakupem nieruchomości we Włoszech: lokalne procedury, dokumentację, podatki, due diligence oraz bezpieczeństwo zakupu nieruchomości z perspektywy inwestora z Polski.
                     </p>
                     
-                    <h2 class="text-xl font-bold text-slate-900 pt-4" data-i18n="about.approach.title">Nasze podejście: Swoboda wyboru i najwyższe standardy</h2>
-                    <p data-i18n="about.approach.p">Zrewolucjonizowaliśmy model doradztwa, odrzucając sztywne, narzucone z góry ograniczenia. Wierzymy, że jakość świadczonych usług powinna być jedyną podstawą współpracy.</p>
+                    <h2 class="text-xl font-bold text-slate-900 pt-4" data-i18n="about.approach.title">Dla kogo i na jakim etapie działa usługa</h2>
+                    <p data-i18n="about.approach.p">Wspieramy osoby zainteresowane zakupem domu, apartamentu wakacyjnego, nieruchomości inwestycyjnej, nieruchomości na wynajem, obiektu do remontu, nieruchomości komercyjnej lub gruntu o określonym potencjale.</p>
                     <ul class="space-y-3 list-none pl-0">
                         <li class="flex items-start gap-3">
                             <i class="fa-solid fa-check text-emerald-500 mt-1"></i>
-                            <span data-i18n="about.approach.li1"><strong>Brak zbędnych powiązań i pełna transparentność:</strong> Nasza struktura usługowa nie jest etapem obowiązkowym. Klient ma pełną swobodę w bezpośrednim działaniu.</span>
+                            <span data-i18n="about.approach.li1"><strong>Przed zakupem:</strong> Możemy pomóc przy analizie oferty, wstępnej ocenie potencjału inwestycyjnego, weryfikacji dokumentacji i przygotowaniu do negocjacji.</span>
                         </li>
                         <li class="flex items-start gap-3">
                             <i class="fa-solid fa-check text-emerald-500 mt-1"></i>
-                            <span data-i18n="about.approach.li2"><strong>Państwa zaufany partner, gdy jest potrzebny:</strong> Nasza rola polega na oferowaniu kwalifikowanego i bezstronnego wsparcia w sytuacjach, w których użytkownik tego oczekuje.</span>
+                            <span data-i18n="about.approach.li2"><strong>W trakcie i po transakcji:</strong> Zakres wsparcia może obejmować finalizację zakupu, koordynację specjalistów, analizę remontu, kwestie ubezpieczeniowe oraz dalsze etapy inwestycji.</span>
                         </li>
                     </ul>
 
-                    <h2 class="text-xl font-bold text-slate-900 pt-4" data-i18n="about.why.title">Dlaczego warto nas wybrać: Wartość dodana Task Force</h2>
-                    <p data-i18n="about.why.p">Nie jesteśmy agencją, która ogranicza klienta, lecz Państwa ramieniem operacyjnym we Włoszech, dostępnym na każde życzenie w każdej fazie inwestycji. Nasza metodologia opiera się na:</p>
+                    <h2 class="text-xl font-bold text-slate-900 pt-4" data-i18n="about.why.title">Jak działa nasz model współpracy</h2>
+                    <p data-i18n="about.why.p">Nie narzucamy inwestorowi jednego sposobu działania. Naszą rolą jest zapewnienie niezależnego wsparcia, przejrzystości i dostępu do odpowiednich specjalistów dokładnie wtedy, gdy są potrzebni.</p>
                     <ul class="space-y-3 list-none pl-0">
                         <li class="flex items-start gap-3">
                             <i class="fa-solid fa-star text-sky-500 mt-1"></i>
-                            <span data-i18n="about.why.li1"><strong>Rygorystyczna selekcja partnerów:</strong> Współpracujemy wyłącznie z agentami nieruchomości, prawnikami i technikami o udokumentowanym doświadczeniu.</span>
+                            <span data-i18n="about.why.li1"><strong>Niezależność i transparentność:</strong> Inwestor może prowadzić rozmowy samodzielnie, współpracować z wybraną agencją lub korzystać z własnych doradców, a my uzupełniamy proces tam, gdzie zwiększa to bezpieczeństwo zakupu nieruchomości.</span>
                         </li>
                         <li class="flex items-start gap-3">
                             <i class="fa-solid fa-language text-sky-500 mt-1"></i>
-                            <span data-i18n="about.why.li2"><strong>Mediacja kulturowa i językowa:</strong> Nasz zespół działa jako pomost między kulturą polską a włoską, eliminując bariery komunikacyjne.</span>
+                            <span data-i18n="about.why.li2"><strong>Task Force ekspertów:</strong> W zależności od potrzeb inwestycji możemy angażować agentów nieruchomości, prawników, notariuszy, techników, architektów, doradców podatkowych, wykonawców i brokerów ubezpieczeniowych.</span>
                         </li>
                         <li class="flex items-start gap-3">
                             <i class="fa-solid fa-sliders text-sky-500 mt-1"></i>
-                            <span data-i18n="about.why.li3"><strong>Model "szyty na miarę" (Tailor-made) bez zobowiązań:</strong> Odrzucamy sztywne ryczałty i długoterminowe umowy. Nasz serwis jest projektowany pod konkretne potrzeby klienta.</span>
+                            <span data-i18n="about.why.li3"><strong>Pomost językowy i operacyjny:</strong> Ułatwiamy komunikację z włoskim rynkiem nieruchomości, aby polski inwestor wiedział, co kupuje, od kogo kupuje, jakie dokumenty należy sprawdzić i jakie ryzyka przeanalizować.</span>
                         </li>
                     </ul>
 
-                    <h2 class="text-xl font-bold text-slate-900 pt-4" data-i18n="about.safety.title">Bezpieczeństwo i profilaktyka: Nasze wsparcie opcjonalne</h2>
-                    <p data-i18n="about.safety.p">Zakup nieruchomości we Włoszech nie musi być procesem obarczonym ryzykiem. Dzięki naszej sieci oferujemy asystę najwyższej klasy:</p>
+                    <h2 class="text-xl font-bold text-slate-900 pt-4" data-i18n="about.safety.title">Co może obejmować nasze wsparcie</h2>
+                    <p data-i18n="about.safety.p">Zakres współpracy jest dopasowywany do nieruchomości, strategii inwestora i etapu procesu zakupowego. Możemy wesprzeć między innymi:</p>
                     <ul class="space-y-2 list-disc pl-5">
-                        <li data-i18n="about.safety.li1"><strong>Due Diligence techniczna i prawna:</strong> Analizujemy każdą nieruchomość, aby zapobiec problemom urbanistycznym, samowolom budowlanym czy nieujawnionym obciążeniom.</li>
-                        <li data-i18n="about.safety.li2"><strong>Pełna ochrona:</strong> Dzięki partnerstwu z wyspecjalizowanymi brokerami ubezpieczeniowymi, pomagamy zabezpieczyć mienie od wszelkich ryzyk.</li>
-                        <li data-i18n="about.safety.li3"><strong>Wsparcie ciągłe "A La Carte":</strong> Od pierwszego kontaktu po podpisanie aktu notarialnego, wspieramy Państwa zgodnie z Państwa wytycznymi, minimalizując ryzyko decyzji.</li>
+                        <li data-i18n="about.safety.li1"><strong>Due diligence prawne, techniczne i urbanistyczne:</strong> Weryfikacja stanu prawnego, danych katastralnych, zgodności dokumentacji ze stanem faktycznym oraz potencjalnych ograniczeń inwestycji.</li>
+                        <li data-i18n="about.safety.li2"><strong>Analizę kosztów i ryzyk:</strong> Ocena kosztów remontu, obowiązków podatkowych, obciążeń, praw osób trzecich oraz ryzyk związanych z późniejszym użytkowaniem lub wynajmem.</li>
+                        <li data-i18n="about.safety.li3"><strong>Wsparcie A La Carte:</strong> Koordynację specjalistów, przygotowanie do zawarcia umowy, kontakt z brokerami ubezpieczeniowymi i wsparcie po zakupie, jeśli inwestor tego potrzebuje.</li>
                     </ul>
 
                     <h2 class="text-xl font-bold text-slate-900 pt-4" data-i18n="about.goal.title">Nasz cel</h2>
-                    <p data-i18n="about.goal.p1">Pragniemy zapewnić Państwu najbezpieczniejszą drogę na włoskim rynku nieruchomości, pozostawiając zawsze pełną swobodę w prowadzeniu negocjacji. Naszą misją jest transparentność i ochrona kapitału.</p>
-                    <p class="font-bold text-slate-900" data-i18n="about.goal.p2">Czy są Państwo gotowi inwestować świadomie? Zapraszamy do współpracy. Nasze kompetencje są do Państwa dyspozycji.</p>
+                    <p data-i18n="about.goal.p1">Chcemy stworzyć dla polskiego inwestora bezpieczną, przejrzystą i zrozumiałą ścieżkę inwestowania w nieruchomości we Włoszech, bez podejmowania decyzji za klienta.</p>
+                    <p class="font-bold text-slate-900" data-i18n="about.goal.p2">Jeżeli rozważają Państwo zakup nieruchomości we Włoszech lub inwestowanie w nieruchomości we Włoszech, jesteśmy do dyspozycji na każdym etapie procesu i w każdej lokalizacji na terenie kraju.</p>
                     
                     <div class="border-t border-slate-100 pt-6 mt-6">
-                        <h2 class="text-xl font-bold text-slate-900 mb-2" data-i18n="about.dream.title">Zakup nieruchomości we Włoszech: Bezpieczna realizacja marzeń</h2>
-                        <p data-i18n="about.dream.p">Wielu inwestorów marzy o posiadłości we Włoszech – kraju, który oferuje wyjątkowy styl życia i doskonałe perspektywy kapitałowe. Jednak za pocztówkowym krajobrazem może kryć się złożona rzeczywistość formalno-prawna.</p>
+                        <h2 class="text-xl font-bold text-slate-900 mb-2" data-i18n="about.dream.title">Zakup nieruchomości we Włoszech: co warto wiedzieć przed decyzją</h2>
+                        <p data-i18n="about.dream.p">Włoski rynek nieruchomości daje szerokie możliwości, ale wymaga dobrej orientacji w procedurach, dokumentacji i ryzykach. Poniżej zebraliśmy najważniejsze pytania, które polski inwestor najczęściej zadaje przed zakupem.</p>
                     </div>
                 </div>
             </div>
@@ -454,18 +454,18 @@
             <div class="bg-white rounded-3xl border border-slate-100 shadow-sm p-8 sm:p-12">
                 <div class="flex items-center gap-3 mb-4">
                     <span class="w-3 h-3 rounded-full bg-red-500 animate-pulse"></span>
-                    <span class="text-xs font-bold text-red-600 tracking-wider uppercase" data-i18n="faq.label">Q&A: Inwestycja we Włoszech – pytania kluczowe</span>
+                    <span class="text-xs font-bold text-red-600 tracking-wider uppercase" data-i18n="faq.label">FAQ dla polskiego inwestora</span>
                 </div>
-                <h2 class="text-2xl font-black text-slate-900 tracking-tight mb-6" data-i18n="faq.h2">Instrukcja Bezpieczeństwa Transakcyjnego</h2>
+                <h2 class="text-2xl font-black text-slate-900 tracking-tight mb-6" data-i18n="faq.h2">Zakup nieruchomości we Włoszech – najważniejsze pytania</h2>
 
                 <div class="space-y-4">
                     <div class="border border-slate-100 rounded-2xl overflow-hidden faq-item">
                         <button onclick="toggleFaq(this)" class="w-full bg-slate-50/60 hover:bg-slate-50 px-6 py-5 flex justify-between items-center text-left transition-colors">
-                            <span class="font-bold text-sm text-slate-800" data-i18n="faq.q1">Jakie główne ryzyka przy zakupie nieruchomości do remontu, np. na Sycylii?</span>
+                            <span class="font-bold text-sm text-slate-800" data-i18n="faq.q1">Jakie są główne ryzyka przy zakupie nieruchomości we Włoszech, szczególnie nieruchomości wymagającej remontu?</span>
                             <i class="fa-solid fa-chevron-down text-slate-400 text-xs transition-transform duration-300"></i>
                         </button>
                         <div class="faq-body hidden bg-white px-6 py-5 border-t border-slate-50 text-xs sm:text-sm text-slate-600 space-y-2">
-                            <p data-i18n="faq.a1"><strong>Odpowiedź:</strong> Największym wyzwaniem jest asymetria informacji. Inwestorzy polegający na niezweryfikowanych pośrednikach często nabywają obiekty obarczone wadami formalnymi lub technicznymi.</p>
+                            <p data-i18n="faq.a1"><strong>Odpowiedź:</strong> Najważniejsze ryzyka dotyczą stanu prawnego i urbanistycznego nieruchomości, zgodności dokumentacji ze stanem faktycznym, kosztów remontu oraz możliwości prawnego wykonania planowanych prac, dlatego decyzji nie warto opierać wyłącznie na cenie zakupu.</p>
                         </div>
                     </div>
 
@@ -475,17 +475,17 @@
                             <i class="fa-solid fa-chevron-down text-slate-400 text-xs transition-transform duration-300"></i>
                         </button>
                         <div class="faq-body hidden bg-white px-6 py-5 border-t border-slate-50 text-xs sm:text-sm text-slate-600 space-y-2">
-                            <p data-i18n="faq.a2"><strong>Odpowiedź:</strong> Niezbędna jest niezależna weryfikacja kwalifikacji, dokumentacji i historii transakcyjnej partnera.</p>
+                            <p data-i18n="faq.a2"><strong>Odpowiedź:</strong> Przed dokonaniem płatności należy ustalić, z kim dokładnie zawierana jest transakcja, jakie prawa posiada dana osoba lub firma, czy ma ona prawo do sprzedaży nieruchomości oraz czy dokumentacja i sposób prowadzenia rozmów nie budzą wątpliwości.</p>
                         </div>
                     </div>
 
                     <div class="border border-slate-100 rounded-2xl overflow-hidden faq-item">
                         <button onclick="toggleFaq(this)" class="w-full bg-slate-50/60 hover:bg-slate-50 px-6 py-5 flex justify-between items-center text-left transition-colors">
-                            <span class="font-bold text-sm text-slate-800" data-i18n="faq.q3">Na co zwrócić uwagę w kosztorysach remontowych i przy rządowych bonusach?</span>
+                            <span class="font-bold text-sm text-slate-800" data-i18n="faq.q3">Na co zwrócić uwagę w kosztorysach remontowych i przy ulgach lub programach wsparcia?</span>
                             <i class="fa-solid fa-chevron-down text-slate-400 text-xs transition-transform duration-300"></i>
                         </button>
                         <div class="faq-body hidden bg-white px-6 py-5 border-t border-slate-50 text-xs sm:text-sm text-slate-600 space-y-2">
-                            <p data-i18n="faq.a3"><strong>Odpowiedź:</strong> Podstawą jest szczegółowy i przejrzysty kosztorys (computo metrico) oraz weryfikacja podstaw prawnych do bonusów.</p>
+                            <p data-i18n="faq.a3"><strong>Odpowiedź:</strong> Kosztorys remontu powinien opierać się na rzeczywistym zakresie prac, aktualnych cenach materiałów i robocizny oraz stanie technicznym nieruchomości, a ulg i programów wsparcia nie należy zakładać automatycznie bez sprawdzenia aktualnych przepisów i warunków kwalifikacji.</p>
                         </div>
                     </div>
 
@@ -507,11 +507,11 @@
                 </div>
 
                 <div class="mt-10 pt-8 border-t border-slate-100 text-slate-600 text-sm space-y-4">
-                    <h3 class="font-bold text-slate-900 text-lg" data-i18n="faq.independent.title">Dlaczego niezależne doradztwo to najlepsza obrona?</h3>
-                    <p data-i18n="faq.independent.p1">Doświadczenia inwestorów pokazują, że entuzjazm nigdy nie powinien zastępować ostrożności. Zakup nieruchomości za granicą wymaga kompetencji prawnych i technicznych.</p>
-                    <p data-i18n="faq.independent.p2">Jako profesjonalista, moim celem jest towarzyszenie klientowi w każdej fazie procesu: od weryfikacji katastralnej i urbanistycznej, po zarządzanie transparentnością kosztów.</p>
-                    <p class="font-medium text-slate-800" data-i18n="faq.independent.p3">Nie pozwól, aby zaufanie zostało ulokowane w niewłaściwych rękach. Zapraszamy do kontaktu w celu wstępnej oceny strategii inwestycyjnej.</p>
-                    <p class="text-xs text-slate-400 italic pt-2" data-i18n="faq.independent.note">Nota: Powyższe informacje opierają się na analizie udokumentowanych przypadków nieprawidłowości na włoskim rynku nieruchomości.</p>
+                    <h3 class="font-bold text-slate-900 text-lg" data-i18n="faq.independent.title">Dlaczego niezależne doradztwo może zwiększyć bezpieczeństwo zakupu nieruchomości we Włoszech?</h3>
+                    <p data-i18n="faq.independent.p1">Zakup nieruchomości za granicą to decyzja finansowa, której nie warto podejmować wyłącznie pod wpływem emocji, atrakcyjnej ceny lub obietnicy szybkiego zysku.</p>
+                    <p data-i18n="faq.independent.p2">Polski inwestor we Włoszech powinien uwzględnić lokalne przepisy, dokumentację, koszty transakcyjne, kwestie techniczne i urbanistyczne oraz przyszłe koszty utrzymania, wynajmu lub remontu.</p>
+                    <p class="font-medium text-slate-800" data-i18n="faq.independent.p3">Naszym zadaniem jest uporządkowanie informacji, wskazanie ryzyk i skoordynowanie odpowiednich kompetencji, zanim inwestor podejmie ostateczną decyzję.</p>
+                    <p class="text-xs text-slate-400 italic pt-2" data-i18n="faq.independent.note">Informacje na stronie mają charakter ogólny i pomagają przygotować się do analizy konkretnej nieruchomości oraz procesu zakupu.</p>
                 </div>
             </div>
 
@@ -539,14 +539,14 @@
                 "nav.home": "Strona Główna",
                 "nav.map": "Zobacz Mapę",
                 "nav.about": "O Nas & Bezpieczeństwo",
-                "hero.badge": "Włoska Riwiera Inwestycyjna",
+                "hero.badge": "Wsparcie inwestora w całych Włoszech",
                 "hero.h1": "Inwestuj Świadomie i Bezpiecznie we Włoszech",
                 "hero.sub": "Nieruchomości z pełną asystą prawną, techniczną oraz niezależnym audytem transakcyjnym chroniącym Twój kapitał.",
                 "hero.cta1": "Zobacz Mapę Ofert",
                 "hero.cta2": "Dowiedz się więcej o audycie",
-                "regions.label": "Nasze Regiony",
-                "regions.h2": "Działamy we wszystkich regionach Włoch.",
-                "regions.sub": "Od Dolomitów po Sycylię – odkryj regiony, w których pomagamy inwestować bezpiecznie.",
+                "regions.label": "Nasze wsparcie",
+                "regions.h2": "Działamy na terenie całych Włoch.",
+                "regions.sub": "Pomagamy polskim inwestorom kupować i analizować nieruchomości we Włoszech niezależnie od regionu, miasta i typu inwestycji.",
                 "banner.villas.title": "Kolekcja Wyselekcjonowanych Willi",
                 "banner.villas.sub": "Zweryfikowane i bezpieczne rezydencje",
                 "banner.growth.title": "Stabilny Wzrost Kapitału",
@@ -561,7 +561,7 @@
                 "pillars.taskforce.desc": "Zapewniamy bezpośrednie wsparcie inżynierów, prawników i doradców podatkowych, eliminując ryzyka ukrytych wad budowlanych i proceduralnych.",
                 "pillars.autonomy.title": "Pełna Autonomia Klienta",
                 "pillars.autonomy.desc": "Nie narzucamy sztywnych struktur. Ty wybierasz zakres naszego wsparcia, zachowując bezpośredni kontakt i kontrolę nad finalnym procesem zakupu.",
-                "map.label": "Kolekcja Śródziemnomorska",
+                "map.label": "Zakup nieruchomości we Włoszech",
                 "map.h2": "Dostępne Rezydencje Premium",
                 "map.sub": "Wszystkie poniższe oferty zostały wstępnie zweryfikowane pod kątem formalno-prawnym.",
                 "filter.priceFrom": "Cena od",
@@ -596,47 +596,47 @@
                 "detail.form.success": "✅ Zapytanie przesłane pomyślnie!",
                 "detail.priceUnknown": "Cena do ustalenia",
                 "about.label": "O nas",
-                "about.h1": "Doskonałość i przejrzystość w inwestycjach nieruchomościowych we Włoszech",
-                "about.p1": "Nasz projekt narodził się z krytycznej obserwacji włoskiego rynku nieruchomości, który często charakteryzuje się nadmierną fragmentacją oraz ofertą dla klientów zagranicznych obarczoną lukami informacyjnymi.",
-                "about.p2": "Naszą misją jest oferowanie wsparcia wielodyscyplinarnej grupy ekspertów (<strong>Task Force</strong>), gwarantującej bezpieczeństwo procesu akwizycji, dostępnej na każdym etapie ścieżki inwestycyjnej.",
-                "about.approach.title": "Nasze podejście: Swoboda wyboru i najwyższe standardy",
-                "about.approach.p": "Zrewolucjonizowaliśmy model doradztwa, odrzucając sztywne, narzucone z góry ograniczenia. Wierzymy, że jakość świadczonych usług powinna być jedyną podstawą współpracy.",
-                "about.approach.li1": "<strong>Brak zbędnych powiązań i pełna transparentność:</strong> Nasza struktura usługowa nie jest etapem obowiązkowym. Klient ma pełną swobodę w bezpośrednim działaniu.",
-                "about.approach.li2": "<strong>Państwa zaufany partner, gdy jest potrzebny:</strong> Nasza rola polega na oferowaniu kwalifikowanego i bezstronnego wsparcia w sytuacjach, w których użytkownik tego oczekuje.",
-                "about.why.title": "Dlaczego warto nas wybrać: Wartość dodana Task Force",
-                "about.why.p": "Nie jesteśmy agencją, która ogranicza klienta, lecz Państwa ramieniem operacyjnym we Włoszech, dostępnym na każde życzenie w każdej fazie inwestycji. Nasza metodologia opiera się na:",
-                "about.why.li1": "<strong>Rygorystyczna selekcja partnerów:</strong> Współpracujemy wyłącznie z agentami nieruchomości, prawnikami i technikami o udokumentowanym doświadczeniu.",
-                "about.why.li2": "<strong>Mediacja kulturowa i językowa:</strong> Nasz zespół działa jako pomost między kulturą polską a włoską, eliminując bariery komunikacyjne.",
-                "about.why.li3": "<strong>Model \"szyty na miarę\" (Tailor-made) bez zobowiązań:</strong> Odrzucamy sztywne ryczałty i długoterminowe umowy. Nasz serwis jest projektowany pod konkretne potrzeby klienta.",
-                "about.safety.title": "Bezpieczeństwo i profilaktyka: Nasze wsparcie opcjonalne",
-                "about.safety.p": "Zakup nieruchomości we Włoszech nie musi być procesem obarczonym ryzykiem. Dzięki naszej sieci oferujemy asystę najwyższej klasy:",
-                "about.safety.li1": "<strong>Due Diligence techniczna i prawna:</strong> Analizujemy każdą nieruchomość, aby zapobiec problemom urbanistycznym, samowolom budowlanym czy nieujawnionym obciążeniom.",
-                "about.safety.li2": "<strong>Pełna ochrona:</strong> Dzięki partnerstwu z wyspecjalizowanymi brokerami ubezpieczeniowymi, pomagamy zabezpieczyć mienie od wszelkich ryzyk.",
-                "about.safety.li3": "<strong>Wsparcie ciągłe \"A La Carte\":</strong> Od pierwszego kontaktu po podpisanie aktu notarialnego, wspieramy Państwa zgodnie z Państwa wytycznymi, minimalizując ryzyko decyzji.",
+                "about.h1": "Bezpieczne i transparentne inwestowanie w nieruchomości we Włoszech",
+                "about.p1": "Pomagamy polskim inwestorom bezpiecznie i świadomie poruszać się po włoskim rynku nieruchomości na terenie całych Włoch, niezależnie od regionu, miasta i lokalizacji nieruchomości.",
+                "about.p2": "Nasz model współpracy powstał w odpowiedzi na rzeczywiste wyzwania związane z zakupem nieruchomości we Włoszech: lokalne procedury, dokumentację, podatki, due diligence oraz bezpieczeństwo zakupu nieruchomości z perspektywy inwestora z Polski.",
+                "about.approach.title": "Dla kogo i na jakim etapie działa usługa",
+                "about.approach.p": "Wspieramy osoby zainteresowane zakupem domu, apartamentu wakacyjnego, nieruchomości inwestycyjnej, nieruchomości na wynajem, obiektu do remontu, nieruchomości komercyjnej lub gruntu o określonym potencjale.",
+                "about.approach.li1": "<strong>Przed zakupem:</strong> Możemy pomóc przy analizie oferty, wstępnej ocenie potencjału inwestycyjnego, weryfikacji dokumentacji i przygotowaniu do negocjacji.",
+                "about.approach.li2": "<strong>W trakcie i po transakcji:</strong> Zakres wsparcia może obejmować finalizację zakupu, koordynację specjalistów, analizę remontu, kwestie ubezpieczeniowe oraz dalsze etapy inwestycji.",
+                "about.why.title": "Jak działa nasz model współpracy",
+                "about.why.p": "Nie narzucamy inwestorowi jednego sposobu działania. Naszą rolą jest zapewnienie niezależnego wsparcia, przejrzystości i dostępu do odpowiednich specjalistów dokładnie wtedy, gdy są potrzebni.",
+                "about.why.li1": "<strong>Niezależność i transparentność:</strong> Inwestor może prowadzić rozmowy samodzielnie, współpracować z wybraną agencją lub korzystać z własnych doradców, a my uzupełniamy proces tam, gdzie zwiększa to bezpieczeństwo zakupu nieruchomości.",
+                "about.why.li2": "<strong>Task Force ekspertów:</strong> W zależności od potrzeb inwestycji możemy angażować agentów nieruchomości, prawników, notariuszy, techników, architektów, doradców podatkowych, wykonawców i brokerów ubezpieczeniowych.",
+                "about.why.li3": "<strong>Pomost językowy i operacyjny:</strong> Ułatwiamy komunikację z włoskim rynkiem nieruchomości, aby polski inwestor wiedział, co kupuje, od kogo kupuje, jakie dokumenty należy sprawdzić i jakie ryzyka przeanalizować.",
+                "about.safety.title": "Co może obejmować nasze wsparcie",
+                "about.safety.p": "Zakres współpracy jest dopasowywany do nieruchomości, strategii inwestora i etapu procesu zakupowego. Możemy wesprzeć między innymi:",
+                "about.safety.li1": "<strong>Due diligence prawne, techniczne i urbanistyczne:</strong> Weryfikacja stanu prawnego, danych katastralnych, zgodności dokumentacji ze stanem faktycznym oraz potencjalnych ograniczeń inwestycji.",
+                "about.safety.li2": "<strong>Analizę kosztów i ryzyk:</strong> Ocena kosztów remontu, obowiązków podatkowych, obciążeń, praw osób trzecich oraz ryzyk związanych z późniejszym użytkowaniem lub wynajmem.",
+                "about.safety.li3": "<strong>Wsparcie A La Carte:</strong> Koordynację specjalistów, przygotowanie do zawarcia umowy, kontakt z brokerami ubezpieczeniowymi i wsparcie po zakupie, jeśli inwestor tego potrzebuje.",
                 "about.goal.title": "Nasz cel",
-                "about.goal.p1": "Pragniemy zapewnić Państwu najbezpieczniejszą drogę na włoskim rynku nieruchomości, pozostawiając zawsze pełną swobodę w prowadzeniu negocjacji. Naszą misją jest transparentność i ochrona kapitału.",
-                "about.goal.p2": "Czy są Państwo gotowi inwestować świadomie? Zapraszamy do współpracy. Nasze kompetencje są do Państwa dyspozycji.",
-                "about.dream.title": "Zakup nieruchomości we Włoszech: Bezpieczna realizacja marzeń",
-                "about.dream.p": "Wielu inwestorów marzy o posiadłości we Włoszech – kraju, który oferuje wyjątkowy styl życia i doskonałe perspektywy kapitałowe. Jednak za pocztówkowym krajobrazem może kryć się złożona rzeczywistość formalno-prawna.",
-                "faq.label": "Q&A: Inwestycja we Włoszech – pytania kluczowe",
-                "faq.h2": "Instrukcja Bezpieczeństwa Transakcyjnego",
-                "faq.q1": "Jakie główne ryzyka przy zakupie nieruchomości do remontu, np. na Sycylii?",
-                "faq.a1": "<strong>Odpowiedź:</strong> Największym wyzwaniem jest asymetria informacji. Inwestorzy polegający na niezweryfikowanych pośrednikach często nabywają obiekty obarczone wadami formalnymi lub technicznymi.",
+                "about.goal.p1": "Chcemy stworzyć dla polskiego inwestora bezpieczną, przejrzystą i zrozumiałą ścieżkę inwestowania w nieruchomości we Włoszech, bez podejmowania decyzji za klienta.",
+                "about.goal.p2": "Jeżeli rozważają Państwo zakup nieruchomości we Włoszech lub inwestowanie w nieruchomości we Włoszech, jesteśmy do dyspozycji na każdym etapie procesu i w każdej lokalizacji na terenie kraju.",
+                "about.dream.title": "Zakup nieruchomości we Włoszech: co warto wiedzieć przed decyzją",
+                "about.dream.p": "Włoski rynek nieruchomości daje szerokie możliwości, ale wymaga dobrej orientacji w procedurach, dokumentacji i ryzykach. Poniżej zebraliśmy najważniejsze pytania, które polski inwestor najczęściej zadaje przed zakupem.",
+                "faq.label": "FAQ dla polskiego inwestora",
+                "faq.h2": "Zakup nieruchomości we Włoszech – najważniejsze pytania",
+                "faq.q1": "Jakie są główne ryzyka przy zakupie nieruchomości we Włoszech, szczególnie nieruchomości wymagającej remontu?",
+                "faq.a1": "<strong>Odpowiedź:</strong> Najważniejsze ryzyka dotyczą stanu prawnego i urbanistycznego nieruchomości, zgodności dokumentacji ze stanem faktycznym, kosztów remontu oraz możliwości prawnego wykonania planowanych prac, dlatego decyzji nie warto opierać wyłącznie na cenie zakupu.",
                 "faq.q2": "Jak rzetelnie zweryfikować wiarygodność podmiotu oferującego nieruchomość?",
-                "faq.a2": "<strong>Odpowiedź:</strong> Niezbędna jest niezależna weryfikacja kwalifikacji, dokumentacji i historii transakcyjnej partnera.",
-                "faq.q3": "Na co zwrócić uwagę w kosztorysach remontowych i przy rządowych bonusach?",
-                "faq.a3": "<strong>Odpowiedź:</strong> Podstawą jest szczegółowy i przejrzysty kosztorys (computo metrico) oraz weryfikacja podstaw prawnych do bonusów.",
+                "faq.a2": "<strong>Odpowiedź:</strong> Przed dokonaniem płatności należy ustalić, z kim dokładnie zawierana jest transakcja, jakie prawa posiada dana osoba lub firma, czy ma ona prawo do sprzedaży nieruchomości oraz czy dokumentacja i sposób prowadzenia rozmów nie budzą wątpliwości.",
+                "faq.q3": "Na co zwrócić uwagę w kosztorysach remontowych i przy ulgach lub programach wsparcia?",
+                "faq.a3": "<strong>Odpowiedź:</strong> Kosztorys remontu powinien opierać się na rzeczywistym zakresie prac, aktualnych cenach materiałów i robocizny oraz stanie technicznym nieruchomości, a ulg i programów wsparcia nie należy zakładać automatycznie bez sprawdzenia aktualnych przepisów i warunków kwalifikacji.",
                 "faq.q4": "Jak skutecznie zabezpieczyć interesy w fazie transakcji?",
                 "faq.answer": "Odpowiedź:",
                 "faq.a4.li1": "<strong>Transparentność finansowa:</strong> Każda płatność musi być udokumentowana przelewem i fakturą.",
                 "faq.a4.li2": "<strong>Weryfikacje prawne:</strong> Należy upewnić się, że stan katastralny w pełni odpowiada stanowi faktycznemu nieruchomości.",
                 "faq.a4.li3": "<strong>Bezpośredni kontakt:</strong> Negocjacje powinny zapewniać pełną śledzalność płatności bezpośrednio do podmiotu uprawnionego.",
                 "faq.a4.li4": "<strong>Niezależni eksperci:</strong> Przed podpisaniem umowy, warto powierzyć audyt niezależnym doradcom.",
-                "faq.independent.title": "Dlaczego niezależne doradztwo to najlepsza obrona?",
-                "faq.independent.p1": "Doświadczenia inwestorów pokazują, że entuzjazm nigdy nie powinien zastępować ostrożności. Zakup nieruchomości za granicą wymaga kompetencji prawnych i technicznych.",
-                "faq.independent.p2": "Jako profesjonalista, moim celem jest towarzyszenie klientowi w każdej fazie procesu: od weryfikacji katastralnej i urbanistycznej, po zarządzanie transparentnością kosztów.",
-                "faq.independent.p3": "Nie pozwól, aby zaufanie zostało ulokowane w niewłaściwych rękach. Zapraszamy do kontaktu w celu wstępnej oceny strategii inwestycyjnej.",
-                "faq.independent.note": "Nota: Powyższe informacje opierają się na analizie udokumentowanych przypadków nieprawidłowości na włoskim rynku nieruchomości.",
+                "faq.independent.title": "Dlaczego niezależne doradztwo może zwiększyć bezpieczeństwo zakupu nieruchomości we Włoszech?",
+                "faq.independent.p1": "Zakup nieruchomości za granicą to decyzja finansowa, której nie warto podejmować wyłącznie pod wpływem emocji, atrakcyjnej ceny lub obietnicy szybkiego zysku.",
+                "faq.independent.p2": "Polski inwestor we Włoszech powinien uwzględnić lokalne przepisy, dokumentację, koszty transakcyjne, kwestie techniczne i urbanistyczne oraz przyszłe koszty utrzymania, wynajmu lub remontu.",
+                "faq.independent.p3": "Naszym zadaniem jest uporządkowanie informacji, wskazanie ryzyk i skoordynowanie odpowiednich kompetencji, zanim inwestor podejmie ostateczną decyzję.",
+                "faq.independent.note": "Informacje na stronie mają charakter ogólny i pomagają przygotować się do analizy konkretnej nieruchomości oraz procesu zakupu.",
                 "footer.copy": "© 2026 Bridge House Premium Auditing Engine. Wszelkie prawa zastrzeżone.",
                 "listing.new": "Nowa oferta",
                 "listing.italy": "Włochy",
@@ -648,14 +648,14 @@
                 "nav.home": "Home",
                 "nav.map": "View Map",
                 "nav.about": "About Us & Security",
-                "hero.badge": "Italian Investment Riviera",
+                "hero.badge": "Nationwide support for investors in Italy",
                 "hero.h1": "Invest Wisely and Safely in Italy",
                 "hero.sub": "Properties with full legal and technical assistance, plus independent transaction auditing to protect your capital.",
                 "hero.cta1": "View Property Map",
                 "hero.cta2": "Learn more about the audit",
-                "regions.label": "Our Regions",
-                "regions.h2": "We Operate in Italy's Most Beautiful Regions",
-                "regions.sub": "From the Dolomites to Sicily – discover the regions where we help you invest safely.",
+                "regions.label": "Our support",
+                "regions.h2": "We operate across all of Italy.",
+                "regions.sub": "We help Polish investors buy and assess property in Italy regardless of region, city or investment type.",
                 "banner.villas.title": "Curated Villa Collection",
                 "banner.villas.sub": "Verified and secure residences",
                 "banner.growth.title": "Stable Capital Growth",
@@ -670,7 +670,7 @@
                 "pillars.taskforce.desc": "We provide direct support from engineers, lawyers and tax advisors, eliminating the risks of hidden structural and procedural defects.",
                 "pillars.autonomy.title": "Full Client Autonomy",
                 "pillars.autonomy.desc": "We impose no rigid structures. You choose the scope of our support, maintaining direct contact and control over the final purchase process.",
-                "map.label": "Mediterranean Collection",
+                "map.label": "Buying property in Italy",
                 "map.h2": "Available Premium Residences",
                 "map.sub": "All listings below have been pre-verified from a legal and formal standpoint.",
                 "filter.priceFrom": "Price from",
@@ -705,47 +705,47 @@
                 "detail.form.success": "✅ Enquiry submitted successfully!",
                 "detail.priceUnknown": "Price on request",
                 "about.label": "About us",
-                "about.h1": "Excellence and transparency in Italian real estate investment",
-                "about.p1": "Our project was born from a critical observation of the Italian property market, which is often characterised by excessive fragmentation and offerings for foreign clients burdened with information gaps.",
-                "about.p2": "Our mission is to provide support from a multidisciplinary group of experts (<strong>Task Force</strong>), guaranteeing the security of the acquisition process at every stage of the investment journey.",
-                "about.approach.title": "Our approach: Freedom of choice and the highest standards",
-                "about.approach.p": "We have revolutionised the advisory model by rejecting rigid, top-down constraints. We believe that the quality of services rendered should be the only basis for cooperation.",
-                "about.approach.li1": "<strong>No unnecessary ties and full transparency:</strong> Our service structure is not a mandatory step. The client has full freedom to act directly.",
-                "about.approach.li2": "<strong>Your trusted partner when needed:</strong> Our role is to offer qualified and impartial support in situations where the client expects it.",
-                "about.why.title": "Why choose us: The added value of the Task Force",
-                "about.why.p": "We are not an agency that restricts the client, but your operational arm in Italy, available on demand at every phase of the investment. Our methodology is based on:",
-                "about.why.li1": "<strong>Rigorous partner selection:</strong> We work exclusively with real estate agents, lawyers and technicians with a proven track record.",
-                "about.why.li2": "<strong>Cultural and linguistic mediation:</strong> Our team acts as a bridge between Polish and Italian culture, eliminating communication barriers.",
-                "about.why.li3": "<strong>Tailor-made model with no obligations:</strong> We reject fixed fees and long-term contracts. Our service is designed for the specific needs of each client.",
-                "about.safety.title": "Safety and prevention: Our optional support",
-                "about.safety.p": "Buying property in Italy does not have to be a risky process. Through our network we offer top-class assistance:",
-                "about.safety.li1": "<strong>Technical and legal due diligence:</strong> We analyse every property to prevent urban planning issues, unauthorised construction or undisclosed encumbrances.",
-                "about.safety.li2": "<strong>Full protection:</strong> Through partnerships with specialist insurance brokers, we help protect your assets from all risks.",
-                "about.safety.li3": "<strong>Continuous \"à la carte\" support:</strong> From first contact to signing the notarial deed, we support you according to your guidelines, minimising decision risk.",
+                "about.h1": "Safe and transparent real estate investment in Italy",
+                "about.p1": "We help Polish investors navigate the Italian property market safely and consciously across all of Italy, regardless of region, city or property location.",
+                "about.p2": "Our cooperation model was created in response to real challenges linked to buying property in Italy: local procedures, documentation, taxes, due diligence and transaction security from the perspective of a Polish investor.",
+                "about.approach.title": "Who the service is for and when it helps",
+                "about.approach.p": "We support clients interested in buying a house, holiday apartment, investment property, rental property, renovation project, commercial property or land with a defined investment potential.",
+                "about.approach.li1": "<strong>Before purchase:</strong> We can help with offer analysis, initial investment assessment, document review and negotiation preparation.",
+                "about.approach.li2": "<strong>During and after the transaction:</strong> The scope can include closing support, specialist coordination, renovation analysis, insurance matters and later stages of the investment.",
+                "about.why.title": "How our cooperation model works",
+                "about.why.p": "We do not impose one way of operating. Our role is to provide independent support, transparency and access to the right specialists exactly when they are needed.",
+                "about.why.li1": "<strong>Independence and transparency:</strong> The investor may negotiate directly, work with a chosen agency or use their own advisors, while we strengthen the process where this improves purchase security.",
+                "about.why.li2": "<strong>Expert Task Force:</strong> Depending on the investment, we can involve estate agents, lawyers, notaries, surveyors, architects, tax advisors, contractors and insurance brokers.",
+                "about.why.li3": "<strong>Language and operational bridge:</strong> We make communication with the Italian property market easier so the investor understands what is being bought, from whom, which documents must be checked and which risks should be assessed.",
+                "about.safety.title": "What our support can include",
+                "about.safety.p": "The scope of cooperation is tailored to the property, the investor's strategy and the stage of the buying process. Support may include:",
+                "about.safety.li1": "<strong>Legal, technical and planning due diligence:</strong> Verification of legal status, cadastral data, consistency between documents and actual condition, and any restrictions affecting the investment.",
+                "about.safety.li2": "<strong>Cost and risk analysis:</strong> Assessment of renovation costs, tax obligations, encumbrances, third-party rights and risks linked to later use or rental.",
+                "about.safety.li3": "<strong>À la carte support:</strong> Coordination of specialists, preparation for signing, contact with insurance brokers and post-purchase support if the investor needs it.",
                 "about.goal.title": "Our goal",
-                "about.goal.p1": "We strive to provide you with the safest path in the Italian real estate market, always leaving you full freedom in conducting negotiations. Our mission is transparency and capital protection.",
-                "about.goal.p2": "Are you ready to invest wisely? We invite you to cooperate. Our expertise is at your disposal.",
-                "about.dream.title": "Buying property in Italy: A safe way to realise your dreams",
-                "about.dream.p": "Many investors dream of owning property in Italy – a country that offers a unique lifestyle and excellent capital prospects. However, behind the postcard landscape may lie a complex legal and formal reality.",
-                "faq.label": "Q&A: Investment in Italy – key questions",
-                "faq.h2": "Transaction Security Guide",
-                "faq.q1": "What are the main risks when buying a renovation property, e.g. in Sicily?",
-                "faq.a1": "<strong>Answer:</strong> The biggest challenge is information asymmetry. Investors relying on unverified intermediaries often acquire properties burdened with formal or technical defects.",
+                "about.goal.p1": "Our goal is to create a safe, transparent and understandable path for Polish investors buying real estate in Italy, without making decisions on the client's behalf.",
+                "about.goal.p2": "If you are considering buying property in Italy or investing in Italian real estate, we are available at every stage of the process and in every location across the country.",
+                "about.dream.title": "Buying property in Italy: what to understand before deciding",
+                "about.dream.p": "The Italian real estate market offers many opportunities, but it requires a clear understanding of procedures, documentation and risk. Below are the questions Polish investors ask most often before they buy.",
+                "faq.label": "FAQ for Polish investors",
+                "faq.h2": "Buying property in Italy – key questions",
+                "faq.q1": "What are the main risks when buying property in Italy, especially a property that requires renovation?",
+                "faq.a1": "<strong>Answer:</strong> The key risks relate to the legal and planning status of the property, whether the documents match the actual condition, renovation costs and whether the planned works can be carried out lawfully, so the decision should not be based on price alone.",
                 "faq.q2": "How to reliably verify the credibility of a property offering entity?",
-                "faq.a2": "<strong>Answer:</strong> Independent verification of the partner's qualifications, documentation and transaction history is essential.",
-                "faq.q3": "What to look out for in renovation estimates and government bonus schemes?",
-                "faq.a3": "<strong>Answer:</strong> The foundation is a detailed and transparent cost estimate (computo metrico) and verification of the legal basis for bonuses.",
+                "faq.a2": "<strong>Answer:</strong> Before making any payment, establish who exactly is involved in the transaction, what rights that person or company holds, whether they are authorised to sell the property and whether the documentation and negotiation process raise any concerns.",
+                "faq.q3": "What should you look at in renovation estimates and support or tax incentive schemes?",
+                "faq.a3": "<strong>Answer:</strong> The renovation budget should be based on the real scope of work, current labour and material costs and the actual technical condition of the property, while incentive schemes should never be assumed automatically without checking current rules and eligibility conditions.",
                 "faq.q4": "How to effectively protect interests during the transaction phase?",
                 "faq.answer": "Answer:",
                 "faq.a4.li1": "<strong>Financial transparency:</strong> Every payment must be documented by bank transfer and invoice.",
                 "faq.a4.li2": "<strong>Legal verifications:</strong> Ensure that the cadastral status fully matches the actual condition of the property.",
                 "faq.a4.li3": "<strong>Direct contact:</strong> Negotiations should ensure full traceability of payments directly to the authorised entity.",
                 "faq.a4.li4": "<strong>Independent experts:</strong> Before signing the contract, entrust the audit to independent advisors.",
-                "faq.independent.title": "Why is independent advice the best defence?",
-                "faq.independent.p1": "Investor experience shows that enthusiasm should never replace caution. Buying property abroad requires legal and technical expertise.",
-                "faq.independent.p2": "As a professional, my goal is to accompany the client through every phase of the process: from cadastral and urban planning verification to managing cost transparency.",
-                "faq.independent.p3": "Do not let trust be placed in the wrong hands. We invite you to contact us for an initial assessment of your investment strategy.",
-                "faq.independent.note": "Note: The above information is based on an analysis of documented cases of irregularities in the Italian property market.",
+                "faq.independent.title": "Why can independent advice improve purchase security in Italy?",
+                "faq.independent.p1": "Buying property abroad is a financial decision that should not be driven only by emotion, an attractive price or the promise of a quick return.",
+                "faq.independent.p2": "A Polish investor in Italy should consider local regulations, documentation, transaction costs, technical and planning issues, as well as future maintenance, rental or renovation costs.",
+                "faq.independent.p3": "Our role is to organise information, identify risks and coordinate the right expertise before the investor makes a final decision.",
+                "faq.independent.note": "The information on this page is general in nature and is meant to help with the analysis of a specific property and purchase process.",
                 "footer.copy": "© 2026 Bridge House Premium Auditing Engine. All rights reserved.",
                 "listing.new": "New listing",
                 "listing.italy": "Italy",
@@ -757,14 +757,14 @@
                 "nav.home": "Home",
                 "nav.map": "Vedi Mappa",
                 "nav.about": "Chi Siamo & Sicurezza",
-                "hero.badge": "La Riviera Italiana degli Investimenti",
+                "hero.badge": "Supporto all'investitore in tutta Italia",
                 "hero.h1": "Investi in Italia con Consapevolezza e Sicurezza",
                 "hero.sub": "Immobili con assistenza legale e tecnica completa, più una verifica indipendente delle transazioni a protezione del tuo capitale.",
                 "hero.cta1": "Vedi Mappa degli Immobili",
                 "hero.cta2": "Scopri di più sulla due diligence",
-                "regions.label": "Le Nostre Regioni",
-                "regions.h2": "Operiamo nelle Più Belle Regioni d'Italia",
-                "regions.sub": "Dalle Dolomiti alla Sicilia – scopri le regioni in cui ti aiutiamo a investire in sicurezza.",
+                "regions.label": "Il nostro supporto",
+                "regions.h2": "Operiamo in tutta Italia.",
+                "regions.sub": "Aiutiamo gli investitori polacchi ad acquistare e analizzare immobili in Italia indipendentemente da regione, città o tipologia di investimento.",
                 "banner.villas.title": "Collezione di Ville Selezionate",
                 "banner.villas.sub": "Residenze verificate e sicure",
                 "banner.growth.title": "Crescita Stabile del Capitale",
@@ -779,7 +779,7 @@
                 "pillars.taskforce.desc": "Forniamo supporto diretto da ingegneri, avvocati e consulenti fiscali, eliminando i rischi di vizi strutturali e procedurali nascosti.",
                 "pillars.autonomy.title": "Piena Autonomia del Cliente",
                 "pillars.autonomy.desc": "Non imponiamo strutture rigide. Sei tu a scegliere la portata del nostro supporto, mantenendo il contatto diretto e il controllo sull'intero processo di acquisto.",
-                "map.label": "Collezione Mediterranea",
+                "map.label": "Acquistare immobili in Italia",
                 "map.h2": "Residenze Premium Disponibili",
                 "map.sub": "Tutte le offerte sottostanti sono state pre-verificate dal punto di vista legale e formale.",
                 "filter.priceFrom": "Prezzo da",
@@ -814,47 +814,47 @@
                 "detail.form.success": "✅ Richiesta inviata con successo!",
                 "detail.priceUnknown": "Prezzo da concordare",
                 "about.label": "Chi siamo",
-                "about.h1": "Eccellenza e trasparenza negli investimenti immobiliari in Italia",
-                "about.p1": "Il nostro progetto nasce da un'osservazione critica del mercato immobiliare italiano, spesso caratterizzato da eccessiva frammentazione e da offerte per clienti stranieri gravate da lacune informative.",
-                "about.p2": "La nostra missione è offrire il supporto di un gruppo multidisciplinare di esperti (<strong>Task Force</strong>), che garantisce la sicurezza del processo di acquisizione in ogni fase del percorso di investimento.",
-                "about.approach.title": "Il nostro approccio: Libertà di scelta e massimi standard",
-                "about.approach.p": "Abbiamo rivoluzionato il modello consulenziale, rifiutando vincoli rigidi imposti dall'alto. Crediamo che la qualità dei servizi resi debba essere l'unica base della collaborazione.",
-                "about.approach.li1": "<strong>Nessun legame superfluo e piena trasparenza:</strong> La nostra struttura di servizi non è un passaggio obbligatorio. Il cliente ha piena libertà di agire direttamente.",
-                "about.approach.li2": "<strong>Il vostro partner di fiducia quando serve:</strong> Il nostro ruolo è offrire un supporto qualificato e imparziale nelle situazioni in cui l'utente lo richiede.",
-                "about.why.title": "Perché sceglierci: Il valore aggiunto della Task Force",
-                "about.why.p": "Non siamo un'agenzia che limita il cliente, ma il vostro braccio operativo in Italia, disponibile su richiesta in ogni fase dell'investimento. La nostra metodologia si basa su:",
-                "about.why.li1": "<strong>Selezione rigorosa dei partner:</strong> Lavoriamo esclusivamente con agenti immobiliari, avvocati e tecnici con esperienza comprovata.",
-                "about.why.li2": "<strong>Mediazione culturale e linguistica:</strong> Il nostro team funge da ponte tra la cultura polacca e quella italiana, eliminando le barriere comunicative.",
-                "about.why.li3": "<strong>Modello \"su misura\" (Tailor-made) senza vincoli:</strong> Rifiutiamo tariffe fisse e contratti a lungo termine. Il nostro servizio è progettato sulle esigenze specifiche del cliente.",
-                "about.safety.title": "Sicurezza e prevenzione: Il nostro supporto opzionale",
-                "about.safety.p": "L'acquisto di immobili in Italia non deve essere un processo rischioso. Attraverso la nostra rete offriamo assistenza di altissimo livello:",
-                "about.safety.li1": "<strong>Due diligence tecnica e legale:</strong> Analizziamo ogni immobile per prevenire problemi urbanistici, abusi edilizi o vincoli non dichiarati.",
-                "about.safety.li2": "<strong>Protezione completa:</strong> Grazie alla partnership con broker assicurativi specializzati, aiutiamo a tutelare il patrimonio da tutti i rischi.",
-                "about.safety.li3": "<strong>Supporto continuo \"à la carte\":</strong> Dal primo contatto alla firma dell'atto notarile, vi supportiamo secondo le vostre indicazioni, riducendo al minimo il rischio decisionale.",
+                "about.h1": "Investire in immobili in Italia in modo sicuro e trasparente",
+                "about.p1": "Aiutiamo gli investitori polacchi a orientarsi nel mercato immobiliare italiano in modo sicuro e consapevole, su tutto il territorio nazionale, indipendentemente da regione, città o localizzazione dell'immobile.",
+                "about.p2": "Il nostro modello di collaborazione nasce per rispondere alle sfide reali dell'acquisto di immobili in Italia: procedure locali, documentazione, fiscalità, due diligence e sicurezza della transazione dal punto di vista di un investitore polacco.",
+                "about.approach.title": "Per chi è il servizio e in quali fasi aiuta",
+                "about.approach.p": "Supportiamo chi è interessato all'acquisto di una casa, di un appartamento vacanze, di un immobile da investimento, di un immobile da mettere a reddito, da ristrutturare, commerciale o di un terreno con un preciso potenziale.",
+                "about.approach.li1": "<strong>Prima dell'acquisto:</strong> Possiamo aiutare con l'analisi dell'offerta, la valutazione iniziale, la verifica della documentazione e la preparazione alla negoziazione.",
+                "about.approach.li2": "<strong>Durante e dopo la transazione:</strong> Il supporto può includere closing, coordinamento degli specialisti, analisi del progetto di ristrutturazione, temi assicurativi e fasi successive dell'investimento.",
+                "about.why.title": "Come funziona il nostro modello di collaborazione",
+                "about.why.p": "Non imponiamo un unico modo di operare. Il nostro ruolo è offrire supporto indipendente, trasparenza e accesso agli specialisti giusti esattamente quando servono.",
+                "about.why.li1": "<strong>Indipendenza e trasparenza:</strong> L'investitore può trattare direttamente, lavorare con l'agenzia scelta o usare i propri consulenti, mentre noi rafforziamo il processo dove questo aumenta la sicurezza dell'acquisto.",
+                "about.why.li2": "<strong>Task Force di esperti:</strong> In base all'investimento possiamo coinvolgere agenti immobiliari, avvocati, notai, tecnici, architetti, consulenti fiscali, imprese e broker assicurativi.",
+                "about.why.li3": "<strong>Ponte linguistico e operativo:</strong> Rendiamo più semplice il dialogo con il mercato immobiliare italiano affinché l'investitore sappia cosa compra, da chi compra, quali documenti controllare e quali rischi valutare.",
+                "about.safety.title": "Cosa può includere il nostro supporto",
+                "about.safety.p": "L'ambito della collaborazione è adattato all'immobile, alla strategia dell'investitore e alla fase del processo di acquisto. Possiamo supportare, tra l'altro:",
+                "about.safety.li1": "<strong>Due diligence legale, tecnica e urbanistica:</strong> Verifica dello stato legale, dei dati catastali, della coerenza tra documenti e stato reale e di eventuali vincoli che incidono sull'investimento.",
+                "about.safety.li2": "<strong>Analisi di costi e rischi:</strong> Valutazione dei costi di ristrutturazione, degli obblighi fiscali, di pesi e diritti di terzi e dei rischi legati al successivo utilizzo o affitto.",
+                "about.safety.li3": "<strong>Supporto à la carte:</strong> Coordinamento degli specialisti, preparazione alla firma, contatto con broker assicurativi e assistenza post-acquisto se necessaria.",
                 "about.goal.title": "Il nostro obiettivo",
-                "about.goal.p1": "Vogliamo offrirvi il percorso più sicuro sul mercato immobiliare italiano, lasciando sempre piena libertà di condurre le trattative. La nostra missione è la trasparenza e la protezione del capitale.",
-                "about.goal.p2": "Siete pronti a investire con consapevolezza? Vi invitiamo a collaborare. Le nostre competenze sono a vostra disposizione.",
-                "about.dream.title": "Acquistare casa in Italia: La realizzazione sicura di un sogno",
-                "about.dream.p": "Molti investitori sognano di possedere un immobile in Italia – un paese che offre uno stile di vita unico ed eccellenti prospettive di capitale. Tuttavia, dietro il paesaggio da cartolina può celarsi una complessa realtà formale e giuridica.",
-                "faq.label": "Q&A: Investimento in Italia – domande chiave",
-                "faq.h2": "Guida alla Sicurezza delle Transazioni",
-                "faq.q1": "Quali sono i principali rischi nell'acquisto di un immobile da ristrutturare, ad es. in Sicilia?",
-                "faq.a1": "<strong>Risposta:</strong> La sfida principale è l'asimmetria informativa. Gli investitori che si affidano a intermediari non verificati spesso acquistano immobili gravati da vizi formali o tecnici.",
+                "about.goal.p1": "Vogliamo creare per l'investitore polacco un percorso di investimento in immobili in Italia che sia sicuro, trasparente e comprensibile, senza sostituirci alle sue decisioni.",
+                "about.goal.p2": "Se state valutando l'acquisto di un immobile in Italia o un investimento immobiliare in Italia, siamo disponibili in ogni fase del processo e in qualsiasi località del Paese.",
+                "about.dream.title": "Acquistare immobili in Italia: cosa capire prima di decidere",
+                "about.dream.p": "Il mercato immobiliare italiano offre molte opportunità, ma richiede una buona comprensione di procedure, documentazione e rischi. Di seguito trovate le domande che gli investitori polacchi pongono più spesso prima dell'acquisto.",
+                "faq.label": "FAQ per investitori polacchi",
+                "faq.h2": "Acquistare immobili in Italia – domande chiave",
+                "faq.q1": "Quali sono i principali rischi nell'acquisto di un immobile in Italia, soprattutto se da ristrutturare?",
+                "faq.a1": "<strong>Risposta:</strong> I rischi principali riguardano lo stato legale e urbanistico dell'immobile, la coerenza tra documentazione e stato reale, i costi della ristrutturazione e la possibilità di eseguire i lavori in modo conforme alla legge, quindi la decisione non dovrebbe basarsi solo sul prezzo.",
                 "faq.q2": "Come verificare in modo affidabile la credibilità del soggetto che offre l'immobile?",
-                "faq.a2": "<strong>Risposta:</strong> È indispensabile una verifica indipendente delle qualifiche, della documentazione e della storia transazionale del partner.",
-                "faq.q3": "A cosa prestare attenzione nei preventivi di ristrutturazione e nei bonus governativi?",
-                "faq.a3": "<strong>Risposta:</strong> La base è un computo metrico dettagliato e trasparente, con verifica dei presupposti giuridici per l'accesso ai bonus.",
+                "faq.a2": "<strong>Risposta:</strong> Prima di effettuare qualsiasi pagamento occorre stabilire con precisione chi è la controparte, quali diritti possiede, se è effettivamente autorizzata a vendere l'immobile e se documentazione e modalità di trattativa presentano criticità.",
+                "faq.q3": "A cosa prestare attenzione nei preventivi di ristrutturazione e nei programmi di incentivo o agevolazione?",
+                "faq.a3": "<strong>Risposta:</strong> Il preventivo deve basarsi sull'effettivo ambito dei lavori, sui costi aggiornati di materiali e manodopera e sullo stato tecnico dell'immobile, mentre agevolazioni e bonus non vanno mai dati per scontati senza verificare regole e requisiti attuali.",
                 "faq.q4": "Come tutelare efficacemente gli interessi nella fase della transazione?",
                 "faq.answer": "Risposta:",
                 "faq.a4.li1": "<strong>Trasparenza finanziaria:</strong> Ogni pagamento deve essere documentato da bonifico e fattura.",
                 "faq.a4.li2": "<strong>Verifiche legali:</strong> Assicurarsi che lo stato catastale corrisponda pienamente allo stato di fatto dell'immobile.",
                 "faq.a4.li3": "<strong>Contatto diretto:</strong> Le trattative devono garantire la piena tracciabilità dei pagamenti direttamente al soggetto titolato.",
                 "faq.a4.li4": "<strong>Esperti indipendenti:</strong> Prima della firma del contratto, affidare l'audit a consulenti indipendenti.",
-                "faq.independent.title": "Perché la consulenza indipendente è la migliore difesa?",
-                "faq.independent.p1": "L'esperienza degli investitori mostra che l'entusiasmo non deve mai sostituire la prudenza. L'acquisto di immobili all'estero richiede competenze legali e tecniche.",
-                "faq.independent.p2": "Come professionista, il mio obiettivo è accompagnare il cliente in ogni fase del processo: dalla verifica catastale e urbanistica alla gestione della trasparenza dei costi.",
-                "faq.independent.p3": "Non lasciare che la fiducia venga riposta nelle mani sbagliate. Vi invitiamo a contattarci per una valutazione preliminare della vostra strategia di investimento.",
-                "faq.independent.note": "Nota: Le informazioni di cui sopra si basano sull'analisi di casi documentati di irregolarità nel mercato immobiliare italiano.",
+                "faq.independent.title": "Perché una consulenza indipendente può aumentare la sicurezza dell'acquisto in Italia?",
+                "faq.independent.p1": "Acquistare un immobile all'estero è una decisione finanziaria che non dovrebbe basarsi solo su emozione, prezzo attraente o promessa di rendimento rapido.",
+                "faq.independent.p2": "Un investitore polacco in Italia dovrebbe considerare normativa locale, documentazione, costi di transazione, aspetti tecnici e urbanistici, nonché futuri costi di gestione, locazione o ristrutturazione.",
+                "faq.independent.p3": "Il nostro compito è ordinare le informazioni, evidenziare i rischi e coordinare le competenze giuste prima della decisione finale dell'investitore.",
+                "faq.independent.note": "Le informazioni presenti nella pagina hanno carattere generale e servono a preparare l'analisi di uno specifico immobile e del relativo processo di acquisto.",
                 "footer.copy": "© 2026 Bridge House Premium Auditing Engine. Tutti i diritti riservati.",
                 "listing.new": "Nuovo annuncio",
                 "listing.italy": "Italia",
