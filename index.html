@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="pl">
 <head>
@@ -38,14 +37,14 @@
             <!-- Super-Sized Logo Container Area -->
             <div class="flex items-center gap-2 cursor-pointer" onclick="showPage('home')">
                 <img src="https://raw.githubusercontent.com/DragonKrakow/adriaticahomes/main/logo.jpeg"
-                     alt="Bridge House"
+                     alt="Ponte Dom"
                      class="h-24 w-auto object-contain max-w-[280px]"
                      onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
                 <div style="display:none" class="items-center gap-3">
                     <div class="w-12 h-12 bg-sky-600 rounded-xl flex items-center justify-center text-white font-bold text-xl shadow-md shadow-sky-200">B</div>
                     <div>
-                        <span class="text-2xl font-extrabold text-slate-900 tracking-tight">Bridge</span>
-                        <span class="text-sky-600 font-bold">House</span>
+                        <span class="text-2xl font-extrabold text-slate-900 tracking-tight">Ponte</span>
+                        <span class="text-sky-600 font-bold">Dom</span>
                     </div>
                 </div>
             </div>
@@ -523,16 +522,16 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row justify-between items-center gap-6">
             <div class="flex items-center gap-2">
                 <div class="w-6 h-6 bg-sky-600 rounded-md flex items-center justify-center text-white font-bold text-xs">B</div>
-                <span class="text-sm font-bold text-white tracking-tight">Bridge House</span>
+                <span class="text-sm font-bold text-white tracking-tight">Ponte Dom</span>
             </div>
-            <p data-i18n="footer.copy">© 2026 Bridge House Premium Auditing Engine. Wszelkie prawa zastrzeżone.</p>
+            <p data-i18n="footer.copy">© 2026 Ponte Dom. Wszelkie prawa zastrzeżone.</p>
         </div>
     </footer>
 
     <!-- INTERACTION LOGIC ARCHITECTURE -->
     <script>
         // ── i18n ──────────────────────────────────────────────────────────────────
-        let currentLang = localStorage.getItem('bh_lang') || 'pl';
+        let currentLang = localStorage.getItem('pd_lang') || 'pl';
 
         const TRANSLATIONS = {
             pl: {
@@ -664,7 +663,7 @@
                 "banner.growth.sub": "Italian market with high liquidity",
                 "banner.audit.title": "Independent Audit System",
                 "banner.audit.sub": "100% protection against legal and hidden defects",
-                "pillars.h2": "The Pillars of Bridge House Investment",
+                "pillars.h2": "The Pillars of Ponte Dom Investment",
                 "pillars.sub": "We transform standard brokerage into a transparent, secure process protected by an independent group of experts.",
                 "pillars.audit.title": "Independent Legal Audit",
                 "pillars.audit.desc": "Every property undergoes a rigorous due diligence process. We verify land registers, cadastral status and urban planning compliance before publishing any listing.",
@@ -750,7 +749,7 @@
                 "faq.independent.p2": "As a professional, my goal is to accompany the client through every phase of the process: from cadastral and urban planning verification to managing cost transparency.",
                 "faq.independent.p3": "Do not let trust be placed in the wrong hands. We invite you to contact us for an initial assessment of your investment strategy.",
                 "faq.independent.note": "Note: The above information is based on an analysis of documented cases of irregularities in the Italian property market.",
-                "footer.copy": "© 2026 Bridge House Premium Auditing Engine. All rights reserved.",
+                "footer.copy": "© 2026 Ponte Dom. All rights reserved.",
                 "listing.new": "New listing",
                 "listing.italy": "Italy",
                 "listing.badge": "New",
@@ -775,7 +774,7 @@
                 "banner.growth.sub": "Mercato italiano ad alta liquidità",
                 "banner.audit.title": "Sistema di Audit Indipendente",
                 "banner.audit.sub": "100% di protezione dai vizi giuridici e occulti",
-                "pillars.h2": "I Pilastri dell'Investimento Bridge House",
+                "pillars.h2": "I Pilastri dell'Investimento Ponte Dom",
                 "pillars.sub": "Trasformiamo la mediazione standard in un processo trasparente e sicuro, protetto da un gruppo indipendente di esperti.",
                 "pillars.audit.title": "Audit Legale Indipendente",
                 "pillars.audit.desc": "Ogni immobile è sottoposto a un rigoroso processo di due diligence. Verifichiamo i registri fondiari, lo stato catastale e la conformità urbanistica prima di pubblicare qualsiasi offerta.",
@@ -861,7 +860,7 @@
                 "faq.independent.p2": "Come professionista, il mio obiettivo è accompagnare il cliente in ogni fase del processo: dalla verifica catastale e urbanistica alla gestione della trasparenza dei costi.",
                 "faq.independent.p3": "Non lasciare che la fiducia venga riposta nelle mani sbagliate. Vi invitiamo a contattarci per una valutazione preliminare della vostra strategia di investimento.",
                 "faq.independent.note": "Nota: Le informazioni di cui sopra si basano sull'analisi di casi documentati di irregolarità nel mercato immobiliare italiano.",
-                "footer.copy": "© 2026 Bridge House Premium Auditing Engine. Tutti i diritti riservati.",
+                "footer.copy": "© 2026 Ponte Dom. Tutti i diritti riservati.",
                 "listing.new": "Nuovo annuncio",
                 "listing.italy": "Italia",
                 "listing.badge": "Novità",
@@ -877,7 +876,7 @@
         function setLanguage(lang, refreshDynamic = true) {
             if (!TRANSLATIONS[lang]) return;
             currentLang = lang;
-            localStorage.setItem('bh_lang', lang);
+            localStorage.setItem('pd_lang', lang);
             document.documentElement.lang = lang;
 
             // Update all static data-i18n elements
