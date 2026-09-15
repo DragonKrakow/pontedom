@@ -310,7 +310,7 @@
                 
                 <div class="flex flex-col lg:flex-row gap-8 h-[650px] overflow-hidden">
                     <!-- Left Side: Listings Column -->
-                    <div id="properties-grid" class="w-full lg:w-7/12 h-full overflow-y-auto pr-2 grid grid-cols-1 sm:grid-cols-2 gap-6 custom-scrollbar"></div>
+                    <div id="listings-container" class="w-full lg:w-7/12 h-full overflow-y-auto pr-2 grid grid-cols-1 sm:grid-cols-2 gap-6 custom-scrollbar"></div>
                     <!-- Right Side: Map Container Layout -->
                     <div class="w-full lg:w-5/12 h-full relative rounded-2xl overflow-hidden border border-slate-200 shadow-sm bg-[#eef5f9]">
                         <div id="map-container" class="w-full h-full z-10"></div>
@@ -643,6 +643,7 @@
                 "listing.italy": "Włochy",
                 "listing.badge": "Nowość",
                 "listing.newDesc": "Nowa nieruchomość dodana przez panel administracyjny.",
+                "listing.none": "Brak dostępnych ofert",
                 "regions.page": "Strona {n}"
             },
             en: {
@@ -754,6 +755,7 @@
                 "listing.italy": "Italy",
                 "listing.badge": "New",
                 "listing.newDesc": "New property added via the admin panel.",
+                "listing.none": "No listings available",
                 "regions.page": "Page {n}"
             },
             it: {
@@ -865,6 +867,7 @@
                 "listing.italy": "Italia",
                 "listing.badge": "Novità",
                 "listing.newDesc": "Nuovo immobile aggiunto tramite il pannello di amministrazione.",
+                "listing.none": "Nessun immobile disponibile",
                 "regions.page": "Pagina {n}"
             }
         };
@@ -941,6 +944,7 @@
         ];
         const FEATURE_LOOKUP = new Map();
         const filtersState = { priceMin: "", priceMax: "", features: new Set() };
+        const remoteListingsState = { attempted: false, failed: false };
 
         const dataStore = [
             {
@@ -1118,6 +1122,74 @@
             }
         }
 
+        function extractTextValue(...values) {
+            for (const value of values) {
+                if (typeof value === "string" && value.trim()) return value.trim();
+            }
+            return "";
+        }
+
+        function extractImageCandidates(source) {
+            if (!source) return [];
+            if (Array.isArray(source)) return source.flatMap((entry) => extractImageCandidates(entry));
+            if (typeof source === "object") {
+                return [
+                    source.url,
+                    source.src,
+                    source.image,
+                    source.imageUrl,
+                    source.secure_url,
+                    source.downloadURL,
+                    source.location
+                ].flatMap((entry) => extractImageCandidates(entry));
+            }
+
+            const value = String(source).trim();
+            return value ? [value] : [];
+        }
+
+        function sanitizeHttpUrl(value, base = window.location.href) {
+            const candidate = String(value || "").trim();
+            if (!candidate) return "";
+
+            try {
+                const resolvedUrl = new URL(candidate, base);
+                return ["http:", "https:"].includes(resolvedUrl.protocol) ? resolvedUrl.href : "";
+            } catch (error) {
+                return "";
+            }
+        }
+
+        function formatAreaValue(value) {
+            if (value === null || value === undefined || value === "") return "—";
+            if (typeof value === "number" && Number.isFinite(value)) return `${value} m²`;
+
+            const text = String(value).trim();
+            if (!text) return "—";
+            return /m2|m²|sqm|sq m/i.test(text) ? text : `${text} m²`;
+        }
+
+        function getListingHref(listing) {
+            const rawUrl = extractTextValue(listing?.url, listing?.href, listing?.detailUrl, listing?.externalUrl);
+            if (rawUrl) return sanitizeHttpUrl(rawUrl, API_BASE);
+
+            if (typeof listing?.id === "string" && listing.id.trim()) {
+                return `${API_BASE}/listings/${encodeURIComponent(listing.id.trim())}`;
+            }
+
+            return "";
+        }
+
+        function openListing(listing) {
+            const href = getListingHref(listing);
+            if (href) {
+                window.location.href = href;
+                return;
+            }
+
+            showDetails(listing?.id);
+        }
+
         function addFeatureMatches(source, featureSet) {
             if (!source) return;
             if (Array.isArray(source)) {
@@ -1160,7 +1232,7 @@
             if (!candidate) return DEFAULT_IMAGE_URL;
 
             try {
-                const resolvedUrl = new URL(candidate, window.location.href);
+                const resolvedUrl = new URL(candidate, API_BASE);
                 return ["http:", "https:"].includes(resolvedUrl.protocol) ? resolvedUrl.href : DEFAULT_IMAGE_URL;
             } catch (error) {
                 return DEFAULT_IMAGE_URL;
@@ -1346,39 +1418,57 @@
         }
 
         function normalizeListing(item, index) {
-            const fallbackId = Date.now() + index;
+            const fallbackId = `listing-${Date.now()}-${index}`;
             const lat = Number(item?.lat ?? item?.latitude ?? item?.coords?.[0]);
             const lng = Number(item?.lng ?? item?.longitude ?? item?.coords?.[1]);
             const validCoords = Number.isFinite(lat) && Number.isFinite(lng);
             const priceValue = parsePriceValue(item?.priceValue ?? item?.price_amount ?? item?.priceNumber ?? item?.price ?? item?.priceText);
-            const currency = item?.currency || item?.priceCurrency || "EUR";
-
-            const images = (Array.isArray(item?.images)
-                ? item.images.filter(Boolean)
-                : (item?.image ? [item.image] : []))
+            const currency = item?.currency || item?.priceCurrency || item?.price?.currency || "EUR";
+            const rawId = item?._id ?? item?.id ?? item?.listingId ?? item?.slug ?? fallbackId;
+            const images = extractImageCandidates(item?.images ?? item?.gallery ?? item?.photos ?? item?.media ?? item?.image ?? item?.coverImage)
                 .map(sanitizeImageUrl);
+            const location = extractTextValue(
+                item?.address,
+                item?.location,
+                item?.city,
+                item?.locality,
+                [item?.street, item?.city, item?.province, item?.country].filter(Boolean).join(", ")
+            );
+            const badge = extractTextValue(
+                item?.badge,
+                item?.label,
+                item?.status,
+                Array.isArray(item?.tags) ? item.tags[0] : "",
+                Array.isArray(item?.features) ? item.features[0] : ""
+            );
+            const bedrooms = item?.specs?.beds ?? item?.beds ?? item?.bedrooms ?? item?.rooms ?? item?.bedroomCount;
+            const bathrooms = item?.specs?.baths ?? item?.baths ?? item?.bathrooms ?? item?.bathroomCount;
+            const area = item?.specs?.space ?? item?.space ?? item?.area ?? item?.surface ?? item?.surfaceArea ?? item?.squareMeters;
 
             return {
-                id: Number(item?.id) || fallbackId,
+                id: String(rawId),
                 title: item?.title || item?.name || T("listing.new"),
-                price: item?.price || item?.priceText || formatPriceDisplay(priceValue, currency),
+                price: typeof item?.price === "string" ? item.price : item?.priceText || formatPriceDisplay(priceValue, currency),
                 priceValue,
-                location: item?.location || item?.city || T("listing.italy"),
-                badge: item?.badge || T("listing.badge"),
+                location: location || T("listing.italy"),
+                badge: badge || T("listing.badge"),
                 desc: item?.desc || item?.description || T("listing.newDesc"),
                 specs: {
-                    space: item?.specs?.space || item?.space || item?.area || "—",
-                    beds: item?.specs?.beds || item?.beds || item?.rooms || "—",
-                    baths: item?.specs?.baths || item?.baths || item?.bathrooms || "—"
+                    space: formatAreaValue(area),
+                    beds: bedrooms ?? "—",
+                    baths: bathrooms ?? "—"
                 },
                 coords: validCoords ? [lat, lng] : null,
                 features: extractCanonicalFeatures(item),
-                images: images.length ? images : [DEFAULT_IMAGE_URL]
+                images: images.length ? images : [DEFAULT_IMAGE_URL],
+                url: getListingHref({ id: String(rawId), url: item?.url, href: item?.href, detailUrl: item?.detailUrl, externalUrl: item?.externalUrl })
             };
         }
 
         async function loadDynamicListings() {
             try {
+                remoteListingsState.attempted = true;
+                remoteListingsState.failed = false;
                 const response = await fetch(`${API_BASE}/api/listings`);
                 if (!response.ok) throw new Error(`HTTP ${response.status}`);
                 const payload = await response.json();
@@ -1392,13 +1482,16 @@
                 const normalized = incoming.map(normalizeListing).filter(Boolean);
 
                 normalized.forEach((listing) => {
-                    const exists = dataStore.some((item) => Number(item.id) === Number(listing.id));
+                    const exists = dataStore.some((item) => String(item.id) === String(listing.id));
                     if (!exists) dataStore.push(listing);
                 });
 
                 applyFilters();
             } catch (error) {
+                remoteListingsState.attempted = true;
+                remoteListingsState.failed = true;
                 console.warn("Nie udało się pobrać ofert z API:", error);
+                applyFilters();
             }
         }
 
@@ -1432,7 +1525,7 @@
                 });
 
                 const m = L.marker(p.coords, { icon: markerIcon }).addTo(mapInstance);
-                m.on('click', () => { showDetails(p.id); });
+                m.on('click', () => { openListing(p); });
                 markersGroup.push(m);
             });
 
@@ -1456,14 +1549,17 @@
         }
 
         function populateCards(listings = getFilteredListings()) {
-            const grid = document.getElementById('properties-grid');
+            const grid = document.getElementById('listings-container');
             if(!grid) return;
             grid.innerHTML = '';
 
             if (!listings.length) {
+                const noListingsMessage = remoteListingsState.attempted && !filtersState.features.size && filtersState.priceMin === "" && filtersState.priceMax === ""
+                    ? T("listing.none")
+                    : T("filter.noResults");
                 grid.innerHTML = `
                     <div class="sm:col-span-2 rounded-2xl border border-dashed border-slate-300 bg-white px-6 py-12 text-center text-sm text-slate-500">
-                        ${T("filter.noResults")}
+                        ${noListingsMessage}
                     </div>
                 `;
                 return;
@@ -1474,10 +1570,15 @@
                     .slice(0, 3)
                     .map((feature) => `<span role="listitem" class="rounded-full bg-slate-100 px-2.5 py-1 text-[10px] font-semibold text-slate-500">${escapeHtml(getFeatureLabel(feature))}</span>`)
                     .join('');
+                const listingHref = getListingHref(p);
 
-                const card = document.createElement('div');
-                card.className = "bg-white rounded-2xl border border-slate-100 shadow-sm overflow-hidden hover:shadow-md transition-all cursor-pointer group flex flex-col";
-                card.onclick = () => showDetails(p.id);
+                const card = document.createElement(listingHref ? 'a' : 'div');
+                card.className = "bg-white rounded-2xl border border-slate-100 shadow-sm overflow-hidden hover:shadow-md transition-all cursor-pointer group flex flex-col no-underline";
+                if (card.tagName === 'A') {
+                    card.href = listingHref;
+                } else {
+                    card.onclick = () => openListing(p);
+                }
                 card.innerHTML = `
                     <div class="h-48 overflow-hidden relative bg-slate-100">
                         <img src="${escapeHtml(p.images[0])}" alt="${escapeHtml(L2(p.title))}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
@@ -1505,7 +1606,7 @@
         }
 
         function showDetails(id) {
-            currentProperty = dataStore.find(p => p.id === id);
+            currentProperty = dataStore.find(p => String(p.id) === String(id));
             if(!currentProperty) return;
             currentImageIndex = 0;
             
