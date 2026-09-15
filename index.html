@@ -942,6 +942,7 @@
             { key: "cucina", labels: { it: "cucina", en: "kitchen", pl: "kuchnia" }, aliases: [] },
             { key: "angolo-cottura", labels: { it: "angolo cottura", en: "kitchenette", pl: "aneks kuchenny" }, aliases: [] }
         ];
+        const REMOTE_LISTING_SOURCE = "remote";
         const FEATURE_LOOKUP = new Map();
         const filtersState = { priceMin: "", priceMax: "", features: new Set() };
         const remoteListingsState = { attempted: false, failed: false };
@@ -1469,7 +1470,7 @@
             try {
                 remoteListingsState.attempted = true;
                 remoteListingsState.failed = false;
-                const response = await fetch(`${API_BASE}/api/listings`);
+                const response = await fetch(`${API_BASE}/api/listings?ts=${Date.now()}`, { cache: "no-store" });
                 if (!response.ok) throw new Error(`HTTP ${response.status}`);
                 const payload = await response.json();
 
@@ -1479,11 +1480,33 @@
                         ? payload.listings
                         : [];
 
-                const normalized = incoming.map(normalizeListing).filter(Boolean);
+                const normalized = incoming
+                    .map((item, index) => {
+                        const listing = normalizeListing(item, index);
+                        return listing ? { ...listing, dataSource: REMOTE_LISTING_SOURCE } : null;
+                    })
+                    .filter(Boolean);
+                const remoteListingIds = new Set(normalized.map((listing) => String(listing.id)));
+
+                for (let index = dataStore.length - 1; index >= 0; index -= 1) {
+                    const listing = dataStore[index];
+                    if (listing?.dataSource === REMOTE_LISTING_SOURCE && !remoteListingIds.has(String(listing.id))) {
+                        dataStore.splice(index, 1);
+                    }
+                }
 
                 normalized.forEach((listing) => {
-                    const exists = dataStore.some((item) => String(item.id) === String(listing.id));
-                    if (!exists) dataStore.push(listing);
+                    const existingIndex = dataStore.findIndex((item) => String(item.id) === String(listing.id));
+                    if (existingIndex === -1) {
+                        dataStore.push(listing);
+                        return;
+                    }
+
+                    dataStore.splice(existingIndex, 1, {
+                        ...dataStore[existingIndex],
+                        ...listing,
+                        dataSource: REMOTE_LISTING_SOURCE
+                    });
                 });
 
                 applyFilters();
