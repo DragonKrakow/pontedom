@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="pl">
 <head>
@@ -26,6 +27,8 @@
         .custom-scrollbar::-webkit-scrollbar-track { background: #F1F5F9; }
         .custom-scrollbar::-webkit-scrollbar-thumb { background: #CBD5E1; border-radius: 3px; }
         .custom-map-badge { background: none; border: none; }
+        /* Hide Leaflet's attribution box completely */
+        .leaflet-control-attribution { display: none !important; }
     </style>
 </head>
 <body class="text-slate-800 antialiased">
@@ -1465,7 +1468,6 @@
             L.control.zoom({ position: 'bottomright' }).addTo(mapInstance);
             
             L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
-                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
                 maxZoom: 19
             }).addTo(mapInstance);
 
