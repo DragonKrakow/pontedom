@@ -947,68 +947,7 @@
         const filtersState = { priceMin: "", priceMax: "", features: new Set() };
         const remoteListingsState = { attempted: false, failed: false };
 
-        const dataStore = [
-            {
-                id: 1,
-                title: { pl: "Dwupokojowy apartament z widokiem na morze", en: "Two-room apartment with sea view", it: "Bilocale con vista mare" },
-                price: "320 000 PLN",
-                priceValue: 320000,
-                location: { pl: "Tortoreto Lido, Włochy", en: "Tortoreto Lido, Italy", it: "Tortoreto Lido, Italia" },
-                badge: "Top Premium",
-                desc: {
-                    pl: "Piękny, jasny apartament z dużym tarasem i bezpośrednim widokiem na linię brzegową Tortoreto Lido.",
-                    en: "Beautiful, bright apartment with a large terrace and direct views over the Tortoreto Lido coastline.",
-                    it: "Bellissimo appartamento luminoso con ampio terrazzo e vista diretta sulla costa di Tortoreto Lido."
-                },
-                specs: { space: "65 m²", beds: 2, baths: 1 },
-                coords: [42.802, 13.929],
-                features: ["mare", "vista-mare", "cucina"],
-                images: [
-                    "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=800&q=80",
-                    "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=800&q=80"
-                ]
-            },
-            {
-                id: 2,
-                title: { pl: "Trzypokojowe mieszkanie z tarasem przy plaży", en: "Three-room apartment with beachfront terrace", it: "Trilocale con terrazza fronte mare" },
-                price: "480 000 PLN",
-                priceValue: 480000,
-                location: { pl: "Alba Adriatica, Włochy", en: "Alba Adriatica, Italy", it: "Alba Adriatica, Italia" },
-                badge: "Beachfront",
-                desc: {
-                    pl: "Wygodna posiadłość zaledwie kilka kroków od piaszczystej plaży w Alba Adriatica. Duży taras widokowy.",
-                    en: "A comfortable property just a few steps from the sandy beach in Alba Adriatica. Large panoramic terrace.",
-                    it: "Comoda proprietà a pochi passi dalla spiaggia sabbiosa di Alba Adriatica. Ampia terrazza panoramica."
-                },
-                specs: { space: "85 m²", beds: 3, baths: 2 },
-                coords: [42.831, 13.924],
-                features: ["mare", "fronte-mare", "vista-mare", "posto-auto", "cucina"],
-                images: [
-                    "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=800&q=80",
-                    "https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?auto=format&fit=crop&w=800&q=80"
-                ]
-            },
-            {
-                id: 3,
-                title: { pl: "Apartament z widokiem panoramicznym", en: "Apartment with panoramic views", it: "Appartamento con vista panoramica" },
-                price: "395 000 PLN",
-                priceValue: 395000,
-                location: { pl: "Pineto, Włochy", en: "Pineto, Italy", it: "Pineto, Italia" },
-                badge: "Panoramic",
-                desc: {
-                    pl: "Kameralna, prestiżowa lokalizacja rezydencyjna w Pineto z piękną panoramą na morze adriatyckie.",
-                    en: "An intimate, prestigious residential location in Pineto with a beautiful panoramic view over the Adriatic Sea.",
-                    it: "Location residenziale raccolta e prestigiosa a Pineto con splendida vista panoramica sul mare Adriatico."
-                },
-                specs: { space: "78 m²", beds: 3, baths: 1 },
-                coords: [42.610, 14.065],
-                features: ["mare", "vista-mare", "centro", "angolo-cottura"],
-                images: [
-                    "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=80",
-                    "https://images.unsplash.com/photo-1583608205776-bfd35f0d9f83?auto=format&fit=crop&w=800&q=80"
-                ]
-            }
-        ];
+        const dataStore = [];
 
         // Returns the value for the current language from a {pl,en,it} object,
         // or passes plain strings/numbers through unchanged (used for API-loaded listings).
@@ -1525,8 +1464,9 @@
             mapInstance = L.map('map-container', { zoomControl: false, scrollWheelZoom: false }).setView(DEFAULT_MAP_CENTER, DEFAULT_MAP_ZOOM);
             L.control.zoom({ position: 'bottomright' }).addTo(mapInstance);
             
-            L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
-                attribution: '&copy; OpenStreetMap contributors'
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+                maxZoom: 19
             }).addTo(mapInstance);
 
             populateMapMarkers(getFilteredListings());
@@ -1571,10 +1511,15 @@
             }
         }
 
+        const LISTINGS_PER_PAGE = 12;
+        let currentPage = 0;
+
         function populateCards(listings = getFilteredListings()) {
             const grid = document.getElementById('listings-container');
             if(!grid) return;
             grid.innerHTML = '';
+            const paginated = listings.slice(currentPage * LISTINGS_PER_PAGE, (currentPage + 1) * LISTINGS_PER_PAGE);
+            const totalPages = Math.ceil(listings.length / LISTINGS_PER_PAGE);
 
             if (!listings.length) {
                 const noListingsMessage = remoteListingsState.attempted && !filtersState.features.size && filtersState.priceMin === "" && filtersState.priceMax === ""
@@ -1588,7 +1533,7 @@
                 return;
             }
             
-            listings.forEach(p => {
+            paginated.forEach(p => {
                 const featureChips = (Array.isArray(p.features) ? p.features : [])
                     .slice(0, 3)
                     .map((feature) => `<span role="listitem" class="rounded-full bg-slate-100 px-2.5 py-1 text-[10px] font-semibold text-slate-500">${escapeHtml(getFeatureLabel(feature))}</span>`)
@@ -1729,8 +1674,31 @@
 
         function submitForm(e) {
             e.preventDefault();
-            alert(T("detail.form.success"));
-            e.target.reset();
+            const form = e.target;
+            const data = new FormData(form);
+            const body = {
+                name: data.get('name') || form.querySelector('input[type=text]')?.value || '',
+                email: data.get('email') || form.querySelector('input[type=email]')?.value || '',
+                phone: data.get('phone') || form.querySelector('input[type=tel]')?.value || '',
+                property: currentProperty ? L2(currentProperty.title) : '',
+                propertyUrl: currentProperty ? getListingHref(currentProperty) : ''
+            };
+            fetch('https://formspree.io/f/YOUR_FORMSPREE_ID', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+                body: JSON.stringify(body)
+            })
+            .then(r => {
+                if (r.ok) {
+                    alert(T("detail.form.success"));
+                    form.reset();
+                } else {
+                    alert('Error sending form. Please email info@pontedom.pl directly.');
+                }
+            })
+            .catch(() => {
+                alert('Error sending form. Please email info@pontedom.pl directly.');
+            });
         }
 
         document.addEventListener("DOMContentLoaded", async () => {
