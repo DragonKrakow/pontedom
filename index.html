@@ -1464,8 +1464,7 @@
             mapInstance = L.map('map-container', { zoomControl: false, scrollWheelZoom: false, attributionControl: false }).setView(DEFAULT_MAP_CENTER, DEFAULT_MAP_ZOOM);
             L.control.zoom({ position: 'bottomright' }).addTo(mapInstance);
             
-            L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
-                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
                 maxZoom: 19
             }).addTo(mapInstance);
 
@@ -1511,7 +1510,7 @@
             }
         }
 
-        const LISTINGS_PER_PAGE = 12;
+        const LISTINGS_PER_PAGE = 30;
         let currentPage = 0;
 
         function populateCards(listings = getFilteredListings()) {
