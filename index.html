@@ -1766,7 +1766,7 @@
           const payload={}; for(const [key,value] of new FormData(form).entries()){if(payload[key]) payload[key]+=', '+value; else payload[key]=value;}
           payload.source='Ponte Dom Stefano Polish buyer landing page'; payload.language=currentLang;
           try {
-            const response=await fetch('https://formspree.io/f/xbglebdq',{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify(payload)});
+            const response=await fetch('https://formspree.io/f/xyekvnal',{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify(payload)});
             if(!response.ok) throw new Error('Form submission failed');
             status.textContent=t.success; status.className='text-sm text-emerald-700'; form.reset();
           } catch(err) { status.textContent=t.error; status.className='text-sm text-red-700'; }
