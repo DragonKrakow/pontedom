@@ -1,24 +1,25 @@
 <!DOCTYPE html>
 <html lang="pl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="color-scheme" content="light">
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-LGGGJKW5TD"></script>
-    <script>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta content="light" name="color-scheme"/>
+<!-- Google tag (gtag.js) -->
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-LGGGJKW5TD"></script>
+<script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
       gtag('config', 'G-LGGGJKW5TD');
     </script>
-    <title>Ponte Dom - Nieruchomości we Włoszech</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
-    <!-- Leaflet.js Mapping Infrastructure -->
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
-    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-    <style>
+<title>Ponte Dom - Nieruchomości we Włoszech</title>
+<meta content="Chcesz kupić dom we Włoszech, ale nie wiesz gdzie? Podaj budżet, metraż i swoje oczekiwania. Dopasowane oferty mogą przesłać Ci włoskie agencje." name="description"/>
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" rel="stylesheet"/>
+<!-- Leaflet.js Mapping Infrastructure -->
+<link href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" rel="stylesheet">
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<style>
         @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght=300;400;500;600;700&display=swap');
         :root { color-scheme: only light; }
         body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #FAFCFF; }
@@ -47,97 +48,87 @@
         #listings-container.view-large .listing-image-wrap { height:300px!important; }
         @media(max-width:640px) { .listing-view-btn { padding:9px; } .listing-view-btn span { display:none; } #listings-container.view-large .listing-image-wrap { height:230px!important; } }
     </style>
-</head>
+</link><style>@media (max-width:1100px){nav > div{height:auto!important;min-height:80px;flex-wrap:wrap;gap:10px;padding-top:10px;padding-bottom:10px}nav .hidden.md\:flex{gap:12px!important;flex-wrap:wrap}} #landing-page{overflow:visible} #landing-contact{scroll-margin-top:20px}</style></head>
 <body class="text-slate-800 antialiased">
-
-    <!-- NAVIGATION BAR -->
-    <nav class="bg-white/90 backdrop-blur-md sticky top-0 z-[1000] border-b border-slate-100 shadow-sm transition-all duration-300">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-24 flex items-center justify-between">
-            
-            <!-- Super-Sized Logo Container Area -->
-            <div class="flex items-center gap-2 cursor-pointer" onclick="showPage('home')">
-                <img src="https://raw.githubusercontent.com/DragonKrakow/adriaticahomes/main/logo.jpeg"
-                     alt="Ponte Dom"
-                     class="h-24 w-auto object-contain max-w-[280px]"
-                     onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-                <div style="display:none" class="items-center gap-3">
-                    <div class="w-12 h-12 bg-sky-600 rounded-xl flex items-center justify-center text-white font-bold text-xl shadow-md shadow-sky-200">B</div>
-                    <div>
-                        <span class="text-2xl font-extrabold text-slate-900 tracking-tight">Ponte</span>
-                        <span class="text-sky-600 font-bold">Dom</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="hidden md:flex items-center gap-8 font-medium text-slate-600 text-sm tracking-wide">
-                <span class="text-sky-600 font-bold cursor-pointer transition-colors" id="nav-home" onclick="showPage('home')" data-i18n="nav.home">Strona Główna</span>
-                <span class="hover:text-sky-600 cursor-pointer transition-colors" onclick="scrollToSection('map-section')" data-i18n="nav.map">Zobacz Mapę</span>
-                <span class="hover:text-sky-600 cursor-pointer transition-colors" id="nav-about" onclick="showPage('about')" data-i18n="nav.about">O Nas & Bezpieczeństwo</span>
-            </div>
-
-            <!-- Language Switcher -->
-            <div class="flex items-center gap-1.5" id="lang-switcher" role="group" aria-label="Language / Język / Lingua">
-                <a href="/" onclick="event.preventDefault();setLanguage('pl')" id="lang-pl" title="Polski" class="lang-btn w-9 h-9 rounded-lg flex items-center justify-center text-lg border-2 border-sky-500 transition-all hover:scale-110" aria-pressed="true">PL</a>
-                <a href="/en" onclick="event.preventDefault();setLanguage('en')" id="lang-en" title="English" class="lang-btn w-9 h-9 rounded-lg flex items-center justify-center text-xs font-bold text-slate-600 border-2 border-transparent transition-all hover:scale-110" aria-pressed="false">EN</a>
-                <a href="/it" onclick="event.preventDefault();setLanguage('it')" id="lang-it" title="Italiano" class="lang-btn w-9 h-9 rounded-lg flex items-center justify-center text-lg border-2 border-transparent transition-all hover:scale-110" aria-pressed="false">IT</a>
-            </div>
-            
-            <button onclick="scrollToSection('map-section')" class="bg-slate-900 hover:bg-sky-600 text-white px-6 py-3 rounded-xl font-semibold text-xs tracking-wider uppercase transition-all shadow-lg shadow-slate-200" data-i18n="nav.map">
+<!-- NAVIGATION BAR -->
+<nav class="bg-white/90 backdrop-blur-md relative z-[1000] border-b border-slate-100 shadow-sm transition-all duration-300">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-24 flex items-center justify-between">
+<!-- Super-Sized Logo Container Area -->
+<div class="flex items-center gap-2 cursor-pointer" onclick="showPage('home')">
+<img alt="Ponte Dom" class="h-24 w-auto object-contain max-w-[280px]" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" src="https://raw.githubusercontent.com/DragonKrakow/adriaticahomes/main/logo.jpeg"/>
+<div class="items-center gap-3" style="display:none">
+<div class="w-12 h-12 bg-sky-600 rounded-xl flex items-center justify-center text-white font-bold text-xl shadow-md shadow-sky-200">B</div>
+<div>
+<span class="text-2xl font-extrabold text-slate-900 tracking-tight">Ponte</span>
+<span class="text-sky-600 font-bold">Dom</span>
+</div>
+</div>
+</div>
+<div class="hidden md:flex items-center gap-8 font-medium text-slate-600 text-sm tracking-wide">
+<span class="text-sky-600 font-bold cursor-pointer transition-colors" data-i18n="nav.home" id="nav-home" onclick="showPage('home')">Strona Główna</span>
+<span class="hover:text-sky-600 cursor-pointer transition-colors" data-i18n="nav.map" onclick="scrollToSection('map-section')">Zobacz Mapę</span>
+<span class="hover:text-sky-600 cursor-pointer transition-colors" data-i18n="nav.about" id="nav-about" onclick="showPage('about')">O Nas &amp; Bezpieczeństwo</span>
+<span class="hover:text-sky-600 cursor-pointer transition-colors" id="nav-landing" onclick="showPage('landing')">Poradnik zakupu</span>
+</div>
+<!-- Language Switcher -->
+<div aria-label="Language / Język / Lingua" class="flex items-center gap-1.5" id="lang-switcher" role="group">
+<a aria-pressed="true" class="lang-btn w-9 h-9 rounded-lg flex items-center justify-center text-lg border-2 border-sky-500 transition-all hover:scale-110" href="/" id="lang-pl" onclick="event.preventDefault();setLanguage('pl')" title="Polski">PL</a>
+<a aria-pressed="false" class="lang-btn w-9 h-9 rounded-lg flex items-center justify-center text-xs font-bold text-slate-600 border-2 border-transparent transition-all hover:scale-110" href="/en" id="lang-en" onclick="event.preventDefault();setLanguage('en')" title="English">EN</a>
+<a aria-pressed="false" class="lang-btn w-9 h-9 rounded-lg flex items-center justify-center text-lg border-2 border-transparent transition-all hover:scale-110" href="/it" id="lang-it" onclick="event.preventDefault();setLanguage('it')" title="Italiano">IT</a>
+</div>
+<button class="bg-slate-900 hover:bg-sky-600 text-white px-6 py-3 rounded-xl font-semibold text-xs tracking-wider uppercase transition-all shadow-lg shadow-slate-200" data-i18n="nav.map" onclick="scrollToSection('map-section')">
                 Zobacz Mapę
             </button>
-        </div>
-    </nav>
-
-    <!-- MAIN VIEW -->
-    <div id="home-page">
-        <!-- Hero Header -->
-        <header class="hero-bg min-h-[85vh] flex items-center justify-center text-center px-4 relative">
-            <div class="max-w-4xl mx-auto text-white z-10">
-                <span class="bg-white/10 backdrop-blur-md text-sky-300 text-xs tracking-widest font-bold px-4 py-2 rounded-full uppercase mb-6 inline-block border border-white/10" data-i18n="hero.badge">Włoska Riwiera Inwestycyjna</span>
-                <h1 class="text-4xl sm:text-6xl font-extrabold tracking-tight leading-none mb-6" data-i18n="hero.h1">Kupić Świadomie i Bezpiecznie we Włoszech</h1>
-                <p class="text-lg sm:text-xl text-slate-200 font-light max-w-2xl mx-auto mb-10 leading-relaxed" data-i18n="hero.sub">
+</div>
+</nav>
+<!-- MAIN VIEW -->
+<div id="home-page">
+<!-- Hero Header -->
+<header class="hero-bg min-h-[85vh] flex items-center justify-center text-center px-4 relative">
+<div class="max-w-4xl mx-auto text-white z-10">
+<span class="bg-white/10 backdrop-blur-md text-sky-300 text-xs tracking-widest font-bold px-4 py-2 rounded-full uppercase mb-6 inline-block border border-white/10" data-i18n="hero.badge">Włoska Riwiera Inwestycyjna</span>
+<h1 class="text-4xl sm:text-6xl font-extrabold tracking-tight leading-none mb-6" data-i18n="hero.h1">Kupić Świadomie i Bezpiecznie we Włoszech</h1>
+<p class="text-lg sm:text-xl text-slate-200 font-light max-w-2xl mx-auto mb-10 leading-relaxed" data-i18n="hero.sub">
                     Nieruchomości z pełną asystą prawną, techniczną oraz niezależnym audytem transakcyjnym chroniącym Twój kapitał.
                 </p>
-                <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
-                    <button onclick="scrollToSection('map-section')" class="w-full sm:w-auto bg-sky-600 hover:bg-sky-500 text-white px-8 py-4 rounded-xl font-bold text-sm tracking-wider uppercase transition-all shadow-lg shadow-sky-700/30" data-i18n="hero.cta1">
+<div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+<button class="w-full sm:w-auto bg-sky-600 hover:bg-sky-500 text-white px-8 py-4 rounded-xl font-bold text-sm tracking-wider uppercase transition-all shadow-lg shadow-sky-700/30" data-i18n="hero.cta1" onclick="scrollToSection('map-section')">
                         Zobacz Mapę Ofert
                     </button>
-                    <button onclick="showPage('about')" class="w-full sm:w-auto bg-white/10 hover:bg-white/20 backdrop-blur-md text-white border border-white/30 px-8 py-4 rounded-xl font-bold text-sm tracking-wider uppercase transition-all" data-i18n="hero.cta2">
+<button class="w-full sm:w-auto bg-white/10 hover:bg-white/20 backdrop-blur-md text-white border border-white/30 px-8 py-4 rounded-xl font-bold text-sm tracking-wider uppercase transition-all" data-i18n="hero.cta2" onclick="showPage('about')">
                         Dowiedz się więcej o audycie
                     </button>
-                </div>
-            </div>
-        </header>
-
-        <!-- Regions Carousel -->
-        <section class="py-14 bg-white border-b border-slate-100">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="text-center max-w-2xl mx-auto mb-10">
-                    <span class="text-sky-600 font-bold text-xs uppercase tracking-widest block mb-2" data-i18n="regions.label">Nasze Regiony</span>
-                    <h2 class="text-3xl font-extrabold text-slate-900 tracking-tight mb-3" data-i18n="regions.h2">Działamy we wszystkich regionach Włoch.</h2>
-                    <p class="text-slate-500 text-sm" data-i18n="regions.sub">Obsługujemy inwestorów zainteresowanych nieruchomościami w całych Włoszech – niezależnie od regionu, miasta i lokalizacji.</p>
-                </div>
-                <!-- Carousel wrapper -->
-                <div class="relative" id="regions-carousel">
-                    <div class="overflow-hidden rounded-2xl">
-                        <div id="regions-track" class="flex transition-transform duration-500 ease-in-out">
-                            <!-- Cards injected by JS -->
-                        </div>
-                    </div>
-                    <!-- Prev/Next buttons -->
-                    <button id="regions-prev" aria-label="Poprzedni region" class="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 sm:-translate-x-6 z-10 bg-white shadow-lg border border-slate-200 rounded-full w-11 h-11 flex items-center justify-center hover:bg-sky-50 transition">
-                        <i class="fa-solid fa-chevron-left text-slate-600"></i>
-                    </button>
-                    <button id="regions-next" aria-label="Następny region" class="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 sm:translate-x-6 z-10 bg-white shadow-lg border border-slate-200 rounded-full w-11 h-11 flex items-center justify-center hover:bg-sky-50 transition">
-                        <i class="fa-solid fa-chevron-right text-slate-600"></i>
-                    </button>
-                    <!-- Dots -->
-                    <div id="regions-dots" class="flex justify-center gap-2 mt-5"></div>
-                </div>
-            </div>
-        </section>
-
-        <script>
+</div>
+</div>
+</header>
+<!-- Regions Carousel -->
+<section class="py-14 bg-white border-b border-slate-100">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="text-center max-w-2xl mx-auto mb-10">
+<span class="text-sky-600 font-bold text-xs uppercase tracking-widest block mb-2" data-i18n="regions.label">Nasze Regiony</span>
+<h2 class="text-3xl font-extrabold text-slate-900 tracking-tight mb-3" data-i18n="regions.h2">Działamy we wszystkich regionach Włoch.</h2>
+<p class="text-slate-500 text-sm" data-i18n="regions.sub">Obsługujemy inwestorów zainteresowanych nieruchomościami w całych Włoszech – niezależnie od regionu, miasta i lokalizacji.</p>
+</div>
+<!-- Carousel wrapper -->
+<div class="relative" id="regions-carousel">
+<div class="overflow-hidden rounded-2xl">
+<div class="flex transition-transform duration-500 ease-in-out" id="regions-track">
+<!-- Cards injected by JS -->
+</div>
+</div>
+<!-- Prev/Next buttons -->
+<button aria-label="Poprzedni region" class="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 sm:-translate-x-6 z-10 bg-white shadow-lg border border-slate-200 rounded-full w-11 h-11 flex items-center justify-center hover:bg-sky-50 transition" id="regions-prev">
+<i class="fa-solid fa-chevron-left text-slate-600"></i>
+</button>
+<button aria-label="Następny region" class="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 sm:translate-x-6 z-10 bg-white shadow-lg border border-slate-200 rounded-full w-11 h-11 flex items-center justify-center hover:bg-sky-50 transition" id="regions-next">
+<i class="fa-solid fa-chevron-right text-slate-600"></i>
+</button>
+<!-- Dots -->
+<div class="flex justify-center gap-2 mt-5" id="regions-dots"></div>
+</div>
+</div>
+</section>
+<script>
         const REGIONS_DATA = {
             pl: [
                 { name: "Dolomity – Północny Wschód", sub: "Val di Fassa, Trentino-Alto Adige", desc: "Majestatyczne szczyty wpisane na Listę Światowego Dziedzictwa UNESCO. Idealne pod inwestycje w nieruchomości górskie i agroturystykę.", img: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&q=80", tag: "Góry & Ośrodki Narciarskie" },
@@ -239,327 +230,294 @@
         window.addEventListener('resize', initRegionsCarousel);
         initRegionsCarousel();
         </script>
-
-        <!-- Blue Banner (Investment Indicators) -->
-        <section class="bg-gradient-to-r from-sky-900 via-indigo-950 to-slate-900 text-white py-12 shadow-inner">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 sm:grid-cols-3 gap-8 text-center sm:text-left items-center">
-                <div class="flex items-center gap-4 justify-center sm:justify-start border-b sm:border-b-0 sm:border-r border-white/10 pb-6 sm:pb-0">
-                    <div class="text-3xl text-sky-400"><i class="fa-solid fa-hotel"></i></div>
-                    <div>
-                        <h4 class="font-extrabold text-lg tracking-tight" data-i18n="banner.villas.title">Kolekcja Wyselekcjonowanych Willi</h4>
-                        <p class="text-xs text-slate-300" data-i18n="banner.villas.sub">Zweryfikowane i bezpieczne rezydencje</p>
-                    </div>
-                </div>
-                <div class="flex items-center gap-4 justify-center sm:justify-start border-b sm:border-b-0 sm:border-r border-white/10 pb-6 sm:pb-0">
-                    <div class="text-3xl text-emerald-400"><i class="fa-solid fa-chart-line"></i></div>
-                    <div>
-                        <h4 class="font-extrabold text-lg tracking-tight" data-i18n="banner.growth.title">Stabilny Wzrost Kapitału</h4>
-                        <p class="text-xs text-slate-300" data-i18n="banner.growth.sub">Włoski rynek o wysokiej płynności</p>
-                    </div>
-                </div>
-                <div class="flex items-center gap-4 justify-center sm:justify-start">
-                    <div class="text-3xl text-amber-400"><i class="fa-solid fa-file-shield"></i></div>
-                    <div>
-                        <h4 class="font-extrabold text-lg tracking-tight" data-i18n="banner.audit.title">Niezależny System Audytu</h4>
-                        <p class="text-xs text-slate-300" data-i18n="banner.audit.sub">100% ochrony przed wadami prawnymi i ukrytymi</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Investment Pillars Section -->
-        <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
-            <div class="text-center max-w-3xl mx-auto mb-16">
-                <h2 class="text-3xl font-bold text-slate-900 tracking-tight mb-4" data-i18n="pillars.h2">Filary Inwestycji Ponte Dom</h2>
-                <p class="text-slate-500" data-i18n="pillars.sub">Przekształcamy standardowe pośrednictwo w transparentny, bezpieczny proces chroniony przez niezależną grupę ekspertów.</p>
-            </div>
-            
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div class="bg-white p-8 rounded-2xl border border-slate-100 shadow-sm hover:shadow-md transition-all">
-                    <div class="w-12 h-12 bg-sky-50 text-sky-600 rounded-xl flex items-center justify-center text-xl mb-6 font-bold"><i class="fa-solid fa-shield-halved"></i></div>
-                    <h3 class="text-xl font-bold mb-3 text-slate-800" data-i18n="pillars.audit.title">Niezależny Audyt Prawny</h3>
-                    <p class="text-slate-500 text-sm leading-relaxed" data-i18n="pillars.audit.desc">Każda nieruchomość przechodzi rygorystyczny proces due diligence. Weryfikujemy księgi wieczyste, stan katastralny oraz zgodność urbanistyczną przed publikacją oferty.</p>
-                </div>
-                <div class="bg-white p-8 rounded-2xl border border-slate-100 shadow-sm hover:shadow-md transition-all">
-                    <div class="w-12 h-12 bg-emerald-50 text-emerald-600 rounded-xl flex items-center justify-center text-xl mb-6 font-bold"><i class="fa-solid fa-users-gear"></i></div>
-                    <h3 class="text-xl font-bold mb-3 text-slate-800" data-i18n="pillars.taskforce.title">Task Force Ekspertów</h3>
-                    <p class="text-slate-500 text-sm leading-relaxed" data-i18n="pillars.taskforce.desc">Zapewniamy bezpośrednie wsparcie inżynierów, prawników i doradców podatkowych, eliminując ryzyka ukrytych wad budowlanych i proceduralnych.</p>
-                </div>
-                <div class="bg-white p-8 rounded-2xl border border-slate-100 shadow-sm hover:shadow-md transition-all">
-                    <div class="w-12 h-12 bg-amber-50 text-amber-600 rounded-xl flex items-center justify-center text-xl mb-6 font-bold"><i class="fa-solid fa-handshake-angle"></i></div>
-                    <h3 class="text-xl font-bold mb-3 text-slate-800" data-i18n="pillars.autonomy.title">Pełna Autonomia Klienta</h3>
-                    <p class="text-slate-500 text-sm leading-relaxed" data-i18n="pillars.autonomy.desc">Nie narzucamy sztywnych struktur. Ty wybierasz zakres naszego wsparcia, zachowując bezpośredni kontakt i kontrolę nad finalnym procesem zakupu.</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- INTEGRATED OFFERS & MAP SECTION -->
-        <section id="map-section" class="border-t border-slate-200 bg-slate-50/50 py-16">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="mb-8">
-                    <span class="text-sky-600 font-bold text-xs uppercase tracking-widest block mb-2" data-i18n="map.label">Kolekcja Śródziemnomorska</span>
-                    <h2 class="text-3xl font-extrabold text-slate-900 tracking-tight" data-i18n="map.h2">Dostępne Rezydencje</h2>
-                    <p class="text-sm text-slate-500 mt-1" data-i18n="map.sub">Wszystkie poniższe oferty zostały wstępnie zweryfikowane pod kątem formalno-prawnym.</p>
-                </div>
-
-                <div class="bg-white border border-slate-200 rounded-2xl shadow-sm p-5 sm:p-6 mb-8" role="region" aria-label="Filtry nieruchomości">
-                    <div class="flex flex-col xl:flex-row xl:items-end gap-4 xl:gap-6">
-                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 flex-1">
-                            <label class="block">
-                                <span class="text-xs font-bold text-slate-500 uppercase tracking-wider" data-i18n="filter.priceFrom">Cena od</span>
-                                <input id="filter-price-min" type="number" min="0" step="1000" placeholder="np. 250000" data-i18n-placeholder="filter.priceFromPlaceholder" class="mt-2 w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm focus:outline-none focus:border-sky-500">
-                            </label>
-                            <label class="block">
-                                <span class="text-xs font-bold text-slate-500 uppercase tracking-wider" data-i18n="filter.priceTo">Cena do</span>
-                                <input id="filter-price-max" type="number" min="0" step="1000" placeholder="np. 500000" data-i18n-placeholder="filter.priceToPlaceholder" class="mt-2 w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm focus:outline-none focus:border-sky-500">
-                            </label>
-                        </div>
-                        <button id="clear-filters" type="button" class="xl:self-end inline-flex items-center justify-center gap-2 rounded-xl border border-slate-200 px-4 py-3 text-xs font-bold uppercase tracking-wider text-slate-600 hover:border-sky-500 hover:text-sky-600 transition-colors">
-                            <i class="fa-solid fa-rotate-left"></i> <span data-i18n="filter.clear">Wyczyść filtry</span>
-                        </button>
-                    </div>
-
-                    <div class="mt-5">
-                        <p class="text-xs font-bold text-slate-500 uppercase tracking-wider mb-3" data-i18n="filter.features">Cechy nieruchomości</p>
-                        <div id="feature-filters" class="flex flex-wrap gap-2" role="group" aria-label="Filtry cech nieruchomości"></div>
-                    </div>
-
-                    <p id="filter-correction-message" class="mt-4 text-xs font-semibold text-sky-700" role="status" aria-live="polite"></p>
-                    <p id="active-filter-summary" class="mt-2 text-xs text-slate-500" role="status" aria-live="polite"></p>
-                </div>
-                
-                <div class="flex flex-col lg:flex-row gap-8">
-                    <!-- Left Side: Listings Column with view switcher -->
-                    <div class="w-full lg:w-7/12 min-w-0">
-                        <div class="flex items-center justify-between gap-3 mb-4 rounded-xl border border-slate-200 bg-white p-2 shadow-sm">
-                            <span class="px-2 text-xs font-bold uppercase tracking-wide text-slate-500" id="listing-view-label">Widok ofert</span>
-                            <div class="flex items-center gap-1" role="group" aria-label="Listing display mode">
-                                <button type="button" class="listing-view-btn active" data-view="list" onclick="setListingView('list')" title="List view" aria-label="List view" aria-pressed="false"><i class="fa-solid fa-list"></i><span>Lista</span></button>
-                                <button type="button" class="listing-view-btn" data-view="cards" onclick="setListingView('cards')" title="Card view" aria-label="Card view" aria-pressed="true"><i class="fa-regular fa-square"></i><span>Karty</span></button>
-                                <button type="button" class="listing-view-btn" data-view="large" onclick="setListingView('large')" title="Large card view" aria-label="Large card view" aria-pressed="false"><i class="fa-solid fa-image"></i><span>Duże</span></button>
-                            </div>
-                        </div>
-                        <div id="listings-container" class="listing-grid view-cards grid grid-cols-1 gap-5 pr-1 min-w-0"></div>
-                    </div>
-                    <!-- Right Side: Map Container Layout -->
-                    <div class="w-full lg:w-5/12 relative rounded-2xl overflow-hidden border border-slate-200 shadow-sm bg-[#eef5f9]" style="height:800px;position:sticky;top:80px;">
-                        <div id="map-container" class="w-full h-full z-10"></div>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </div>
-
-    <!-- DETAILED PROPERTY SINGLE VIEW -->
-    <div id="detail-page" class="hidden bg-slate-50/30 py-12">
-        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-            <button onclick="backToExplore()" class="inline-flex items-center gap-2 text-slate-500 hover:text-sky-600 font-semibold text-sm mb-8 transition-colors bg-white px-4 py-2 rounded-xl shadow-sm border border-slate-100">
-                <i class="fa-solid fa-arrow-left"></i> <span data-i18n="detail.back">Wróć do mapy ofert</span>
-            </button>
-            
-            <div class="bg-white rounded-3xl border border-slate-100 shadow-sm overflow-hidden grid grid-cols-1 lg:grid-cols-12">
-                <div class="lg:col-span-7 relative bg-slate-900 h-[300px] sm:h-[450px] lg:h-full min-h-[400px]">
-                    <img id="detail-img" src="" alt="Property Visual View" class="w-full h-full object-cover transition-all duration-500">
-                    
-                    <!-- Highly Visible Absolute Positioned Navigation Arrows -->
-                    <button onclick="prevImage()" class="absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-white/90 hover:bg-sky-600 text-slate-900 hover:text-white rounded-full flex items-center justify-center shadow-lg transition-all z-20">
-                        <i class="fa-solid fa-chevron-left text-base"></i>
-                    </button>
-                    <button onclick="nextImage()" class="absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-white/90 hover:bg-sky-600 text-slate-900 hover:text-white rounded-full flex items-center justify-center shadow-lg transition-all z-20">
-                        <i class="fa-solid fa-chevron-right text-base"></i>
-                    </button>
-
-                    <div class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-slate-900/80 via-slate-900/20 to-transparent p-6 flex justify-between items-center">
-                        <span id="detail-badge" class="bg-white/20 backdrop-blur-md border border-white/30 text-white text-xs font-bold tracking-wider px-3 py-1.5 rounded-lg uppercase"></span>
-                    </div>
-                </div>
-                
-                <div class="lg:col-span-5 p-6 sm:p-10 flex flex-col justify-between h-full">
-                    <div>
-                        <h1 id="detail-title" class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight mb-2"></h1>
-                        <p class="text-slate-400 text-sm flex items-center gap-2 mb-6"><i class="fa-solid fa-location-dot text-sky-500"></i><span id="detail-loc"></span></p>
-                        
-                        <div class="border-y border-slate-100 py-4 mb-6 flex justify-between items-center">
-                            <span class="text-slate-400 text-sm font-medium" data-i18n="detail.priceLabel">Cena ofertowa</span>
-                            <span id="detail-price" class="text-2xl font-black text-sky-600 tracking-tight"></span>
-                        </div>
-                        
-                        <h3 class="text-xs font-bold text-slate-400 uppercase tracking-widest mb-3" data-i18n="detail.specs">Charakterystyka obiektu</h3>
-                        <div id="detail-specs" class="grid grid-cols-3 gap-4 mb-8"></div>
-                        <div id="detail-features" class="flex flex-wrap gap-2 mb-8" role="list" aria-label="Cechy nieruchomości"></div>
-                        
-                        <p id="detail-desc" class="text-slate-500 text-sm leading-relaxed mb-8"></p>
-                    </div>
-
-                    <div class="bg-amber-50/60 border border-amber-200/60 rounded-2xl p-4 mb-6">
-                        <h4 class="text-xs font-bold text-amber-800 flex items-center gap-2 mb-1">
-                            <i class="fa-solid fa-triangle-exclamation"></i> <span data-i18n="detail.shield.title">Tarcza Ochronna Inwestora</span>
-                        </h4>
-                        <p class="text-[11px] text-amber-700/90 leading-normal" data-i18n="detail.shield.desc">
+<!-- Blue Banner (Investment Indicators) -->
+<section class="bg-gradient-to-r from-sky-900 via-indigo-950 to-slate-900 text-white py-12 shadow-inner">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 sm:grid-cols-3 gap-8 text-center sm:text-left items-center">
+<div class="flex items-center gap-4 justify-center sm:justify-start border-b sm:border-b-0 sm:border-r border-white/10 pb-6 sm:pb-0">
+<div class="text-3xl text-sky-400"><i class="fa-solid fa-hotel"></i></div>
+<div>
+<h4 class="font-extrabold text-lg tracking-tight" data-i18n="banner.villas.title">Kolekcja Wyselekcjonowanych Willi</h4>
+<p class="text-xs text-slate-300" data-i18n="banner.villas.sub">Zweryfikowane i bezpieczne rezydencje</p>
+</div>
+</div>
+<div class="flex items-center gap-4 justify-center sm:justify-start border-b sm:border-b-0 sm:border-r border-white/10 pb-6 sm:pb-0">
+<div class="text-3xl text-emerald-400"><i class="fa-solid fa-chart-line"></i></div>
+<div>
+<h4 class="font-extrabold text-lg tracking-tight" data-i18n="banner.growth.title">Stabilny Wzrost Kapitału</h4>
+<p class="text-xs text-slate-300" data-i18n="banner.growth.sub">Włoski rynek o wysokiej płynności</p>
+</div>
+</div>
+<div class="flex items-center gap-4 justify-center sm:justify-start">
+<div class="text-3xl text-amber-400"><i class="fa-solid fa-file-shield"></i></div>
+<div>
+<h4 class="font-extrabold text-lg tracking-tight" data-i18n="banner.audit.title">Niezależny System Audytu</h4>
+<p class="text-xs text-slate-300" data-i18n="banner.audit.sub">100% ochrony przed wadami prawnymi i ukrytymi</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Investment Pillars Section -->
+<section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+<div class="text-center max-w-3xl mx-auto mb-16">
+<h2 class="text-3xl font-bold text-slate-900 tracking-tight mb-4" data-i18n="pillars.h2">Filary Inwestycji Ponte Dom</h2>
+<p class="text-slate-500" data-i18n="pillars.sub">Przekształcamy standardowe pośrednictwo w transparentny, bezpieczny proces chroniony przez niezależną grupę ekspertów.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+<div class="bg-white p-8 rounded-2xl border border-slate-100 shadow-sm hover:shadow-md transition-all">
+<div class="w-12 h-12 bg-sky-50 text-sky-600 rounded-xl flex items-center justify-center text-xl mb-6 font-bold"><i class="fa-solid fa-shield-halved"></i></div>
+<h3 class="text-xl font-bold mb-3 text-slate-800" data-i18n="pillars.audit.title">Niezależny Audyt Prawny</h3>
+<p class="text-slate-500 text-sm leading-relaxed" data-i18n="pillars.audit.desc">Każda nieruchomość przechodzi rygorystyczny proces due diligence. Weryfikujemy księgi wieczyste, stan katastralny oraz zgodność urbanistyczną przed publikacją oferty.</p>
+</div>
+<div class="bg-white p-8 rounded-2xl border border-slate-100 shadow-sm hover:shadow-md transition-all">
+<div class="w-12 h-12 bg-emerald-50 text-emerald-600 rounded-xl flex items-center justify-center text-xl mb-6 font-bold"><i class="fa-solid fa-users-gear"></i></div>
+<h3 class="text-xl font-bold mb-3 text-slate-800" data-i18n="pillars.taskforce.title">Task Force Ekspertów</h3>
+<p class="text-slate-500 text-sm leading-relaxed" data-i18n="pillars.taskforce.desc">Zapewniamy bezpośrednie wsparcie inżynierów, prawników i doradców podatkowych, eliminując ryzyka ukrytych wad budowlanych i proceduralnych.</p>
+</div>
+<div class="bg-white p-8 rounded-2xl border border-slate-100 shadow-sm hover:shadow-md transition-all">
+<div class="w-12 h-12 bg-amber-50 text-amber-600 rounded-xl flex items-center justify-center text-xl mb-6 font-bold"><i class="fa-solid fa-handshake-angle"></i></div>
+<h3 class="text-xl font-bold mb-3 text-slate-800" data-i18n="pillars.autonomy.title">Pełna Autonomia Klienta</h3>
+<p class="text-slate-500 text-sm leading-relaxed" data-i18n="pillars.autonomy.desc">Nie narzucamy sztywnych struktur. Ty wybierasz zakres naszego wsparcia, zachowując bezpośredni kontakt i kontrolę nad finalnym procesem zakupu.</p>
+</div>
+</div>
+</section>
+<!-- INTEGRATED OFFERS & MAP SECTION -->
+<section class="border-t border-slate-200 bg-slate-50/50 py-16" id="map-section">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="mb-8">
+<span class="text-sky-600 font-bold text-xs uppercase tracking-widest block mb-2" data-i18n="map.label">Kolekcja Śródziemnomorska</span>
+<h2 class="text-3xl font-extrabold text-slate-900 tracking-tight" data-i18n="map.h2">Dostępne Rezydencje</h2>
+<p class="text-sm text-slate-500 mt-1" data-i18n="map.sub">Wszystkie poniższe oferty zostały wstępnie zweryfikowane pod kątem formalno-prawnym.</p>
+</div>
+<div aria-label="Filtry nieruchomości" class="bg-white border border-slate-200 rounded-2xl shadow-sm p-5 sm:p-6 mb-8" role="region">
+<div class="flex flex-col xl:flex-row xl:items-end gap-4 xl:gap-6">
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-4 flex-1">
+<label class="block">
+<span class="text-xs font-bold text-slate-500 uppercase tracking-wider" data-i18n="filter.priceFrom">Cena od</span>
+<input class="mt-2 w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm focus:outline-none focus:border-sky-500" data-i18n-placeholder="filter.priceFromPlaceholder" id="filter-price-min" min="0" placeholder="np. 250000" step="1000" type="number"/>
+</label>
+<label class="block">
+<span class="text-xs font-bold text-slate-500 uppercase tracking-wider" data-i18n="filter.priceTo">Cena do</span>
+<input class="mt-2 w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm focus:outline-none focus:border-sky-500" data-i18n-placeholder="filter.priceToPlaceholder" id="filter-price-max" min="0" placeholder="np. 500000" step="1000" type="number"/>
+</label>
+</div>
+<button class="xl:self-end inline-flex items-center justify-center gap-2 rounded-xl border border-slate-200 px-4 py-3 text-xs font-bold uppercase tracking-wider text-slate-600 hover:border-sky-500 hover:text-sky-600 transition-colors" id="clear-filters" type="button">
+<i class="fa-solid fa-rotate-left"></i> <span data-i18n="filter.clear">Wyczyść filtry</span>
+</button>
+</div>
+<div class="mt-5">
+<p class="text-xs font-bold text-slate-500 uppercase tracking-wider mb-3" data-i18n="filter.features">Cechy nieruchomości</p>
+<div aria-label="Filtry cech nieruchomości" class="flex flex-wrap gap-2" id="feature-filters" role="group"></div>
+</div>
+<p aria-live="polite" class="mt-4 text-xs font-semibold text-sky-700" id="filter-correction-message" role="status"></p>
+<p aria-live="polite" class="mt-2 text-xs text-slate-500" id="active-filter-summary" role="status"></p>
+</div>
+<div class="flex flex-col lg:flex-row gap-8">
+<!-- Left Side: Listings Column with view switcher -->
+<div class="w-full lg:w-7/12 min-w-0">
+<div class="flex items-center justify-between gap-3 mb-4 rounded-xl border border-slate-200 bg-white p-2 shadow-sm">
+<span class="px-2 text-xs font-bold uppercase tracking-wide text-slate-500" id="listing-view-label">Widok ofert</span>
+<div aria-label="Listing display mode" class="flex items-center gap-1" role="group">
+<button aria-label="List view" aria-pressed="false" class="listing-view-btn" data-view="list" onclick="setListingView('list')" title="List view" type="button"><i class="fa-solid fa-list"></i><span>Lista</span></button>
+<button aria-label="Card view" aria-pressed="true" class="listing-view-btn active" data-view="cards" onclick="setListingView('cards')" title="Card view" type="button"><i class="fa-regular fa-square"></i><span>Karty</span></button>
+<button aria-label="Large card view" aria-pressed="false" class="listing-view-btn" data-view="large" onclick="setListingView('large')" title="Large card view" type="button"><i class="fa-solid fa-image"></i><span>Duże</span></button>
+</div>
+</div>
+<div class="listing-grid view-cards grid grid-cols-1 gap-5 pr-1 min-w-0" id="listings-container"></div>
+</div>
+<!-- Right Side: Map Container Layout -->
+<div class="w-full lg:w-5/12 relative rounded-2xl overflow-hidden border border-slate-200 shadow-sm bg-[#eef5f9]" style="height:800px;position:sticky;top:80px;">
+<div class="w-full h-full z-10" id="map-container"></div>
+</div>
+</div>
+</div>
+</section>
+</div>
+<!-- DETAILED PROPERTY SINGLE VIEW -->
+<div class="hidden bg-slate-50/30 py-12" id="detail-page">
+<div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+<button class="inline-flex items-center gap-2 text-slate-500 hover:text-sky-600 font-semibold text-sm mb-8 transition-colors bg-white px-4 py-2 rounded-xl shadow-sm border border-slate-100" onclick="backToExplore()">
+<i class="fa-solid fa-arrow-left"></i> <span data-i18n="detail.back">Wróć do mapy ofert</span>
+</button>
+<div class="bg-white rounded-3xl border border-slate-100 shadow-sm overflow-hidden grid grid-cols-1 lg:grid-cols-12">
+<div class="lg:col-span-7 relative bg-slate-900 h-[300px] sm:h-[450px] lg:h-full min-h-[400px]">
+<img alt="Property Visual View" class="w-full h-full object-cover transition-all duration-500" id="detail-img" src=""/>
+<!-- Highly Visible Absolute Positioned Navigation Arrows -->
+<button class="absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-white/90 hover:bg-sky-600 text-slate-900 hover:text-white rounded-full flex items-center justify-center shadow-lg transition-all z-20" onclick="prevImage()">
+<i class="fa-solid fa-chevron-left text-base"></i>
+</button>
+<button class="absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-white/90 hover:bg-sky-600 text-slate-900 hover:text-white rounded-full flex items-center justify-center shadow-lg transition-all z-20" onclick="nextImage()">
+<i class="fa-solid fa-chevron-right text-base"></i>
+</button>
+<div class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-slate-900/80 via-slate-900/20 to-transparent p-6 flex justify-between items-center">
+<span class="bg-white/20 backdrop-blur-md border border-white/30 text-white text-xs font-bold tracking-wider px-3 py-1.5 rounded-lg uppercase" id="detail-badge"></span>
+</div>
+</div>
+<div class="lg:col-span-5 p-6 sm:p-10 flex flex-col justify-between h-full">
+<div>
+<h1 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight mb-2" id="detail-title"></h1>
+<p class="text-slate-400 text-sm flex items-center gap-2 mb-6"><i class="fa-solid fa-location-dot text-sky-500"></i><span id="detail-loc"></span></p>
+<div class="border-y border-slate-100 py-4 mb-6 flex justify-between items-center">
+<span class="text-slate-400 text-sm font-medium" data-i18n="detail.priceLabel">Cena ofertowa</span>
+<span class="text-2xl font-black text-sky-600 tracking-tight" id="detail-price"></span>
+</div>
+<h3 class="text-xs font-bold text-slate-400 uppercase tracking-widest mb-3" data-i18n="detail.specs">Charakterystyka obiektu</h3>
+<div class="grid grid-cols-3 gap-4 mb-8" id="detail-specs"></div>
+<div aria-label="Cechy nieruchomości" class="flex flex-wrap gap-2 mb-8" id="detail-features" role="list"></div>
+<p class="text-slate-500 text-sm leading-relaxed mb-8" id="detail-desc"></p>
+</div>
+<div class="bg-amber-50/60 border border-amber-200/60 rounded-2xl p-4 mb-6">
+<h4 class="text-xs font-bold text-amber-800 flex items-center gap-2 mb-1">
+<i class="fa-solid fa-triangle-exclamation"></i> <span data-i18n="detail.shield.title">Tarcza Ochronna Inwestora</span>
+</h4>
+<p class="text-[11px] text-amber-700/90 leading-normal" data-i18n="detail.shield.desc">
                             W trosce o pełne bezpieczeństwo transakcyjne, ta nieruchomość kwalifikuje się do niezależnego audytu architektoniczno-katastralnego przed podpisaniem umowy przedwstępnej.
                         </p>
-                    </div>
-                    
-                    <form onsubmit="submitForm(event)" class="space-y-3">
-                        <h3 class="text-sm font-bold text-slate-800" data-i18n="detail.form.title">Zapytaj o audyt i prezentację</h3>
-                        <input type="text" data-i18n-placeholder="detail.form.name" placeholder="Imię i nazwisko" required class="w-full bg-slate-50 border border-slate-200 px-4 py-3 rounded-xl text-sm focus:outline-none focus:border-sky-500">
-                        <input type="email" data-i18n-placeholder="detail.form.email" placeholder="Adres e-mail" required class="w-full bg-slate-50 border border-slate-200 px-4 py-3 rounded-xl text-sm focus:outline-none focus:border-sky-500">
-                        <input type="tel" data-i18n-placeholder="detail.form.phone" placeholder="Numer telefonu" required class="w-full bg-slate-50 border border-slate-200 px-4 py-3 rounded-xl text-sm focus:outline-none focus:border-sky-500">
-                        <button type="submit" class="w-full bg-sky-600 hover:bg-sky-500 text-white font-bold text-xs tracking-wider uppercase py-4 rounded-xl transition-all shadow-md shadow-sky-100" data-i18n="detail.form.submit">
+</div>
+<form class="space-y-3" onsubmit="submitForm(event)">
+<h3 class="text-sm font-bold text-slate-800" data-i18n="detail.form.title">Zapytaj o audyt i prezentację</h3>
+<input class="w-full bg-slate-50 border border-slate-200 px-4 py-3 rounded-xl text-sm focus:outline-none focus:border-sky-500" data-i18n-placeholder="detail.form.name" placeholder="Imię i nazwisko" required="" type="text"/>
+<input class="w-full bg-slate-50 border border-slate-200 px-4 py-3 rounded-xl text-sm focus:outline-none focus:border-sky-500" data-i18n-placeholder="detail.form.email" placeholder="Adres e-mail" required="" type="email"/>
+<input class="w-full bg-slate-50 border border-slate-200 px-4 py-3 rounded-xl text-sm focus:outline-none focus:border-sky-500" data-i18n-placeholder="detail.form.phone" placeholder="Numer telefonu" required="" type="tel"/>
+<button class="w-full bg-sky-600 hover:bg-sky-500 text-white font-bold text-xs tracking-wider uppercase py-4 rounded-xl transition-all shadow-md shadow-sky-100" data-i18n="detail.form.submit" type="submit">
                             Wyślij zgłoszenie
                         </button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- O NAS & INVESTOR SAFETY VIEW WITH FAQ INTEGRATED -->
-    <div id="about-page" class="hidden bg-slate-50/30 py-16">
-        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-            
-            <div class="bg-white rounded-3xl border border-slate-100 shadow-sm p-8 sm:p-12 mb-12">
-                <span class="text-sky-600 font-bold text-xs uppercase tracking-widest block mb-2" data-i18n="about.label">O nas</span>
-                <h1 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight mb-6" data-i18n="about.h1">Bezpieczne i transparentne inwestowanie w nieruchomości we Włoszech</h1>
-                
-                <div class="prose prose-slate max-w-none text-slate-600 text-sm sm:text-base space-y-6 leading-relaxed">
-                    <p data-i18n="about.intro">
+</form>
+</div>
+</div>
+</div>
+</div>
+<!-- O NAS & INVESTOR SAFETY VIEW WITH FAQ INTEGRATED -->
+<div class="hidden bg-slate-50/30 py-16" id="about-page">
+<div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="bg-white rounded-3xl border border-slate-100 shadow-sm p-8 sm:p-12 mb-12">
+<span class="text-sky-600 font-bold text-xs uppercase tracking-widest block mb-2" data-i18n="about.label">O nas</span>
+<h1 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight mb-6" data-i18n="about.h1">Bezpieczne i transparentne inwestowanie w nieruchomości we Włoszech</h1>
+<div class="prose prose-slate max-w-none text-slate-600 text-sm sm:text-base space-y-6 leading-relaxed">
+<p data-i18n="about.intro">
                         Pomagamy polskim inwestorom bezpiecznie i świadomie poruszać się po włoskim rynku nieruchomości na terenie całych Włoch, niezależnie od regionu, miasta i rodzaju nieruchomości. Wspieramy osoby planujące zakup nieruchomości we Włoszech na własne potrzeby, pod wynajem, do remontu, do dalszej odsprzedaży lub jako inwestycję kapitałową.
                     </p>
-                    <p data-i18n="about.support">
+<p data-i18n="about.support">
                         Naszą rolą jest zapewnienie niezależnego wsparcia w procesie inwestowania w nieruchomości we Włoszech – od wstępnej analizy oferty, przez weryfikację dokumentacji i due diligence, po przygotowanie do finalizacji transakcji oraz dalsze etapy inwestycji, jeśli są potrzebne. Dzięki temu polski inwestor we Włoszech zyskuje większą kontrolę nad procesem, kosztami i ryzykiem.
                     </p>
-                    
-                    <h2 class="text-xl font-bold text-slate-900 pt-4" data-i18n="about.approach.title">Nasze podejście: swoboda wyboru i przejrzystość</h2>
-                    <p data-i18n="about.model">Nie chcemy być kolejną agencją, która narzuca inwestorowi określony sposób działania. Uważamy, że profesjonalne doradztwo powinno przede wszystkim dostarczać informacji, porządkować proces zakupu nieruchomości we Włoszech i ułatwiać podejmowanie świadomych decyzji.</p>
-                    <ul class="space-y-3 list-none pl-0">
-                        <li class="flex items-start gap-3">
-                            <i class="fa-solid fa-check text-emerald-500 mt-1"></i>
-                            <span data-i18n="about.approach.li1"><strong>Brak zbędnych powiązań i pełna transparentność:</strong> Nasze wsparcie nie jest obowiązkowym elementem transakcji. Inwestor może samodzielnie prowadzić negocjacje, współpracować z wybraną agencją nieruchomości albo korzystać z własnych specjalistów.</span>
-                        </li>
-                        <li class="flex items-start gap-3">
-                            <i class="fa-solid fa-check text-emerald-500 mt-1"></i>
-                            <span data-i18n="about.approach.li2"><strong>Wsparcie na terenie całych Włoch:</strong> Obsługujemy inwestorów zainteresowanych nieruchomościami w całych Włoszech – mieszkaniami, domami wakacyjnymi, nieruchomościami inwestycyjnymi, lokalami na wynajem, obiektami do remontu oraz projektami wymagającymi analizy technicznej, prawnej lub urbanistycznej.</span>
-                        </li>
-                    </ul>
-
-                    <h2 class="text-xl font-bold text-slate-900 pt-4" data-i18n="about.why.title">Dlaczego warto nas wybrać: operacyjne wsparcie inwestora</h2>
-                    <p data-i18n="about.taskforce">Zakup nieruchomości we Włoszech często wymaga współpracy z agentem nieruchomości, notariuszem, prawnikiem, geometrem, architektem, doradcą podatkowym, wykonawcą lub brokerem ubezpieczeniowym. Pomagamy uporządkować ten proces i zapewniamy dostęp do odpowiednich kompetencji zależnie od rodzaju nieruchomości, strategii inwestora i etapu inwestycji.</p>
-                    <ul class="space-y-3 list-none pl-0">
-                        <li class="flex items-start gap-3">
-                            <i class="fa-solid fa-star text-sky-500 mt-1"></i>
-                            <span data-i18n="about.why.li1"><strong>Rygorystyczna selekcja partnerów:</strong> W zależności od potrzeb inwestycji angażujemy sprawdzonych specjalistów, między innymi agentów nieruchomości, prawników, notariuszy, geodetów, architektów, ekspertów budowlanych, doradców podatkowych i brokerów ubezpieczeniowych.</span>
-                        </li>
-                        <li class="flex items-start gap-3">
-                            <i class="fa-solid fa-language text-sky-500 mt-1"></i>
-                            <span data-i18n="about.why.li2"><strong>Bariera językowa i różnice systemowe:</strong> Pomagamy pełnić funkcję pomostu między polskim inwestorem a włoskim rynkiem nieruchomości, ułatwiając komunikację oraz zrozumienie dokumentów, procedur i lokalnych praktyk.</span>
-                        </li>
-                        <li class="flex items-start gap-3">
-                            <i class="fa-solid fa-sliders text-sky-500 mt-1"></i>
-                            <span data-i18n="about.why.li3"><strong>Model „szyty na miarę” bez niepotrzebnych zobowiązań:</strong> Zakres współpracy może obejmować wyłącznie wybrane elementy procesu, takie jak analiza dokumentacji, due diligence, wsparcie techniczne, przygotowanie do negocjacji czy koordynacja lokalnych specjalistów.</span>
-                        </li>
-                    </ul>
-
-                    <h2 class="text-xl font-bold text-slate-900 pt-4" data-i18n="about.safety.title">Bezpieczeństwo zakupu nieruchomości we Włoszech</h2>
-                    <p data-i18n="about.safety">Atrakcyjna cena lub lokalizacja nie powinny być jedynym kryterium decyzji. Bezpieczeństwo zakupu nieruchomości we Włoszech wymaga sprawdzenia dokumentacji, stanu prawnego, danych katastralnych, kwestii urbanistycznych, potencjalnych kosztów remontu i obowiązków podatkowych jeszcze przed podpisaniem umowy.</p>
-                    <ul class="space-y-2 list-disc pl-5">
-                        <li data-i18n="about.safety.li1"><strong>Due diligence techniczne, prawne i urbanistyczne:</strong> Pomagamy zorganizować weryfikację nieruchomości we Włoszech tak, aby potencjalne problemy zostały zidentyfikowane przed podpisaniem ostatecznej umowy i przekazaniem kapitału.</li>
-                        <li data-i18n="about.safety.li2"><strong>Ocena ryzyk i kosztów:</strong> Weryfikujemy, czy rzeczywisty stan nieruchomości odpowiada dokumentacji oraz jakie mogą wystąpić koszty remontu, ograniczenia, obciążenia lub ryzyka związane z przyszłym użytkowaniem i wynajmem.</li>
-                        <li data-i18n="about.safety.li3"><strong>Wsparcie „A La Carte” na każdym etapie inwestycji:</strong> Możemy dołączyć jeszcze przed wyborem nieruchomości, przy analizie oferty, due diligence, przygotowaniu do negocjacji, finalizacji zakupu oraz dalszych działaniach związanych z nieruchomością. W razie potrzeby pomagamy także w kontakcie z wyspecjalizowanymi brokerami ubezpieczeniowymi.</li>
-                    </ul>
-
-                    <h2 class="text-xl font-bold text-slate-900 pt-4" data-i18n="about.goal.title">Nasz cel</h2>
-                    <p data-i18n="about.goal">Naszym celem jest stworzenie dla polskiego inwestora bezpiecznej, przejrzystej i zrozumiałej ścieżki inwestowania w nieruchomości we Włoszech. Nie podejmujemy decyzji za inwestora – pomagamy mu zdobyć informacje i odpowiednie wsparcie, aby mógł podejmować decyzje świadomie.</p>
-                    <p class="font-bold text-slate-900" data-i18n="about.goal.p2">Jeżeli rozważają Państwo zakup nieruchomości we Włoszech, niezależnie od jej lokalizacji, rodzaju lub przeznaczenia, jesteśmy do Państwa dyspozycji.</p>
-                    
-                    <div class="border-t border-slate-100 pt-6 mt-6">
-                        <h2 class="text-xl font-bold text-slate-900 mb-2" data-i18n="about.dream.title">Zakup nieruchomości we Włoszech: jak bezpiecznie zrealizować inwestycję?</h2>
-                        <p data-i18n="about.dream">Wielu polskich inwestorów marzy o posiadaniu nieruchomości we Włoszech – zarówno jako drugiego domu, miejsca wypoczynku, nieruchomości na wynajem, jak i inwestycji kapitałowej. Włoski rynek nieruchomości oferuje wiele możliwości, jednak zakup nieruchomości w innym kraju wymaga znajomości lokalnych procedur, dokumentacji oraz potencjalnych zagrożeń.</p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- COMPLIANCE & SAFETY FAQ ACCORDIONS -->
-            <div class="bg-white rounded-3xl border border-slate-100 shadow-sm p-8 sm:p-12">
-                <div class="flex items-center gap-3 mb-4">
-                    <span class="w-3 h-3 rounded-full bg-red-500 animate-pulse"></span>
-                    <span class="text-xs font-bold text-red-600 tracking-wider uppercase" data-i18n="faq.label">FAQ: inwestowanie w nieruchomości we Włoszech</span>
-                </div>
-                <h2 class="text-2xl font-black text-slate-900 tracking-tight mb-6" data-i18n="faq.h2">Najważniejsze pytania polskich inwestorów</h2>
-
-                <div class="space-y-4">
-                    <div class="border border-slate-100 rounded-2xl overflow-hidden faq-item">
-                        <button onclick="toggleFaq(this)" class="w-full bg-slate-50/60 hover:bg-slate-50 px-6 py-5 flex justify-between items-center text-left transition-colors">
-                            <span class="font-bold text-sm text-slate-800" data-i18n="faq.q1">Jakie są główne ryzyka przy zakupie nieruchomości we Włoszech, szczególnie nieruchomości wymagającej remontu?</span>
-                            <i class="fa-solid fa-chevron-down text-slate-400 text-xs transition-transform duration-300"></i>
-                        </button>
-                        <div class="faq-body hidden bg-white px-6 py-5 border-t border-slate-50 text-xs sm:text-sm text-slate-600 space-y-2">
-                            <p data-i18n="faq.a1"><strong>Odpowiedź:</strong> Najważniejsze ryzyka mogą dotyczyć między innymi stanu prawnego i urbanistycznego nieruchomości, zgodności dokumentacji ze stanem faktycznym, kosztów remontu oraz możliwości prawnego wykonania planowanych prac. W przypadku nieruchomości wymagających modernizacji szczególnie ważne jest sprawdzenie, czy planowany zakres prac jest możliwy do wykonania zgodnie z obowiązującymi przepisami oraz czy przedstawione koszty są realistyczne.</p>
-                        </div>
-                    </div>
-
-                    <div class="border border-slate-100 rounded-2xl overflow-hidden faq-item">
-                        <button onclick="toggleFaq(this)" class="w-full bg-slate-50/60 hover:bg-slate-50 px-6 py-5 flex justify-between items-center text-left transition-colors">
-                            <span class="font-bold text-sm text-slate-800" data-i18n="faq.q2">Jak rzetelnie zweryfikować wiarygodność podmiotu oferującego nieruchomość?</span>
-                            <i class="fa-solid fa-chevron-down text-slate-400 text-xs transition-transform duration-300"></i>
-                        </button>
-                        <div class="faq-body hidden bg-white px-6 py-5 border-t border-slate-50 text-xs sm:text-sm text-slate-600 space-y-2">
-                            <p data-i18n="faq.a2"><strong>Odpowiedź:</strong> Przed dokonaniem płatności należy ustalić, z kim dokładnie zawierana jest transakcja, jakie prawa posiada dana osoba lub firma oraz czy ma ona prawo do sprzedaży nieruchomości. Warto również zweryfikować dokumentację nieruchomości oraz korzystać z profesjonalnego wsparcia prawnego i technicznego, zwłaszcza gdy sprzedający wywiera presję na szybkie podjęcie decyzji.</p>
-                        </div>
-                    </div>
-
-                    <div class="border border-slate-100 rounded-2xl overflow-hidden faq-item">
-                        <button onclick="toggleFaq(this)" class="w-full bg-slate-50/60 hover:bg-slate-50 px-6 py-5 flex justify-between items-center text-left transition-colors">
-                            <span class="font-bold text-sm text-slate-800" data-i18n="faq.q3">Na co zwrócić uwagę w kosztorysach remontowych i przy ulgach lub programach wsparcia?</span>
-                            <i class="fa-solid fa-chevron-down text-slate-400 text-xs transition-transform duration-300"></i>
-                        </button>
-                        <div class="faq-body hidden bg-white px-6 py-5 border-t border-slate-50 text-xs sm:text-sm text-slate-600 space-y-2">
-                            <p data-i18n="faq.a3"><strong>Odpowiedź:</strong> Kosztorys remontu powinien być oparty na rzeczywistym zakresie prac, aktualnych cenach materiałów i robocizny oraz stanie technicznym nieruchomości. Nie należy automatycznie zakładać, że każda inwestycja kwalifikuje się do określonej ulgi podatkowej lub programu wsparcia – przed uwzględnieniem takich korzyści w kalkulacji trzeba sprawdzić aktualne przepisy, warunki kwalifikacji i możliwość ich zastosowania w konkretnym przypadku.</p>
-                        </div>
-                    </div>
-
-                    <div class="border border-slate-100 rounded-2xl overflow-hidden faq-item">
-                        <button onclick="toggleFaq(this)" class="w-full bg-slate-50/60 hover:bg-slate-50 px-6 py-5 flex justify-between items-center text-left transition-colors">
-                            <span class="font-bold text-sm text-slate-800" data-i18n="faq.q4">Jak skutecznie zabezpieczyć interesy w fazie transakcji?</span>
-                            <i class="fa-solid fa-chevron-down text-slate-400 text-xs transition-transform duration-300"></i>
-                        </button>
-                        <div class="faq-body hidden bg-white px-6 py-5 border-t border-slate-50 text-xs sm:text-sm text-slate-600 space-y-3">
-                            <p><strong data-i18n="faq.instructions">Najważniejsze zasady:</strong></p>
-                            <ul class="list-disc pl-5 space-y-1">
-                                <li data-i18n="faq.a4.li1"><strong>Transparentność finansowa:</strong> Każda płatność związana z transakcją powinna być odpowiednio udokumentowana i możliwa do jednoznacznego przypisania do konkretnego zobowiązania.</li>
-                                <li data-i18n="faq.a4.li2"><strong>Weryfikacja prawna i katastralna:</strong> Przed zakupem należy sprawdzić dokumentację nieruchomości, w tym dane katastralne oraz jej sytuację prawną i urbanistyczną.</li>
-                                <li data-i18n="faq.a4.li3"><strong>Bezpośredni i udokumentowany kontakt:</strong> Proces negocjacji i płatności powinien zapewniać pełną identyfikowalność stron oraz przepływu środków.</li>
-                                <li data-i18n="faq.a4.li4"><strong>Niezależni eksperci:</strong> Przed podpisaniem umowy zakupu warto rozważyć przeprowadzenie niezależnego audytu prawnego, technicznego i – w razie potrzeby – urbanistycznego.</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="mt-10 pt-8 border-t border-slate-100 text-slate-600 text-sm space-y-4">
-                    <h3 class="font-bold text-slate-900 text-lg" data-i18n="faq.independent">Dlaczego niezależne doradztwo może być najlepszą ochroną inwestora?</h3>
-                    <p data-i18n="faq.independent.p1">Zakup nieruchomości za granicą jest decyzją finansową, której nie powinno się podejmować wyłącznie pod wpływem emocji związanych z atrakcyjną lokalizacją, ceną lub potencjalnym zyskiem.</p>
-                    <p data-i18n="faq.independent.p2">Polski inwestor kupujący nieruchomość we Włoszech musi uwzględnić nie tylko wartość nieruchomości, ale również lokalne przepisy, dokumentację, koszty transakcyjne, kwestie techniczne i urbanistyczne oraz przyszłe koszty utrzymania lub remontu.</p>
-                    <p class="font-medium text-slate-800" data-i18n="faq.cta">Możemy wspierać Państwa na każdym etapie – od wstępnej analizy oferty, przez weryfikację katastralną, prawną i urbanistyczną, aż po analizę kosztów i przygotowanie do finalizacji transakcji.</p>
-                    <p class="text-sm text-slate-500 pt-2" data-i18n="faq.independent.note">Nasze kompetencje i sieć lokalnych specjalistów są do Państwa dyspozycji na terenie całych Włoch.</p>
-                </div>
-            </div>
-
-        </div>
-    </div>
-
-    <!-- MAIN FOOTER BLOCK -->
-    <footer class="bg-slate-900 text-slate-400 text-xs border-t border-slate-800 py-12 mt-20">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row justify-between items-center gap-6">
-            <div class="flex items-center gap-2">
-                <div class="w-6 h-6 bg-sky-600 rounded-md flex items-center justify-center text-white font-bold text-xs">B</div>
-                <span class="text-sm font-bold text-white tracking-tight">Ponte Dom</span>
-            </div>
-            <p data-i18n="footer.copy">© 2026 Ponte Dom. Wszelkie prawa zastrzeżone.</p>
-        </div>
-    </footer>
-
-    <!-- INTERACTION LOGIC ARCHITECTURE -->
-    <script>
+<h2 class="text-xl font-bold text-slate-900 pt-4" data-i18n="about.approach.title">Nasze podejście: swoboda wyboru i przejrzystość</h2>
+<p data-i18n="about.model">Nie chcemy być kolejną agencją, która narzuca inwestorowi określony sposób działania. Uważamy, że profesjonalne doradztwo powinno przede wszystkim dostarczać informacji, porządkować proces zakupu nieruchomości we Włoszech i ułatwiać podejmowanie świadomych decyzji.</p>
+<ul class="space-y-3 list-none pl-0">
+<li class="flex items-start gap-3">
+<i class="fa-solid fa-check text-emerald-500 mt-1"></i>
+<span data-i18n="about.approach.li1"><strong>Brak zbędnych powiązań i pełna transparentność:</strong> Nasze wsparcie nie jest obowiązkowym elementem transakcji. Inwestor może samodzielnie prowadzić negocjacje, współpracować z wybraną agencją nieruchomości albo korzystać z własnych specjalistów.</span>
+</li>
+<li class="flex items-start gap-3">
+<i class="fa-solid fa-check text-emerald-500 mt-1"></i>
+<span data-i18n="about.approach.li2"><strong>Wsparcie na terenie całych Włoch:</strong> Obsługujemy inwestorów zainteresowanych nieruchomościami w całych Włoszech – mieszkaniami, domami wakacyjnymi, nieruchomościami inwestycyjnymi, lokalami na wynajem, obiektami do remontu oraz projektami wymagającymi analizy technicznej, prawnej lub urbanistycznej.</span>
+</li>
+</ul>
+<h2 class="text-xl font-bold text-slate-900 pt-4" data-i18n="about.why.title">Dlaczego warto nas wybrać: operacyjne wsparcie inwestora</h2>
+<p data-i18n="about.taskforce">Zakup nieruchomości we Włoszech często wymaga współpracy z agentem nieruchomości, notariuszem, prawnikiem, geometrem, architektem, doradcą podatkowym, wykonawcą lub brokerem ubezpieczeniowym. Pomagamy uporządkować ten proces i zapewniamy dostęp do odpowiednich kompetencji zależnie od rodzaju nieruchomości, strategii inwestora i etapu inwestycji.</p>
+<ul class="space-y-3 list-none pl-0">
+<li class="flex items-start gap-3">
+<i class="fa-solid fa-star text-sky-500 mt-1"></i>
+<span data-i18n="about.why.li1"><strong>Rygorystyczna selekcja partnerów:</strong> W zależności od potrzeb inwestycji angażujemy sprawdzonych specjalistów, między innymi agentów nieruchomości, prawników, notariuszy, geodetów, architektów, ekspertów budowlanych, doradców podatkowych i brokerów ubezpieczeniowych.</span>
+</li>
+<li class="flex items-start gap-3">
+<i class="fa-solid fa-language text-sky-500 mt-1"></i>
+<span data-i18n="about.why.li2"><strong>Bariera językowa i różnice systemowe:</strong> Pomagamy pełnić funkcję pomostu między polskim inwestorem a włoskim rynkiem nieruchomości, ułatwiając komunikację oraz zrozumienie dokumentów, procedur i lokalnych praktyk.</span>
+</li>
+<li class="flex items-start gap-3">
+<i class="fa-solid fa-sliders text-sky-500 mt-1"></i>
+<span data-i18n="about.why.li3"><strong>Model „szyty na miarę” bez niepotrzebnych zobowiązań:</strong> Zakres współpracy może obejmować wyłącznie wybrane elementy procesu, takie jak analiza dokumentacji, due diligence, wsparcie techniczne, przygotowanie do negocjacji czy koordynacja lokalnych specjalistów.</span>
+</li>
+</ul>
+<h2 class="text-xl font-bold text-slate-900 pt-4" data-i18n="about.safety.title">Bezpieczeństwo zakupu nieruchomości we Włoszech</h2>
+<p data-i18n="about.safety">Atrakcyjna cena lub lokalizacja nie powinny być jedynym kryterium decyzji. Bezpieczeństwo zakupu nieruchomości we Włoszech wymaga sprawdzenia dokumentacji, stanu prawnego, danych katastralnych, kwestii urbanistycznych, potencjalnych kosztów remontu i obowiązków podatkowych jeszcze przed podpisaniem umowy.</p>
+<ul class="space-y-2 list-disc pl-5">
+<li data-i18n="about.safety.li1"><strong>Due diligence techniczne, prawne i urbanistyczne:</strong> Pomagamy zorganizować weryfikację nieruchomości we Włoszech tak, aby potencjalne problemy zostały zidentyfikowane przed podpisaniem ostatecznej umowy i przekazaniem kapitału.</li>
+<li data-i18n="about.safety.li2"><strong>Ocena ryzyk i kosztów:</strong> Weryfikujemy, czy rzeczywisty stan nieruchomości odpowiada dokumentacji oraz jakie mogą wystąpić koszty remontu, ograniczenia, obciążenia lub ryzyka związane z przyszłym użytkowaniem i wynajmem.</li>
+<li data-i18n="about.safety.li3"><strong>Wsparcie „A La Carte” na każdym etapie inwestycji:</strong> Możemy dołączyć jeszcze przed wyborem nieruchomości, przy analizie oferty, due diligence, przygotowaniu do negocjacji, finalizacji zakupu oraz dalszych działaniach związanych z nieruchomością. W razie potrzeby pomagamy także w kontakcie z wyspecjalizowanymi brokerami ubezpieczeniowymi.</li>
+</ul>
+<h2 class="text-xl font-bold text-slate-900 pt-4" data-i18n="about.goal.title">Nasz cel</h2>
+<p data-i18n="about.goal">Naszym celem jest stworzenie dla polskiego inwestora bezpiecznej, przejrzystej i zrozumiałej ścieżki inwestowania w nieruchomości we Włoszech. Nie podejmujemy decyzji za inwestora – pomagamy mu zdobyć informacje i odpowiednie wsparcie, aby mógł podejmować decyzje świadomie.</p>
+<p class="font-bold text-slate-900" data-i18n="about.goal.p2">Jeżeli rozważają Państwo zakup nieruchomości we Włoszech, niezależnie od jej lokalizacji, rodzaju lub przeznaczenia, jesteśmy do Państwa dyspozycji.</p>
+<div class="border-t border-slate-100 pt-6 mt-6">
+<h2 class="text-xl font-bold text-slate-900 mb-2" data-i18n="about.dream.title">Zakup nieruchomości we Włoszech: jak bezpiecznie zrealizować inwestycję?</h2>
+<p data-i18n="about.dream">Wielu polskich inwestorów marzy o posiadaniu nieruchomości we Włoszech – zarówno jako drugiego domu, miejsca wypoczynku, nieruchomości na wynajem, jak i inwestycji kapitałowej. Włoski rynek nieruchomości oferuje wiele możliwości, jednak zakup nieruchomości w innym kraju wymaga znajomości lokalnych procedur, dokumentacji oraz potencjalnych zagrożeń.</p>
+</div>
+</div>
+</div>
+<!-- COMPLIANCE & SAFETY FAQ ACCORDIONS -->
+<div class="bg-white rounded-3xl border border-slate-100 shadow-sm p-8 sm:p-12">
+<div class="flex items-center gap-3 mb-4">
+<span class="w-3 h-3 rounded-full bg-red-500 animate-pulse"></span>
+<span class="text-xs font-bold text-red-600 tracking-wider uppercase" data-i18n="faq.label">FAQ: inwestowanie w nieruchomości we Włoszech</span>
+</div>
+<h2 class="text-2xl font-black text-slate-900 tracking-tight mb-6" data-i18n="faq.h2">Najważniejsze pytania polskich inwestorów</h2>
+<div class="space-y-4">
+<div class="border border-slate-100 rounded-2xl overflow-hidden faq-item">
+<button class="w-full bg-slate-50/60 hover:bg-slate-50 px-6 py-5 flex justify-between items-center text-left transition-colors" onclick="toggleFaq(this)">
+<span class="font-bold text-sm text-slate-800" data-i18n="faq.q1">Jakie są główne ryzyka przy zakupie nieruchomości we Włoszech, szczególnie nieruchomości wymagającej remontu?</span>
+<i class="fa-solid fa-chevron-down text-slate-400 text-xs transition-transform duration-300"></i>
+</button>
+<div class="faq-body hidden bg-white px-6 py-5 border-t border-slate-50 text-xs sm:text-sm text-slate-600 space-y-2">
+<p data-i18n="faq.a1"><strong>Odpowiedź:</strong> Najważniejsze ryzyka mogą dotyczyć między innymi stanu prawnego i urbanistycznego nieruchomości, zgodności dokumentacji ze stanem faktycznym, kosztów remontu oraz możliwości prawnego wykonania planowanych prac. W przypadku nieruchomości wymagających modernizacji szczególnie ważne jest sprawdzenie, czy planowany zakres prac jest możliwy do wykonania zgodnie z obowiązującymi przepisami oraz czy przedstawione koszty są realistyczne.</p>
+</div>
+</div>
+<div class="border border-slate-100 rounded-2xl overflow-hidden faq-item">
+<button class="w-full bg-slate-50/60 hover:bg-slate-50 px-6 py-5 flex justify-between items-center text-left transition-colors" onclick="toggleFaq(this)">
+<span class="font-bold text-sm text-slate-800" data-i18n="faq.q2">Jak rzetelnie zweryfikować wiarygodność podmiotu oferującego nieruchomość?</span>
+<i class="fa-solid fa-chevron-down text-slate-400 text-xs transition-transform duration-300"></i>
+</button>
+<div class="faq-body hidden bg-white px-6 py-5 border-t border-slate-50 text-xs sm:text-sm text-slate-600 space-y-2">
+<p data-i18n="faq.a2"><strong>Odpowiedź:</strong> Przed dokonaniem płatności należy ustalić, z kim dokładnie zawierana jest transakcja, jakie prawa posiada dana osoba lub firma oraz czy ma ona prawo do sprzedaży nieruchomości. Warto również zweryfikować dokumentację nieruchomości oraz korzystać z profesjonalnego wsparcia prawnego i technicznego, zwłaszcza gdy sprzedający wywiera presję na szybkie podjęcie decyzji.</p>
+</div>
+</div>
+<div class="border border-slate-100 rounded-2xl overflow-hidden faq-item">
+<button class="w-full bg-slate-50/60 hover:bg-slate-50 px-6 py-5 flex justify-between items-center text-left transition-colors" onclick="toggleFaq(this)">
+<span class="font-bold text-sm text-slate-800" data-i18n="faq.q3">Na co zwrócić uwagę w kosztorysach remontowych i przy ulgach lub programach wsparcia?</span>
+<i class="fa-solid fa-chevron-down text-slate-400 text-xs transition-transform duration-300"></i>
+</button>
+<div class="faq-body hidden bg-white px-6 py-5 border-t border-slate-50 text-xs sm:text-sm text-slate-600 space-y-2">
+<p data-i18n="faq.a3"><strong>Odpowiedź:</strong> Kosztorys remontu powinien być oparty na rzeczywistym zakresie prac, aktualnych cenach materiałów i robocizny oraz stanie technicznym nieruchomości. Nie należy automatycznie zakładać, że każda inwestycja kwalifikuje się do określonej ulgi podatkowej lub programu wsparcia – przed uwzględnieniem takich korzyści w kalkulacji trzeba sprawdzić aktualne przepisy, warunki kwalifikacji i możliwość ich zastosowania w konkretnym przypadku.</p>
+</div>
+</div>
+<div class="border border-slate-100 rounded-2xl overflow-hidden faq-item">
+<button class="w-full bg-slate-50/60 hover:bg-slate-50 px-6 py-5 flex justify-between items-center text-left transition-colors" onclick="toggleFaq(this)">
+<span class="font-bold text-sm text-slate-800" data-i18n="faq.q4">Jak skutecznie zabezpieczyć interesy w fazie transakcji?</span>
+<i class="fa-solid fa-chevron-down text-slate-400 text-xs transition-transform duration-300"></i>
+</button>
+<div class="faq-body hidden bg-white px-6 py-5 border-t border-slate-50 text-xs sm:text-sm text-slate-600 space-y-3">
+<p><strong data-i18n="faq.instructions">Najważniejsze zasady:</strong></p>
+<ul class="list-disc pl-5 space-y-1">
+<li data-i18n="faq.a4.li1"><strong>Transparentność finansowa:</strong> Każda płatność związana z transakcją powinna być odpowiednio udokumentowana i możliwa do jednoznacznego przypisania do konkretnego zobowiązania.</li>
+<li data-i18n="faq.a4.li2"><strong>Weryfikacja prawna i katastralna:</strong> Przed zakupem należy sprawdzić dokumentację nieruchomości, w tym dane katastralne oraz jej sytuację prawną i urbanistyczną.</li>
+<li data-i18n="faq.a4.li3"><strong>Bezpośredni i udokumentowany kontakt:</strong> Proces negocjacji i płatności powinien zapewniać pełną identyfikowalność stron oraz przepływu środków.</li>
+<li data-i18n="faq.a4.li4"><strong>Niezależni eksperci:</strong> Przed podpisaniem umowy zakupu warto rozważyć przeprowadzenie niezależnego audytu prawnego, technicznego i – w razie potrzeby – urbanistycznego.</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="mt-10 pt-8 border-t border-slate-100 text-slate-600 text-sm space-y-4">
+<h3 class="font-bold text-slate-900 text-lg" data-i18n="faq.independent">Dlaczego niezależne doradztwo może być najlepszą ochroną inwestora?</h3>
+<p data-i18n="faq.independent.p1">Zakup nieruchomości za granicą jest decyzją finansową, której nie powinno się podejmować wyłącznie pod wpływem emocji związanych z atrakcyjną lokalizacją, ceną lub potencjalnym zyskiem.</p>
+<p data-i18n="faq.independent.p2">Polski inwestor kupujący nieruchomość we Włoszech musi uwzględnić nie tylko wartość nieruchomości, ale również lokalne przepisy, dokumentację, koszty transakcyjne, kwestie techniczne i urbanistyczne oraz przyszłe koszty utrzymania lub remontu.</p>
+<p class="font-medium text-slate-800" data-i18n="faq.cta">Możemy wspierać Państwa na każdym etapie – od wstępnej analizy oferty, przez weryfikację katastralną, prawną i urbanistyczną, aż po analizę kosztów i przygotowanie do finalizacji transakcji.</p>
+<p class="text-sm text-slate-500 pt-2" data-i18n="faq.independent.note">Nasze kompetencje i sieć lokalnych specjalistów są do Państwa dyspozycji na terenie całych Włoch.</p>
+</div>
+</div>
+</div>
+</div>
+<!-- SEO LANDING PAGE: Stefano Polish source document -->
+<main class="hidden bg-slate-50" id="landing-page"><section class="bg-gradient-to-r from-slate-900 to-sky-900 text-white py-20 px-4"><div class="max-w-5xl mx-auto"><p class="text-sky-300 uppercase tracking-widest text-xs font-bold mb-4" data-landing-node-0="1"><span data-landing-i18n="0">Dom we Włoszech • Ponte Dom</span></p><h1 class="text-4xl sm:text-5xl font-extrabold leading-tight mb-6" data-landing-node-1="1"><span data-landing-i18n="1">Znajdź swój dom we Włoszech</span></h1><p class="text-lg text-slate-200 max-w-3xl leading-relaxed mb-5" data-landing-node-2="1"><span data-landing-i18n="2">Wiesz, że chcesz kupić dom we Włoszech, ale nie wiesz jeszcze, gdzie? Nie musisz znać regionu, miasta ani konkretnej miejscowości. Powiedz nam tylko, jakiego domu szukasz, jaki masz budżet i co jest dla Ciebie ważne. Na tej podstawie możemy przekazać Twoje zapytanie włoskim agencjom, które posiadają nieruchomości odpowiadające Twoim oczekiwaniom.</span></p><p class="font-bold mb-8" data-landing-node-3="1"><span data-landing-i18n="3">Ty opisujesz, czego szukasz. Agencje szukają ofert dla Ciebie.</span></p><a class="inline-block bg-sky-500 hover:bg-sky-400 px-7 py-4 rounded-xl font-bold" data-landing-node-4="1" href="#landing-contact"><span data-landing-i18n="4">ZNAJDŹ DOM WE WŁOSZECH</span></a><p class="mt-3 text-sm text-slate-300" data-landing-node-5="1"><span data-landing-i18n="5">Zapytanie jest bezpłatne i nie zobowiązuje Cię do zakupu.</span></p></div></section><section class="max-w-6xl mx-auto px-4 py-16"><div class="grid lg:grid-cols-2 gap-10 items-start"><div class="space-y-10"><article><h2 class="text-3xl font-extrabold mb-4" data-landing-node-6="1"><span data-landing-i18n="6">Nie wiesz jeszcze, gdzie kupić?</span></h2><h3 class="font-bold text-xl mb-3" data-landing-node-7="1"><span data-landing-i18n="7">Zacznij od tego, czego potrzebujesz</span></h3><p data-landing-node-8="1"><span data-landing-i18n="8">Nie musisz najpierw wybierać regionu. Możesz zacząć od prostych informacji: budżet + powierzchnia + liczba pokoi + morze lub góry + przeznaczenie nieruchomości. Dopiero później możesz zdecydować, gdzie we Włoszech chcesz kupić dom.</span></p><blockquote class="mt-5 border-l-4 border-sky-500 pl-5 italic text-slate-600" data-landing-node-9="1"><span data-landing-i18n="9">„Szukam domu we Włoszech, najlepiej blisko morza, 80–120 m², 2–3 pokoje, budżet do 180 000 €. Nie wiem jeszcze, w którym regionie.”</span></blockquote><p class="mt-3 font-semibold" data-landing-node-10="1"><span data-landing-i18n="10">To wystarczy, żeby rozpocząć poszukiwania.</span></p></article><article><h2 class="text-2xl font-bold mb-3" data-landing-node-11="1"><span data-landing-i18n="11">Dlaczego warto zacząć od formularza?</span></h2><p data-landing-node-12="1"><span data-landing-i18n="12">Nie musisz przeglądać setek ogłoszeń. Zamiast zaczynać od konkretnego miasta lub regionu, możesz najpierw określić swoje potrzeby: dom nad morzem, mieszkanie w mieście, dom w górach, nieruchomość inwestycyjna, dom do remontu lub miejsce na wakacje.</span></p></article><article><h2 class="text-2xl font-bold mb-4" data-landing-node-13="1"><span data-landing-i18n="13">Co dzieje się po wysłaniu formularza?</span></h2><ol class="list-decimal pl-5 space-y-3"><li data-landing-node-15="1"><strong data-landing-node-14="1"><span data-landing-i18n="14">Opisujesz swoją potrzebę.</span></strong><span data-landing-i18n="15"> Podajesz budżet, metraż, liczbę pokoi i preferencje.</span></li><li data-landing-node-17="1"><strong data-landing-node-16="1"><span data-landing-i18n="16">Twoje zapytanie trafia do odpowiednich agencji.</span></strong><span data-landing-i18n="17"> Agencje mogą sprawdzić, czy mają pasujące nieruchomości.</span></li><li data-landing-node-19="1"><strong data-landing-node-18="1"><span data-landing-i18n="18">Otrzymujesz kontakt.</span></strong><span data-landing-i18n="19"> Jeżeli znajdzie się odpowiednia oferta, agencja może skontaktować się z Tobą bezpośrednio.</span></li><li data-landing-node-21="1"><strong data-landing-node-20="1"><span data-landing-i18n="20">Ty decydujesz.</span></strong><span data-landing-i18n="21"> Samo wysłanie formularza nie oznacza obowiązku zakupu.</span></li></ol></article><article><h2 class="text-2xl font-bold mb-3" data-landing-node-22="1"><span data-landing-i18n="22">A jeśli nie wiesz jeszcze, gdzie we Włoszech?</span></h2><p data-landing-node-23="1"><span data-landing-i18n="23">To właśnie może być dobry moment, żeby zacząć. Włochy to nie tylko Toskania, Sycylia czy Sardynia. Zamiast pytać „Gdzie powinienem kupić dom?”, zacznij od pytania „Jakiego domu szukam?”.</span></p></article></div><div class="bg-white rounded-3xl shadow-sm border border-slate-200 p-7 sm:p-9 scroll-mt-6" id="landing-contact"><h2 class="text-2xl font-extrabold mb-3" data-landing-node-24="1"><span data-landing-i18n="24">Jakiego domu lub mieszkania szukasz?</span></h2><p class="text-slate-500 text-sm mb-6" data-landing-node-25="1"><span data-landing-i18n="25">Opisz swoje potrzeby, a agencje posiadające pasujące oferty będą mogły skontaktować się z Tobą.</span></p><form class="space-y-6" id="landing-inquiry-form" onsubmit="submitLandingInquiry(event)"><div class="grid grid-cols-2 gap-3"><label class="text-sm font-semibold" data-landing-node-26="1"><span data-landing-i18n="26">Budżet od (€)</span><input class="mt-2 w-full border rounded-xl p-3" min="0" name="budget_from_eur" placeholder="Od" type="number"/></label><label class="text-sm font-semibold" data-landing-node-27="1"><span data-landing-i18n="27">Budżet do (€)</span><input class="mt-2 w-full border rounded-xl p-3" min="0" name="budget_to_eur" placeholder="Do" type="number"/></label><label class="text-sm font-semibold" data-landing-node-28="1"><span data-landing-i18n="28">Powierzchnia od (m²)</span><input class="mt-2 w-full border rounded-xl p-3" min="0" name="area_from_m2" type="number"/></label><label class="text-sm font-semibold" data-landing-node-29="1"><span data-landing-i18n="29">Powierzchnia do (m²)</span><input class="mt-2 w-full border rounded-xl p-3" min="0" name="area_to_m2" type="number"/></label></div><fieldset><legend class="font-bold mb-2" data-landing-node-30="1"><span data-landing-i18n="30">Ile pokoi potrzebujesz?</span></legend><div class="flex flex-wrap gap-3"><label class="text-sm" data-landing-node-31="1"><input class="accent-sky-600" name="rooms" type="radio" value="1"/><span data-landing-i18n="31"> 1</span></label><label class="text-sm" data-landing-node-32="1"><input class="accent-sky-600" name="rooms" type="radio" value="2"/><span data-landing-i18n="32"> 2</span></label><label class="text-sm" data-landing-node-33="1"><input class="accent-sky-600" name="rooms" type="radio" value="3"/><span data-landing-i18n="33"> 3</span></label><label class="text-sm" data-landing-node-34="1"><input class="accent-sky-600" name="rooms" type="radio" value="4"/><span data-landing-i18n="34"> 4</span></label><label class="text-sm" data-landing-node-35="1"><input class="accent-sky-600" name="rooms" type="radio" value="5+"/><span data-landing-i18n="35"> 5+</span></label></div></fieldset><fieldset class="space-y-3"><legend class="font-bold text-slate-800 mb-2" data-landing-node-36="1"><span data-landing-i18n="36">Lokalizacja</span></legend><div class="grid grid-cols-2 gap-2"><label class="flex gap-2 items-center text-sm" data-landing-node-37="1"><input class="accent-sky-600" name="Lokalizacja" type="checkbox" value="Nad morzem"/><span data-landing-i18n="37">Nad morzem</span></label><label class="flex gap-2 items-center text-sm" data-landing-node-38="1"><input class="accent-sky-600" name="Lokalizacja" type="checkbox" value="Blisko morza"/><span data-landing-i18n="38">Blisko morza</span></label><label class="flex gap-2 items-center text-sm" data-landing-node-39="1"><input class="accent-sky-600" name="Lokalizacja" type="checkbox" value="W górach"/><span data-landing-i18n="39">W górach</span></label><label class="flex gap-2 items-center text-sm" data-landing-node-40="1"><input class="accent-sky-600" name="Lokalizacja" type="checkbox" value="Na wsi"/><span data-landing-i18n="40">Na wsi</span></label><label class="flex gap-2 items-center text-sm" data-landing-node-41="1"><input class="accent-sky-600" name="Lokalizacja" type="checkbox" value="W mieście"/><span data-landing-i18n="41">W mieście</span></label><label class="flex gap-2 items-center text-sm" data-landing-node-42="1"><input class="accent-sky-600" name="Lokalizacja" type="checkbox" value="Spokojna okolica"/><span data-landing-i18n="42">Spokojna okolica</span></label><label class="flex gap-2 items-center text-sm" data-landing-node-43="1"><input class="accent-sky-600" name="Lokalizacja" type="checkbox" value="Jeszcze nie wiem"/><span data-landing-i18n="43">Jeszcze nie wiem</span></label></div></fieldset><fieldset class="space-y-3"><legend class="font-bold text-slate-800 mb-2" data-landing-node-44="1"><span data-landing-i18n="44">Przeznaczenie nieruchomości</span></legend><div class="grid grid-cols-2 gap-2"><label class="flex gap-2 items-center text-sm" data-landing-node-45="1"><input class="accent-sky-600" name="Przeznaczenie nieruchomości" type="checkbox" value="Dom wakacyjny"/><span data-landing-i18n="45">Dom wakacyjny</span></label><label class="flex gap-2 items-center text-sm" data-landing-node-46="1"><input class="accent-sky-600" name="Przeznaczenie nieruchomości" type="checkbox" value="Własne miejsce do życia"/><span data-landing-i18n="46">Własne miejsce do życia</span></label><label class="flex gap-2 items-center text-sm" data-landing-node-47="1"><input class="accent-sky-600" name="Przeznaczenie nieruchomości" type="checkbox" value="Inwestycja"/><span data-landing-i18n="47">Inwestycja</span></label><label class="flex gap-2 items-center text-sm" data-landing-node-48="1"><input class="accent-sky-600" name="Przeznaczenie nieruchomości" type="checkbox" value="Wynajem"/><span data-landing-i18n="48">Wynajem</span></label><label class="flex gap-2 items-center text-sm" data-landing-node-49="1"><input class="accent-sky-600" name="Przeznaczenie nieruchomości" type="checkbox" value="Zakup i remont"/><span data-landing-i18n="49">Zakup i remont</span></label><label class="flex gap-2 items-center text-sm" data-landing-node-50="1"><input class="accent-sky-600" name="Przeznaczenie nieruchomości" type="checkbox" value="Drugi dom"/><span data-landing-i18n="50">Drugi dom</span></label><label class="flex gap-2 items-center text-sm" data-landing-node-51="1"><input class="accent-sky-600" name="Przeznaczenie nieruchomości" type="checkbox" value="Jeszcze nie wiem"/><span data-landing-i18n="51">Jeszcze nie wiem</span></label></div></fieldset><label class="block text-sm font-semibold" data-landing-node-52="1"><span data-landing-i18n="52">Twoje dodatkowe oczekiwania</span><textarea class="mt-2 w-full border rounded-xl p-3" maxlength="3000" name="expectations" placeholder="Np. ogród, taras, widok na morze, blisko plaży, parking, basen, nieruchomość do remontu..." rows="4"></textarea></label><label class="block text-sm font-semibold" data-landing-node-53="1"><span data-landing-i18n="53">Imię i nazwisko</span><input autocomplete="name" class="mt-2 w-full border rounded-xl p-3" maxlength="120" name="name" required=""/></label><label class="block text-sm font-semibold" data-landing-node-54="1"><span data-landing-i18n="54">Adres e-mail</span><input autocomplete="email" class="mt-2 w-full border rounded-xl p-3" name="email" required="" type="email"/></label><label class="block text-sm font-semibold" data-landing-node-55="1"><span data-landing-i18n="55">Telefon (opcjonalnie)</span><input autocomplete="tel" class="mt-2 w-full border rounded-xl p-3" name="phone" type="tel"/></label><label class="flex gap-3 items-start text-xs text-slate-600"><input class="mt-1" name="consent_to_contact" required="" type="checkbox" value="yes"/><span data-landing-node-56="1"><span data-landing-i18n="56">Wyrażam zgodę na kontakt w sprawie mojego zapytania oraz przekazanie danych odpowiednim agencjom nieruchomości w celu przygotowania ofert. </span></span></label><button class="w-full bg-sky-600 hover:bg-sky-500 text-white rounded-xl p-4 font-bold" data-landing-node-57="1" type="submit"><span data-landing-i18n="57">ZNAJDŹ DOM WE WŁOSZECH</span></button><p class="text-xs text-slate-500" data-landing-node-58="1"><span data-landing-i18n="58">Bezpłatne zapytanie. Bez obowiązku zakupu.</span></p><p aria-live="polite" class="text-sm" id="landing-form-status" role="status"></p></form></div></div><div class="mt-16 bg-sky-50 rounded-3xl p-8 text-center"><h2 class="text-2xl font-bold mb-3" data-landing-node-59="1"><span data-landing-i18n="59">Twój dom we Włoszech może być bliżej, niż myślisz.</span></h2><p class="mb-6" data-landing-node-60="1"><span data-landing-i18n="60">Nie musisz jeszcze znać idealnej lokalizacji. Powiedz nam, czego szukasz.</span></p><a class="inline-block bg-sky-600 text-white rounded-xl px-7 py-4 font-bold" data-landing-node-61="1" href="#landing-contact"><span data-landing-i18n="61">CHCĘ ZNALEŹĆ DOM WE WŁOSZECH</span></a></div><section class="mt-16"><h2 class="text-3xl font-bold mb-7" data-landing-node-62="1"><span data-landing-i18n="62">Najczęstsze pytania o dom we Włoszech</span></h2><div class="space-y-3"><details class="bg-white rounded-xl border border-slate-200 p-5"><summary class="cursor-pointer font-semibold text-slate-900" data-landing-node-63="1"><span data-landing-i18n="63">Jak znaleźć dom we Włoszech?</span></summary><p class="mt-3 text-slate-600 text-sm leading-relaxed" data-landing-node-64="1"><span data-landing-i18n="64">Najlepiej zacząć od określenia budżetu, powierzchni, liczby pokoi oraz preferowanej lokalizacji. Jeśli nie znasz jeszcze konkretnego regionu, możesz rozpocząć od opisania swoich potrzeb.</span></p></details><details class="bg-white rounded-xl border border-slate-200 p-5"><summary class="cursor-pointer font-semibold text-slate-900" data-landing-node-65="1"><span data-landing-i18n="65">Gdzie kupić dom we Włoszech?</span></summary><p class="mt-3 text-slate-600 text-sm leading-relaxed" data-landing-node-66="1"><span data-landing-i18n="66">To zależy od budżetu, celu zakupu i oczekiwań. Inne lokalizacje mogą być odpowiednie dla osoby szukającej domu nad morzem, inne dla inwestora, a jeszcze inne dla osoby szukającej spokojnego miejsca do życia.</span></p></details><details class="bg-white rounded-xl border border-slate-200 p-5"><summary class="cursor-pointer font-semibold text-slate-900" data-landing-node-67="1"><span data-landing-i18n="67">Ile kosztuje dom we Włoszech?</span></summary><p class="mt-3 text-slate-600 text-sm leading-relaxed" data-landing-node-68="1"><span data-landing-i18n="68">Ceny nieruchomości we Włoszech różnią się znacznie w zależności od regionu, miejscowości, powierzchni, stanu technicznego i lokalizacji. Dlatego warto najpierw określić budżet i oczekiwania.</span></p></details><details class="bg-white rounded-xl border border-slate-200 p-5"><summary class="cursor-pointer font-semibold text-slate-900" data-landing-node-69="1"><span data-landing-i18n="69">Czy Polak może kupić dom we Włoszech?</span></summary><p class="mt-3 text-slate-600 text-sm leading-relaxed" data-landing-node-70="1"><span data-landing-i18n="70">Tak. Obywatele Polski, jako obywatele Unii Europejskiej, mogą kupować nieruchomości we Włoszech.</span></p></details><details class="bg-white rounded-xl border border-slate-200 p-5"><summary class="cursor-pointer font-semibold text-slate-900" data-landing-node-71="1"><span data-landing-i18n="71">Czy Polak może kupić mieszkanie we Włoszech?</span></summary><p class="mt-3 text-slate-600 text-sm leading-relaxed" data-landing-node-72="1"><span data-landing-i18n="72">Tak. Polacy mogą kupować mieszkania i inne nieruchomości we Włoszech, z zachowaniem obowiązujących procedur i wymogów prawnych.</span></p></details><details class="bg-white rounded-xl border border-slate-200 p-5"><summary class="cursor-pointer font-semibold text-slate-900" data-landing-node-73="1"><span data-landing-i18n="73">Czy można kupić dom we Włoszech bez znajomości włoskiego?</span></summary><p class="mt-3 text-slate-600 text-sm leading-relaxed" data-landing-node-74="1"><span data-landing-i18n="74">Tak, ale podczas zakupu warto korzystać ze wsparcia osób znających język włoski oraz lokalne procedury i dokumentację.</span></p></details><details class="bg-white rounded-xl border border-slate-200 p-5"><summary class="cursor-pointer font-semibold text-slate-900" data-landing-node-75="1"><span data-landing-i18n="75">Czy można znaleźć dom we Włoszech bez wybrania konkretnego regionu?</span></summary><p class="mt-3 text-slate-600 text-sm leading-relaxed" data-landing-node-76="1"><span data-landing-i18n="76">Tak. Możesz najpierw określić budżet, powierzchnię, liczbę pokoi i preferencje dotyczące morza, gór, miasta lub wsi.</span></p></details><details class="bg-white rounded-xl border border-slate-200 p-5"><summary class="cursor-pointer font-semibold text-slate-900" data-landing-node-77="1"><span data-landing-i18n="77">Czy można znaleźć tani dom we Włoszech?</span></summary><p class="mt-3 text-slate-600 text-sm leading-relaxed" data-landing-node-78="1"><span data-landing-i18n="78">Tak. Na rynku znajdują się nieruchomości w różnych przedziałach cenowych. Niższa cena może jednak oznaczać konieczność remontu, mniej popularną lokalizację lub inne ograniczenia.</span></p></details><details class="bg-white rounded-xl border border-slate-200 p-5"><summary class="cursor-pointer font-semibold text-slate-900" data-landing-node-79="1"><span data-landing-i18n="79">Czy można kupić dom nad morzem we Włoszech?</span></summary><p class="mt-3 text-slate-600 text-sm leading-relaxed" data-landing-node-80="1"><span data-landing-i18n="80">Tak. We Włoszech dostępne są nieruchomości położone bezpośrednio nad morzem oraz w niewielkiej odległości od wybrzeża.</span></p></details><details class="bg-white rounded-xl border border-slate-200 p-5"><summary class="cursor-pointer font-semibold text-slate-900" data-landing-node-81="1"><span data-landing-i18n="81">Czy można znaleźć dom w górach we Włoszech?</span></summary><p class="mt-3 text-slate-600 text-sm leading-relaxed" data-landing-node-82="1"><span data-landing-i18n="82">Tak. Na rynku dostępne są domy i mieszkania w miejscowościach górskich oraz na terenach położonych w pobliżu gór.</span></p></details><details class="bg-white rounded-xl border border-slate-200 p-5"><summary class="cursor-pointer font-semibold text-slate-900" data-landing-node-83="1"><span data-landing-i18n="83">Czy można kupić nieruchomość we Włoszech jako inwestycję?</span></summary><p class="mt-3 text-slate-600 text-sm leading-relaxed" data-landing-node-84="1"><span data-landing-i18n="84">Tak. Nieruchomość może być przeznaczona między innymi na wynajem, drugi dom lub inwestycję kapitałową. Przed zakupem warto przeanalizować lokalny rynek i wszystkie koszty.</span></p></details><details class="bg-white rounded-xl border border-slate-200 p-5"><summary class="cursor-pointer font-semibold text-slate-900" data-landing-node-85="1"><span data-landing-i18n="85">Czy można kupić dom we Włoszech na wakacje?</span></summary><p class="mt-3 text-slate-600 text-sm leading-relaxed" data-landing-node-86="1"><span data-landing-i18n="86">Tak. Włoska nieruchomość może służyć jako dom wakacyjny lub drugi dom. Możliwe wykorzystanie nieruchomości zależy jednak od jej lokalizacji i obowiązujących przepisów.</span></p></details><details class="bg-white rounded-xl border border-slate-200 p-5"><summary class="cursor-pointer font-semibold text-slate-900" data-landing-node-87="1"><span data-landing-i18n="87">Jakiego budżetu potrzebuję na zakup domu we Włoszech?</span></summary><p class="mt-3 text-slate-600 text-sm leading-relaxed" data-landing-node-88="1"><span data-landing-i18n="88">Zależy to od lokalizacji, powierzchni i rodzaju nieruchomości. Oprócz ceny zakupu należy uwzględnić również koszty transakcji, podatki, notariusza, ewentualne prace remontowe i utrzymanie nieruchomości.</span></p></details><details class="bg-white rounded-xl border border-slate-200 p-5"><summary class="cursor-pointer font-semibold text-slate-900" data-landing-node-89="1"><span data-landing-i18n="89">Czy można kupić dom we Włoszech do remontu?</span></summary><p class="mt-3 text-slate-600 text-sm leading-relaxed" data-landing-node-90="1"><span data-landing-i18n="90">Tak. Na włoskim rynku znajdują się nieruchomości wymagające remontu. Przed zakupem należy dokładnie sprawdzić stan techniczny, prawny i urbanistyczny nieruchomości oraz przewidywane koszty remontu.</span></p></details><details class="bg-white rounded-xl border border-slate-200 p-5"><summary class="cursor-pointer font-semibold text-slate-900" data-landing-node-91="1"><span data-landing-i18n="91">Jak wybrać region Włoch do zakupu domu?</span></summary><p class="mt-3 text-slate-600 text-sm leading-relaxed" data-landing-node-92="1"><span data-landing-i18n="92">Wybór regionu powinien uwzględniać budżet, cel zakupu, styl życia, dostęp do morza lub gór, infrastrukturę, komunikację oraz potencjał inwestycyjny.</span></p></details><details class="bg-white rounded-xl border border-slate-200 p-5"><summary class="cursor-pointer font-semibold text-slate-900" data-landing-node-93="1"><span data-landing-i18n="93">Czy lepiej kupić dom czy mieszkanie we Włoszech?</span></summary><p class="mt-3 text-slate-600 text-sm leading-relaxed" data-landing-node-94="1"><span data-landing-i18n="94">Zależy to od indywidualnych potrzeb. Dom może oferować większą powierzchnię, ogród lub prywatność, natomiast mieszkanie może być wygodniejsze w utrzymaniu i znajdować się bliżej centrum miasta.</span></p></details><details class="bg-white rounded-xl border border-slate-200 p-5"><summary class="cursor-pointer font-semibold text-slate-900" data-landing-node-95="1"><span data-landing-i18n="95">Czy można szukać nieruchomości we Włoszech według budżetu?</span></summary><p class="mt-3 text-slate-600 text-sm leading-relaxed" data-landing-node-96="1"><span data-landing-i18n="96">Tak. Budżet jest jednym z podstawowych kryteriów przy wyborze nieruchomości. Możesz określić maksymalną kwotę, którą chcesz przeznaczyć na zakup.</span></p></details><details class="bg-white rounded-xl border border-slate-200 p-5"><summary class="cursor-pointer font-semibold text-slate-900" data-landing-node-97="1"><span data-landing-i18n="97">Czy można znaleźć dom we Włoszech według powierzchni i liczby pokoi?</span></summary><p class="mt-3 text-slate-600 text-sm leading-relaxed" data-landing-node-98="1"><span data-landing-i18n="98">Tak. Powierzchnia i liczba pokoi mogą być wykorzystane jako podstawowe kryteria wyszukiwania domu lub mieszkania.</span></p></details><details class="bg-white rounded-xl border border-slate-200 p-5"><summary class="cursor-pointer font-semibold text-slate-900" data-landing-node-99="1"><span data-landing-i18n="99">Czy wysłanie formularza oznacza obowiązek zakupu?</span></summary><p class="mt-3 text-slate-600 text-sm leading-relaxed" data-landing-node-100="1"><span data-landing-i18n="100">Nie. Wysłanie zapytania jest bezpłatne i nie oznacza obowiązku zakupu nieruchomości.</span></p></details><details class="bg-white rounded-xl border border-slate-200 p-5"><summary class="cursor-pointer font-semibold text-slate-900" data-landing-node-101="1"><span data-landing-i18n="101">Jak zacząć szukać nieruchomości we Włoszech, jeśli nie wiem jeszcze, czego chcę?</span></summary><p class="mt-3 text-slate-600 text-sm leading-relaxed" data-landing-node-102="1"><span data-landing-i18n="102">Zacznij od podstaw: określ orientacyjny budżet, powierzchnię, liczbę pokoi i to, czy interesuje Cię morze, góry, miasto czy wieś. Nie musisz od razu znać konkretnego regionu.</span></p></details></div></section></section></main>
+<!-- MAIN FOOTER BLOCK -->
+<footer class="bg-slate-900 text-slate-400 text-xs border-t border-slate-800 py-12 mt-20">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row justify-between items-center gap-6">
+<div class="flex items-center gap-2">
+<div class="w-6 h-6 bg-sky-600 rounded-md flex items-center justify-center text-white font-bold text-xs">B</div>
+<span class="text-sm font-bold text-white tracking-tight">Ponte Dom</span>
+</div>
+<p data-i18n="footer.copy">© 2026 Ponte Dom. Wszelkie prawa zastrzeżone.</p>
+</div>
+</footer>
+<!-- INTERACTION LOGIC ARCHITECTURE -->
+<script>
         // ── i18n ──────────────────────────────────────────────────────────────────
         // URL-based language routing: pontedom.pl = pl, pontedom.pl/en = en, pontedom.pl/it = it
         function getLangFromUrl() {
@@ -979,6 +937,7 @@
 
             // If a property detail page is currently open, refresh its text too
             if (currentProperty) showDetails(currentProperty.id);
+            translateLandingFull();
 
             // If detail page is visible, re-render it
             if (currentProperty && !document.getElementById('detail-page').classList.contains('hidden')) {
@@ -1666,6 +1625,7 @@
             
             document.getElementById('home-page').classList.add('hidden');
             document.getElementById('about-page').classList.add('hidden');
+            document.getElementById('landing-page').classList.add('hidden');
             document.getElementById('detail-page').classList.remove('hidden');
             
             document.getElementById('detail-title').innerText = L2(currentProperty.title);
@@ -1688,6 +1648,7 @@
                 : `<span class="text-xs text-slate-400">${T("detail.noFeatures")}</span>`;
             
             updateCarousel();
+            if (page !== 'landing') { document.title = 'Ponte Dom - Nieruchomości we Włoszech'; }
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
@@ -1729,6 +1690,7 @@
             document.getElementById('home-page').classList.add('hidden');
             document.getElementById('detail-page').classList.add('hidden');
             document.getElementById('about-page').classList.add('hidden');
+            document.getElementById('landing-page').classList.add('hidden');
             
             if (page === 'home') {
                 document.getElementById('home-page').classList.remove('hidden');
@@ -1736,6 +1698,12 @@
                     initLeafletMap();
                     if(mapInstance) mapInstance.invalidateSize();
                 }, 50);
+            }
+            if (page === 'landing') {
+                document.getElementById('landing-page').classList.remove('hidden');
+                renderLanding();
+                translateLandingFull();
+                history.replaceState(null, '', location.pathname + location.search + '#poradnik');
             }
             if (page === 'about') {
                 document.getElementById('about-page').classList.remove('hidden');
@@ -1787,15 +1755,48 @@
             });
         }
 
+
+        const LANDING_TEXT = {pl:{nav:'Znajdź dom we Włoszech',success:'Dziękujemy! Zapytanie zostało przesłane.',error:'Nie udało się wysłać. Napisz na info@pontedom.pl.'},en:{nav:'Find a home in Italy',success:'Thank you! Your enquiry was sent.',error:'Submission failed. Please email info@pontedom.pl.'},it:{nav:'Trova casa in Italia',success:'Grazie! Richiesta inviata.',error:'Invio non riuscito. Scrivi a info@pontedom.pl.'}};
+        function renderLanding() { document.getElementById('nav-landing').textContent=(LANDING_TEXT[currentLang]||LANDING_TEXT.pl).nav; }
+        async function submitLandingInquiry(event) {
+          event.preventDefault();
+          const form=event.currentTarget, button=form.querySelector('button[type=submit]'), status=document.getElementById('landing-form-status');
+          const t=LANDING_TEXT[currentLang] || LANDING_TEXT.pl;
+          button.disabled=true; status.textContent='…';
+          const payload={}; for(const [key,value] of new FormData(form).entries()){if(payload[key]) payload[key]+=', '+value; else payload[key]=value;}
+          payload.source='Ponte Dom Stefano Polish buyer landing page'; payload.language=currentLang;
+          try {
+            const response=await fetch('https://formspree.io/f/xbglebdq',{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify(payload)});
+            if(!response.ok) throw new Error('Form submission failed');
+            status.textContent=t.success; status.className='text-sm text-emerald-700'; form.reset();
+          } catch(err) { status.textContent=t.error; status.className='text-sm text-red-700'; }
+          finally { button.disabled=false; }
+        }
+
         document.addEventListener("DOMContentLoaded", async () => {
             renderFeatureFilters();
             bindFilterControls();
             applyFilters();
             showPage('home');
             setLanguage(currentLang, true);
+            renderLanding();
+            translateLandingFull();
+            if (location.hash === '#poradnik') showPage('landing');
             initRegionsCarousel();
             await loadDynamicListings();
         });
     </script>
-</body>
+<script>
+const LANDING_FULL_TRANSLATIONS = {"pl": ["Dom we Włoszech • Ponte Dom", "Znajdź swój dom we Włoszech", "Wiesz, że chcesz kupić dom we Włoszech, ale nie wiesz jeszcze, gdzie? Nie musisz znać regionu, miasta ani konkretnej miejscowości. Powiedz nam tylko, jakiego domu szukasz, jaki masz budżet i co jest dla Ciebie ważne. Na tej podstawie możemy przekazać Twoje zapytanie włoskim agencjom, które posiadają nieruchomości odpowiadające Twoim oczekiwaniom.", "Ty opisujesz, czego szukasz. Agencje szukają ofert dla Ciebie.", "ZNAJDŹ DOM WE WŁOSZECH", "Zapytanie jest bezpłatne i nie zobowiązuje Cię do zakupu.", "Nie wiesz jeszcze, gdzie kupić?", "Zacznij od tego, czego potrzebujesz", "Nie musisz najpierw wybierać regionu. Możesz zacząć od prostych informacji: budżet + powierzchnia + liczba pokoi + morze lub góry + przeznaczenie nieruchomości. Dopiero później możesz zdecydować, gdzie we Włoszech chcesz kupić dom.", "„Szukam domu we Włoszech, najlepiej blisko morza, 80–120 m², 2–3 pokoje, budżet do 180 000 €. Nie wiem jeszcze, w którym regionie.”", "To wystarczy, żeby rozpocząć poszukiwania.", "Dlaczego warto zacząć od formularza?", "Nie musisz przeglądać setek ogłoszeń. Zamiast zaczynać od konkretnego miasta lub regionu, możesz najpierw określić swoje potrzeby: dom nad morzem, mieszkanie w mieście, dom w górach, nieruchomość inwestycyjna, dom do remontu lub miejsce na wakacje.", "Co dzieje się po wysłaniu formularza?", "Opisujesz swoją potrzebę.", "Podajesz budżet, metraż, liczbę pokoi i preferencje.", "Twoje zapytanie trafia do odpowiednich agencji.", "Agencje mogą sprawdzić, czy mają pasujące nieruchomości.", "Otrzymujesz kontakt.", "Jeżeli znajdzie się odpowiednia oferta, agencja może skontaktować się z Tobą bezpośrednio.", "Ty decydujesz.", "Samo wysłanie formularza nie oznacza obowiązku zakupu.", "A jeśli nie wiesz jeszcze, gdzie we Włoszech?", "To właśnie może być dobry moment, żeby zacząć. Włochy to nie tylko Toskania, Sycylia czy Sardynia. Zamiast pytać „Gdzie powinienem kupić dom?”, zacznij od pytania „Jakiego domu szukam?”.", "Jakiego domu lub mieszkania szukasz?", "Opisz swoje potrzeby, a agencje posiadające pasujące oferty będą mogły skontaktować się z Tobą.", "Budżet od (€)", "Budżet do (€)", "Powierzchnia od (m²)", "Powierzchnia do (m²)", "Ile pokoi potrzebujesz?", "1", "2", "3", "4", "5+", "Lokalizacja", "Nad morzem", "Blisko morza", "W górach", "Na wsi", "W mieście", "Spokojna okolica", "Jeszcze nie wiem", "Przeznaczenie nieruchomości", "Dom wakacyjny", "Własne miejsce do życia", "Inwestycja", "Wynajem", "Zakup i remont", "Drugi dom", "Jeszcze nie wiem", "Twoje dodatkowe oczekiwania", "Imię i nazwisko", "Adres e-mail", "Telefon (opcjonalnie)", "Wyrażam zgodę na kontakt w sprawie mojego zapytania oraz przekazanie danych odpowiednim agencjom nieruchomości w celu przygotowania ofert.", "ZNAJDŹ DOM WE WŁOSZECH", "Bezpłatne zapytanie. Bez obowiązku zakupu.", "Twój dom we Włoszech może być bliżej, niż myślisz.", "Nie musisz jeszcze znać idealnej lokalizacji. Powiedz nam, czego szukasz.", "CHCĘ ZNALEŹĆ DOM WE WŁOSZECH", "Najczęstsze pytania o dom we Włoszech", "Jak znaleźć dom we Włoszech?", "Najlepiej zacząć od określenia budżetu, powierzchni, liczby pokoi oraz preferowanej lokalizacji. Jeśli nie znasz jeszcze konkretnego regionu, możesz rozpocząć od opisania swoich potrzeb.", "Gdzie kupić dom we Włoszech?", "To zależy od budżetu, celu zakupu i oczekiwań. Inne lokalizacje mogą być odpowiednie dla osoby szukającej domu nad morzem, inne dla inwestora, a jeszcze inne dla osoby szukającej spokojnego miejsca do życia.", "Ile kosztuje dom we Włoszech?", "Ceny nieruchomości we Włoszech różnią się znacznie w zależności od regionu, miejscowości, powierzchni, stanu technicznego i lokalizacji. Dlatego warto najpierw określić budżet i oczekiwania.", "Czy Polak może kupić dom we Włoszech?", "Tak. Obywatele Polski, jako obywatele Unii Europejskiej, mogą kupować nieruchomości we Włoszech.", "Czy Polak może kupić mieszkanie we Włoszech?", "Tak. Polacy mogą kupować mieszkania i inne nieruchomości we Włoszech, z zachowaniem obowiązujących procedur i wymogów prawnych.", "Czy można kupić dom we Włoszech bez znajomości włoskiego?", "Tak, ale podczas zakupu warto korzystać ze wsparcia osób znających język włoski oraz lokalne procedury i dokumentację.", "Czy można znaleźć dom we Włoszech bez wybrania konkretnego regionu?", "Tak. Możesz najpierw określić budżet, powierzchnię, liczbę pokoi i preferencje dotyczące morza, gór, miasta lub wsi.", "Czy można znaleźć tani dom we Włoszech?", "Tak. Na rynku znajdują się nieruchomości w różnych przedziałach cenowych. Niższa cena może jednak oznaczać konieczność remontu, mniej popularną lokalizację lub inne ograniczenia.", "Czy można kupić dom nad morzem we Włoszech?", "Tak. We Włoszech dostępne są nieruchomości położone bezpośrednio nad morzem oraz w niewielkiej odległości od wybrzeża.", "Czy można znaleźć dom w górach we Włoszech?", "Tak. Na rynku dostępne są domy i mieszkania w miejscowościach górskich oraz na terenach położonych w pobliżu gór.", "Czy można kupić nieruchomość we Włoszech jako inwestycję?", "Tak. Nieruchomość może być przeznaczona między innymi na wynajem, drugi dom lub inwestycję kapitałową. Przed zakupem warto przeanalizować lokalny rynek i wszystkie koszty.", "Czy można kupić dom we Włoszech na wakacje?", "Tak. Włoska nieruchomość może służyć jako dom wakacyjny lub drugi dom. Możliwe wykorzystanie nieruchomości zależy jednak od jej lokalizacji i obowiązujących przepisów.", "Jakiego budżetu potrzebuję na zakup domu we Włoszech?", "Zależy to od lokalizacji, powierzchni i rodzaju nieruchomości. Oprócz ceny zakupu należy uwzględnić również koszty transakcji, podatki, notariusza, ewentualne prace remontowe i utrzymanie nieruchomości.", "Czy można kupić dom we Włoszech do remontu?", "Tak. Na włoskim rynku znajdują się nieruchomości wymagające remontu. Przed zakupem należy dokładnie sprawdzić stan techniczny, prawny i urbanistyczny nieruchomości oraz przewidywane koszty remontu.", "Jak wybrać region Włoch do zakupu domu?", "Wybór regionu powinien uwzględniać budżet, cel zakupu, styl życia, dostęp do morza lub gór, infrastrukturę, komunikację oraz potencjał inwestycyjny.", "Czy lepiej kupić dom czy mieszkanie we Włoszech?", "Zależy to od indywidualnych potrzeb. Dom może oferować większą powierzchnię, ogród lub prywatność, natomiast mieszkanie może być wygodniejsze w utrzymaniu i znajdować się bliżej centrum miasta.", "Czy można szukać nieruchomości we Włoszech według budżetu?", "Tak. Budżet jest jednym z podstawowych kryteriów przy wyborze nieruchomości. Możesz określić maksymalną kwotę, którą chcesz przeznaczyć na zakup.", "Czy można znaleźć dom we Włoszech według powierzchni i liczby pokoi?", "Tak. Powierzchnia i liczba pokoi mogą być wykorzystane jako podstawowe kryteria wyszukiwania domu lub mieszkania.", "Czy wysłanie formularza oznacza obowiązek zakupu?", "Nie. Wysłanie zapytania jest bezpłatne i nie oznacza obowiązku zakupu nieruchomości.", "Jak zacząć szukać nieruchomości we Włoszech, jeśli nie wiem jeszcze, czego chcę?", "Zacznij od podstaw: określ orientacyjny budżet, powierzchnię, liczbę pokoi i to, czy interesuje Cię morze, góry, miasto czy wieś. Nie musisz od razu znać konkretnego regionu."], "en": ["Home in Italy • Ponte Dom", "Find your home in Italy", "Want to buy a home in Italy but not sure where? You don't need to know the region, city or town. Tell us what kind of property you want, your budget and what matters to you. We can share your enquiry with Italian agencies that have suitable properties.", "You describe your dream home. Agencies look for matching properties.", "FIND A HOME IN ITALY", "Your enquiry is free and does not oblige you to buy.", "Not sure where to buy yet?", "Start with what you need", "You don't need to choose a region first. Start with your budget, floor area, number of rooms, seaside or mountains, and intended use. You can decide on a location later.", "“I'm looking for a home in Italy, preferably near the sea, 80–120 m², 2–3 rooms, up to €180,000. I haven't chosen a region yet.”", "That's enough to get started.", "Why start with the form?", "You don't need to browse hundreds of listings. Describe what you need first: a seaside house, city apartment, mountain home, investment property, renovation project or holiday retreat.", "What happens after submitting?", "Describe your requirements.", "Share your budget, preferred size, number of rooms and priorities.", "Your enquiry reaches suitable agencies.", "Agencies can check whether they have matching properties.", "You may be contacted.", "If a suitable property is available, an agency may contact you directly.", "You decide.", "Submitting the form does not oblige you to buy.", "What if you still don't know where in Italy?", "That's a great place to start. Italy offers more than Tuscany, Sicily and Sardinia. Instead of asking “Where should I buy?”, start with “What kind of home do I want?”.", "What kind of house or apartment are you looking for?", "Describe your requirements so agencies with matching properties can contact you.", "Budget from (€)", "Budget to (€)", "Area from (m²)", "Area to (m²)", "How many rooms do you need?", "1", "2", "3", "4", "5+", "Location", "By the sea", "Near the sea", "In the mountains", "In the countryside", "In a city", "Quiet area", "Not sure yet", "Intended use", "Holiday home", "Primary residence", "Investment", "Rental", "Buy and renovate", "Second home", "Not sure yet", "Additional preferences", "Full name", "Email address", "Phone (optional)", "I agree to be contacted about my enquiry and to have my information shared with relevant property agencies to prepare offers.", "FIND A HOME IN ITALY", "Free enquiry. No obligation to buy.", "Your home in Italy may be closer than you think.", "You don't need to know the perfect location yet. Tell us what you're looking for.", "I WANT TO FIND A HOME IN ITALY", "Frequently asked questions about buying a home in Italy", "How can I find a home in Italy?", "Start by deciding on your budget, size, number of rooms and preferred setting. You can describe your needs even without choosing a region.", "Where should I buy a home in Italy?", "It depends on your budget, purpose and preferences. A seaside buyer, investor and someone seeking a quiet place to live may prefer different areas.", "How much does a home in Italy cost?", "Prices vary considerably by region, town, size, condition and location. It helps to define your budget and priorities first.", "Can Polish citizens buy a home in Italy?", "Yes. Polish citizens, as EU citizens, can purchase property in Italy.", "Can Polish citizens buy an apartment in Italy?", "Yes. Polish citizens can buy apartments and other property in Italy, subject to applicable procedures and legal requirements.", "Can I buy a home in Italy without speaking Italian?", "Yes, although support from people familiar with Italian and local procedures and documents is advisable.", "Can I find a home without choosing a region?", "Yes. Start with your budget, size, room count and preferences for the sea, mountains, city or countryside.", "Can I find an inexpensive home in Italy?", "Yes. Properties exist at many price levels, but a lower price may mean renovation work, a less popular location or other limitations.", "Can I buy a seaside home in Italy?", "Yes. Homes are available both on the coast and a short distance inland.", "Can I find a mountain home in Italy?", "Yes. Houses and apartments are available in mountain towns and nearby areas.", "Can I buy Italian property as an investment?", "Yes. Property may be used for rental income, as a second home or for investment. Assess the local market and all costs before buying.", "Can I buy a holiday home in Italy?", "Yes. A property can be a holiday or second home, subject to its location and applicable rules.", "What budget do I need to buy a home in Italy?", "It depends on the location, size and property type. Also allow for transaction costs, taxes, notary fees, potential renovation and upkeep.", "Can I buy a home to renovate in Italy?", "Yes. Renovation properties are available, but you should check their technical, legal and planning status and expected renovation costs first.", "How do I choose an Italian region?", "Consider budget, intended use, lifestyle, access to sea or mountains, infrastructure, transport and investment potential.", "Is a house or apartment better in Italy?", "It depends on your needs. A house may offer more space, a garden and privacy; an apartment may be easier to maintain and closer to a city centre.", "Can I search for Italian property by budget?", "Yes. Budget is a key search criterion, and you can specify your maximum purchase amount.", "Can I search by size and number of rooms?", "Yes. Floor area and room count are useful criteria for finding a house or apartment.", "Does submitting the form oblige me to buy?", "No. The enquiry is free and does not create an obligation to buy.", "How do I begin if I don't know what I want yet?", "Start with an approximate budget, size, number of rooms and whether you prefer the sea, mountains, city or countryside. You don't need to choose a region yet."], "it": ["Casa in Italia • Ponte Dom", "Trova la tua casa in Italia", "Vuoi acquistare una casa in Italia ma non sai ancora dove? Non devi conoscere già la regione, la città o il paese. Raccontaci che immobile cerchi, il tuo budget e ciò che conta per te. Possiamo inoltrare la tua richiesta ad agenzie italiane con immobili adatti alle tue esigenze.", "Tu descrivi la casa che cerchi. Le agenzie cercano le offerte adatte a te.", "TROVA CASA IN ITALIA", "La richiesta è gratuita e non comporta alcun obbligo di acquisto.", "Non sai ancora dove comprare?", "Parti dalle tue esigenze", "Non devi scegliere subito una regione. Parti da budget, superficie, numero di stanze, mare o montagna e destinazione d'uso. Potrai decidere la località in seguito.", "«Cerco una casa in Italia, possibilmente vicino al mare, 80–120 m², 2–3 stanze, budget fino a 180.000 €. Non ho ancora scelto la regione.»", "È sufficiente per iniziare la ricerca.", "Perché iniziare dal modulo?", "Non devi consultare centinaia di annunci. Descrivi prima ciò che cerchi: casa al mare, appartamento in città, casa in montagna, immobile da investimento, casa da ristrutturare o per le vacanze.", "Cosa succede dopo l'invio?", "Descrivi le tue esigenze.", "Indica budget, superficie, numero di stanze e preferenze.", "La richiesta arriva alle agenzie adatte.", "Le agenzie verificano la disponibilità di immobili compatibili.", "Puoi essere ricontattato.", "Se c'è un immobile adatto, un'agenzia potrà contattarti direttamente.", "Decidi tu.", "L'invio del modulo non ti obbliga ad acquistare.", "E se non sai ancora dove comprare in Italia?", "È un ottimo punto di partenza. L'Italia non è solo Toscana, Sicilia o Sardegna. Invece di chiederti «Dove dovrei comprare?», chiediti «Che tipo di casa cerco?».", "Che tipo di casa o appartamento cerchi?", "Descrivi le tue esigenze: le agenzie con offerte adatte potranno contattarti.", "Budget da (€)", "Budget fino a (€)", "Superficie da (m²)", "Superficie fino a (m²)", "Quante stanze ti servono?", "1", "2", "3", "4", "5+", "Posizione", "Sul mare", "Vicino al mare", "In montagna", "In campagna", "In città", "Zona tranquilla", "Non so ancora", "Destinazione d'uso", "Casa vacanze", "Abitazione principale", "Investimento", "Affitto", "Acquisto e ristrutturazione", "Seconda casa", "Non so ancora", "Altre preferenze", "Nome e cognome", "Indirizzo email", "Telefono (facoltativo)", "Acconsento a essere contattato in merito alla mia richiesta e alla condivisione dei miei dati con agenzie immobiliari pertinenti per la preparazione delle offerte.", "TROVA CASA IN ITALIA", "Richiesta gratuita. Nessun obbligo di acquisto.", "La tua casa in Italia potrebbe essere più vicina di quanto pensi.", "Non devi conoscere già la località perfetta. Raccontaci cosa cerchi.", "VOGLIO TROVARE CASA IN ITALIA", "Domande frequenti sull'acquisto di una casa in Italia", "Come trovare una casa in Italia?", "Inizia definendo budget, superficie, numero di stanze e posizione preferita. Puoi descrivere le tue esigenze anche senza scegliere una regione.", "Dove comprare casa in Italia?", "Dipende da budget, finalità e preferenze. Chi cerca il mare, un investimento o una zona tranquilla può preferire località diverse.", "Quanto costa una casa in Italia?", "I prezzi variano molto secondo regione, comune, superficie, condizioni e posizione. Conviene definire prima budget e aspettative.", "Un cittadino polacco può comprare casa in Italia?", "Sì. I cittadini polacchi, in quanto cittadini dell'UE, possono acquistare immobili in Italia.", "Un cittadino polacco può comprare un appartamento in Italia?", "Sì. Possono acquistare appartamenti e altri immobili rispettando le procedure e i requisiti legali applicabili.", "Si può comprare casa in Italia senza parlare italiano?", "Sì, ma è consigliabile farsi assistere da persone che conoscono la lingua e le procedure e i documenti locali.", "Si può cercare casa senza scegliere una regione?", "Sì. Parti da budget, superficie, stanze e preferenze tra mare, montagna, città o campagna.", "Si può trovare una casa economica in Italia?", "Sì. Esistono immobili in diverse fasce di prezzo, ma un prezzo basso può comportare ristrutturazioni, località meno richieste o altri limiti.", "Si può comprare casa al mare in Italia?", "Sì. Sono disponibili immobili direttamente sulla costa o a breve distanza dal mare.", "Si può trovare casa in montagna in Italia?", "Sì. Esistono case e appartamenti in località montane e nelle zone vicine.", "Si può acquistare un immobile in Italia come investimento?", "Sì. Un immobile può essere destinato all'affitto, a seconda casa o a investimento. Prima dell'acquisto valuta mercato locale e costi complessivi.", "Si può comprare una casa vacanze in Italia?", "Sì. Un immobile può essere usato come casa vacanze o seconda casa, nel rispetto delle norme applicabili.", "Quale budget serve per comprare casa in Italia?", "Dipende da zona, superficie e tipologia. Considera anche spese di compravendita, imposte, notaio, eventuali lavori e manutenzione.", "Si può comprare casa da ristrutturare in Italia?", "Sì. Esistono immobili da ristrutturare; verifica prima situazione tecnica, legale e urbanistica e i costi previsti.", "Come scegliere una regione italiana?", "Considera budget, finalità, stile di vita, vicinanza a mare o montagna, servizi, trasporti e potenziale di investimento.", "Meglio comprare casa indipendente o appartamento?", "Dipende dalle esigenze. Una casa può offrire più spazio, giardino e privacy; un appartamento può richiedere meno manutenzione ed essere più centrale.", "Si possono cercare immobili in Italia in base al budget?", "Sì. Il budget è uno dei principali criteri di ricerca e puoi indicare la spesa massima.", "Si può cercare per superficie e numero di stanze?", "Sì. Superficie e numero di stanze sono criteri utili per trovare casa o appartamento.", "Inviare il modulo obbliga ad acquistare?", "No. La richiesta è gratuita e non comporta alcun obbligo di acquisto.", "Come iniziare se non so ancora cosa cerco?", "Parti da budget indicativo, superficie, numero di stanze e preferenza per mare, montagna, città o campagna. Non serve scegliere subito una regione."]};
+const LANDING_META = {pl:{title:'Dom we Włoszech – znajdź nieruchomość | Ponte Dom',description:'Chcesz kupić dom we Włoszech, ale nie wiesz gdzie? Podaj budżet, metraż i swoje oczekiwania. Dopasowane oferty mogą przesłać Ci włoskie agencje.'},en:{title:'Find a Home in Italy | Ponte Dom',description:'Looking to buy a home in Italy? Tell us your budget, size and preferences. Italian agencies may contact you with matching properties.'},it:{title:'Trova casa in Italia | Ponte Dom',description:'Vuoi comprare casa in Italia? Indica budget, superficie e preferenze. Le agenzie italiane potranno proporti immobili adatti.'}};
+function translateLandingFull(){
+ const lang=(typeof currentLang!=='undefined' && LANDING_FULL_TRANSLATIONS[currentLang])?currentLang:'pl';
+ const strings=LANDING_FULL_TRANSLATIONS[lang];
+ document.querySelectorAll('[data-landing-i18n]').forEach(el=>{const n=Number(el.dataset.landingI18n);if(strings[n]!==undefined)el.textContent=strings[n];});
+ const ta=document.querySelector('#landing-inquiry-form textarea[name="expectations"]');if(ta)ta.placeholder=({pl:'Np. ogród, taras, widok na morze, blisko plaży, parking, basen, nieruchomość do remontu...',en:'E.g. garden, terrace, sea view, near the beach, parking, pool, renovation project...',it:'Es. giardino, terrazza, vista mare, vicino alla spiaggia, parcheggio, piscina, da ristrutturare...'})[lang];
+ const meta=LANDING_META[lang]; if(!document.querySelector('#landing-page').classList.contains('hidden')){document.title=meta.title;let m=document.querySelector('meta[name="description"]');if(!m){m=document.createElement('meta');m.name='description';document.head.appendChild(m)}m.content=meta.description;}
+}
+// Observe navigation and language changes without modifying the site's original listing logic.
+window.addEventListener('DOMContentLoaded',()=>{translateLandingFull();const target=document.getElementById('landing-page');if(target)new MutationObserver(translateLandingFull).observe(target,{attributes:true,attributeFilter:['class']});document.querySelectorAll('#lang-switcher a').forEach(a=>a.addEventListener('click',()=>queueMicrotask(translateLandingFull)));});
+</script></body>
 </html>
