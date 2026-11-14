@@ -931,6 +931,9 @@
             // Re-render regions carousel
             initRegionsCarousel();
 
+            // Re-fetch localized API data when the visitor switches languages.
+            if (remoteListingsState.attempted) loadDynamicListings();
+
             // Re-render dynamic content
             renderFeatureFilters();
             applyFilters();
@@ -940,9 +943,7 @@
             translateLandingFull();
 
             // If detail page is visible, re-render it
-            if (currentProperty && !document.getElementById('detail-page').classList.contains('hidden')) {
-                showDetails(currentProperty.id);
-            }
+            // The detail page is already refreshed above.
         }
         const API_BASE = "https://adriatica-backend.onrender.com";
         const DEFAULT_MAP_CENTER = [42.75, 13.95];
@@ -974,7 +975,7 @@
         // or passes plain strings/numbers through unchanged (used for API-loaded listings).
         function L2(value) {
             if (value && typeof value === 'object' && !Array.isArray(value)) {
-                return value[currentLang] ?? value.pl ?? Object.values(value)[0] ?? '';
+                return value[currentLang] || value.pl || value.en || value.it || '';
             }
             return value;
         }
@@ -1130,12 +1131,23 @@
             return /m2|m²|sqm|sq m/i.test(text) ? text : `${text} m²`;
         }
 
+        function withListingLanguage(url) {
+            if (!url) return '';
+            try {
+                const resolved = new URL(url, API_BASE);
+                if (resolved.origin === new URL(API_BASE).origin && resolved.pathname.startsWith('/listings/')) {
+                    resolved.searchParams.set('lang', currentLang);
+                }
+                return resolved.href;
+            } catch (_) { return url; }
+        }
+
         function getListingHref(listing) {
             const rawUrl = extractTextValue(listing?.url, listing?.href, listing?.detailUrl, listing?.externalUrl);
-            if (rawUrl) return sanitizeHttpUrl(rawUrl, API_BASE);
+            if (rawUrl) return withListingLanguage(sanitizeHttpUrl(rawUrl, API_BASE));
 
             if (typeof listing?.id === "string" && listing.id.trim()) {
-                return `${API_BASE}/listings/${encodeURIComponent(listing.id.trim())}`;
+                return withListingLanguage(`${API_BASE}/listings/${encodeURIComponent(listing.id.trim())}`);
             }
 
             return "";
@@ -1408,12 +1420,12 @@
 
             return {
                 id: String(rawId),
-                title: item?.title || item?.name || T("listing.new"),
+                title: item?.localizedTitle || item?.title || item?.name || T("listing.new"),
                 price: typeof item?.price === "string" ? item.price : item?.priceText || formatPriceDisplay(priceValue, currency),
                 priceValue,
                 location: location || T("listing.italy"),
                 badge: badge || T("listing.badge"),
-                desc: item?.desc || item?.description || T("listing.newDesc"),
+                desc: item?.localizedDescription || item?.desc || item?.description || T("listing.newDesc"),
                 specs: {
                     space: formatAreaValue(area),
                     beds: bedrooms ?? "—",
@@ -1430,7 +1442,7 @@
             try {
                 remoteListingsState.attempted = true;
                 remoteListingsState.failed = false;
-                const response = await fetch(`${API_BASE}/api/listings?ts=${Date.now()}`, { cache: "no-store" });
+                const response = await fetch(`${API_BASE}/api/listings?lang=${encodeURIComponent(currentLang)}&ts=${Date.now()}`, { cache: "no-store" });
                 if (!response.ok) throw new Error(`HTTP ${response.status}`);
                 const payload = await response.json();
 
@@ -1648,7 +1660,7 @@
                 : `<span class="text-xs text-slate-400">${T("detail.noFeatures")}</span>`;
             
             updateCarousel();
-            if (page !== 'landing') { document.title = 'Ponte Dom - Nieruchomości we Włoszech'; }
+            if (page !== 'landing') { document.title = ({pl:'Ponte Dom - Nieruchomości we Włoszech',en:'Ponte Dom - Properties in Italy',it:'Ponte Dom - Immobili in Italia'})[currentLang]; }
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
