@@ -893,6 +893,9 @@
             if (!TRANSLATIONS[lang]) return;
             currentLang = lang;
             updateListingViewLanguage(lang);
+            if (document.getElementById('landing-page')?.classList.contains('hidden')) {
+                document.title = ({pl:'Ponte Dom - Nieruchomości we Włoszech',en:'Ponte Dom - Properties in Italy',it:'Ponte Dom - Immobili in Italia'})[lang];
+            }
             localStorage.setItem('pd_lang', lang);
             document.documentElement.lang = lang;
             // Update URL to reflect language
@@ -967,7 +970,7 @@
         const REMOTE_LISTING_SOURCE = "remote";
         const FEATURE_LOOKUP = new Map();
         const filtersState = { priceMin: "", priceMax: "", features: new Set() };
-        const remoteListingsState = { attempted: false, failed: false };
+        const remoteListingsState = { attempted: false, failed: false, requestSequence: 0 };
 
         const dataStore = [];
 
@@ -1439,12 +1442,16 @@
         }
 
         async function loadDynamicListings() {
+            const requestedLanguage = currentLang;
+            const requestSequence = ++remoteListingsState.requestSequence;
             try {
                 remoteListingsState.attempted = true;
                 remoteListingsState.failed = false;
-                const response = await fetch(`${API_BASE}/api/listings?lang=${encodeURIComponent(currentLang)}&ts=${Date.now()}`, { cache: "no-store" });
+                const response = await fetch(`${API_BASE}/api/listings?lang=${encodeURIComponent(requestedLanguage)}&ts=${Date.now()}`, { cache: "no-store" });
                 if (!response.ok) throw new Error(`HTTP ${response.status}`);
                 const payload = await response.json();
+                // Ignore an older API result if the visitor switched language meanwhile.
+                if (requestSequence !== remoteListingsState.requestSequence || requestedLanguage !== currentLang) return;
 
                 const incoming = Array.isArray(payload)
                     ? payload
@@ -1483,6 +1490,7 @@
 
                 applyFilters();
             } catch (error) {
+                if (requestSequence !== remoteListingsState.requestSequence || requestedLanguage !== currentLang) return;
                 remoteListingsState.attempted = true;
                 remoteListingsState.failed = true;
                 console.warn("Nie udało się pobrać ofert z API:", error);
