@@ -1,6 +1,9 @@
 name: Verify Ponte Dom languages
 
 on:
+  push:
+    branches:
+      - fix/landing-nav-language-switch-2026-11
   workflow_dispatch:
 
 permissions:
@@ -13,7 +16,6 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          ref: fix/i18n-consistency-2026-11
           persist-credentials: false
       - uses: actions/setup-node@v4
         with:

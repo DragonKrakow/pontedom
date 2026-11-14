@@ -929,6 +929,10 @@
                 btn.setAttribute('aria-pressed', String(active));
             });
 
+            // The landing navigation label uses LANDING_TEXT rather than data-i18n.
+            // Refresh it for every language change, including non-dynamic renders.
+            renderLanding();
+
             if (!refreshDynamic) return;
 
             // Re-render regions carousel
